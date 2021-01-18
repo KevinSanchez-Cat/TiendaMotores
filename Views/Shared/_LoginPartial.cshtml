@@ -17,9 +17,9 @@
                     <span class="badge" style="color:lightgoldenrodyellow">@num</span>
                 </a>
             </li>
-            @{
-                string name = Session["nombre"].ToString();
-            }
+         @{ 
+    string name = Session["nombre"].ToString();
+}
             <li style="margin-left:1em">
                 <!--@Html.ActionLink("Hola " + name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })-->
                 <a id="loginLink" class="btn btn-light" href="@Url.Action("Index","Manage", routeValues:null)">

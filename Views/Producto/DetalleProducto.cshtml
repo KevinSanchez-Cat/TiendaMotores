@@ -63,7 +63,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 <div class="col">
-                    @Html.Editor("cantidad", new { htmlAttributes = new { @class = "form-control form-control" } })
+                    @Html.Editor("cantidad" ,new { htmlAttributes = new { @class = "form-control form-control"} })
                 </div>
             </div>
             <br />
@@ -72,7 +72,7 @@
             <br />
             <div class="row">
                 <div class="col">
-                    <a class="btn btn-outline-warning" href="@Url.Action("Index","Home")"> Seguir comprando</a>
+                    <a class="btn btn-secondary" href="@Url.Action("Index","Home")"> Seguir comprando</a>
                 </div>
                 <div class="col">
 
@@ -81,8 +81,8 @@
 
                 <div class="col">
 
-                    <p style="float: right;color:white">
-                        @Html.ActionLink("Pagar ahora", "CrearOrden", "MetodoPago", new { area = "" }, new { @class = "btn btn-outline-success" })
+                    <p style="color:white">
+                        @Html.ActionLink("Pagar ahora", "CrearOrden", "MetodoPago", new { area = "" }, new { @class = "btn btn-success" })
                     </p>
                 </div>
             </div>

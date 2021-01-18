@@ -1,16 +1,17 @@
 ﻿
 @using Microsoft.AspNet.Identity
-@{ 
-    string name = Session["nombre"].ToString();
-}
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <!--@Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })-->
+          
+            @{
+                string name = Session["nombre"].ToString();
+            }
+            <li style="margin-left:1em">
+                <!--@Html.ActionLink("Hola " + name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })-->
                 <a id="loginLink" class="btn btn-light" href="@Url.Action("Index","Manage", routeValues:null)">
 
                     Hola  @name!
@@ -41,8 +42,8 @@
 else
 {
     <ul class="nav navbar-nav navbar-right" style="margin-top:0.5em">
-      
-      
+
+
         <li>
             <a id="loginLink" class="btn btn-light" href="@Url.Action("Login","Account")" style="margin-left:1em">
                 <i>
@@ -68,7 +69,7 @@ else
                 Registrarse
             </a>
         </li>
-        
+
     </ul>
 
 }

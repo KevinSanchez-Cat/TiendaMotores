@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using TiendaMotores.Models;
 namespace TiendaMotores.Controllers
 {
     public class HomeController : Controller
@@ -11,8 +11,11 @@ namespace TiendaMotores.Controllers
 
         public ActionResult Index()
         {
+            Session["nombre"] = "";
+            TIENDAEntities db = new TIENDAEntities();
             if (HttpContext.Request.Cookies["usuario"] != null)
             {
+
                 HttpCookie usuario = HttpContext.Request.Cookies.Get("usuario");
                 string rol;
                 string items;

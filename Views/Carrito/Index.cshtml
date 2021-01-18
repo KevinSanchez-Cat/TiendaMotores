@@ -7,7 +7,7 @@
 <h2>Carrito</h2>
 
 @{
-    if (Session["cart"] == null)
+    if (Session["cart"] == null || (int)Session["itemTotal"] == 0)
     {
         <div class="alert alert-warning" role="alert">
             <p>Aún no hay nada en su carrito</p>

@@ -666,6 +666,7 @@
     <Content Include="Views\Puesto\Buscar.cshtml" />
     <Content Include="Views\DepVentas\Index.cshtml" />
     <Content Include="Views\Defecto\Index.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

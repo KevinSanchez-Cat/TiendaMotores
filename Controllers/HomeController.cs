@@ -11,51 +11,44 @@ namespace TiendaMotores.Controllers
 
         public ActionResult Index()
         {
-
             if (HttpContext.Request.Cookies["usuario"] != null)
             {
                 HttpCookie usuario = HttpContext.Request.Cookies.Get("usuario");
-                string rol="";
-                string items="";
+                string rol;
+                string items;
                 rol = Request.Cookies.Get("usuario").Values.Get("rol");
                 if (rol != "Cliente")
                 {
-                    Session["nombre"] = "";
-                    Session["usuario"] = "";
                     Session["itemTotal"] = 0;
                     Session["cart"] = null;
-                    if ((Request.IsAuthenticated) && (Session["nombre"] == null))
+                    if ((Request.IsAuthenticated)&&(Session["nombre"]==null))
                     {
                         string correo = User.Identity.Name;
-                        return RedirectToAction("IndexLogin", "Acceso", routeValues: new { email = correo });
+                        return RedirectToAction("IndexLogin","Acceso", routeValues:new { email=correo});
                     }
                 }
                 else
                 {
                     items = Request.Cookies.Get("usuario").Values.Get("itemTotal");
                     Session["itemTotal"] = items;
-                    if ((Request.IsAuthenticated) && (Session["nombre"] == null))
+                    if ((Request.IsAuthenticated)&& (Session["nombre"]==null))
                     {
                         string correo = User.Identity.Name;
-                        return RedirectToAction("IndexLogin", "Acceso", routeValues: new { email = correo });
+                        RedirectToAction("IndexLogin", "Acceso", routeValues: new { email = correo });
                     }
                 }
             }
             else
             {
 
-                if (Session["cart"] == null)
+                if (Session["itemTotal"] == null)
                 {
                     Session["itemTotal"] = 0;
                     Session["cart"] = null;
                 }
             }
+            
             return View();
-        }
-        public ActionResult Usuario()
-        {
-           
-            return RedirectToAction("Index");
         }
 
         public ActionResult About()

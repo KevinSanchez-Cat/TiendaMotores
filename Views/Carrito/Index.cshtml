@@ -1,0 +1,82 @@
+﻿@using TiendaMotores.Models
+@{
+    ViewBag.Title = "Carrito";
+  
+}
+
+<h2>Carrito</h2>
+
+@{
+    if (Session["cart"] == null)
+    {
+        <div class="alert alert-warning" role="alert">
+            <p>Aún no hay nada en su carrito</p>
+        </div>
+        <a class="btn btn-warning" href="@Url.Action("Index","Home")"> Regresar</a>
+    }
+    else
+    {
+        <a class="btn btn-info" href="@Url.Action("Index")" style="float: right;">
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                </svg>
+            </i>
+           Actualizar
+        </a>
+        <br />
+        <br />
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr class="info">
+                    <th>Imagen</th>
+                    <th>Nombre del producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            @foreach (Item item in (List<Item>)Session["cart"])
+            {
+                <tr>
+                    <td><img class="img-responsive" src="~/Content/Imagenes/Productos/@item.Producto.imagen_producto" width="120" /></td>
+                    <td>@item.Producto.nombre_producto</td>
+                    <td align="center">
+                        <input type="number" value="@item.Cantidad" min="1" max="100" step="1" />
+
+
+                        <a class="btn btn-outline-secondary" href="@Url.Action("Quitar","Carrito", new { id=item.Producto.Id_producto})">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-x" viewBox="0 0 16 16">
+                                    <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z" />
+                                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                            </i>
+                            Quitar
+                        </a>
+
+                    </td>
+                    <td>$@item.Producto.precio</td>
+                    <td>$@(item.Producto.precio*item.Cantidad)</td>
+                </tr>
+            }
+            <tr>
+                <td aling="right" colspan="4">Total</td>
+                <td>
+                    @{
+                        List<Item> cart = (List<Item>)Session["cart"];
+                        var total = cart.Sum(item => item.Producto.precio * item.Cantidad);
+                    }
+                    $@total
+                </td>
+            </tr>
+
+        </table>
+        <br />
+        <a class="btn btn-warning" href="@Url.Action("Index","Home")"> Seguir comprando</a>
+        <p style="float: right;color:white">
+            @Html.ActionLink("Pagar ahora", "CrearOrden", "MetodoPago", new { area = "" }, new { @class = "btn btn-success" })
+        </p>
+    }
+}

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TiendaMotores.Models.Paqueteria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Paqueterias</h2>
+
+<table class="table table-striped">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_paqueteria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sitio_web)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rfc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono_contacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion.estado)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sitio_web)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rfc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono_contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion.estado)
+            </td>
+           
+        </tr>
+    }
+
+</table>

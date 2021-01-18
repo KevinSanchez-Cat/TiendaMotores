@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TiendaMotores.Models.Oden_cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Orden del cliente</h2>
+
+<table class="table table-striped">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.num_comfirmacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num_serie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_envio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_entrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Compra.id_compra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paqueteria.nombre_paqueteria)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.num_comfirmacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.num_serie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_envio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_entrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Compra.id_compra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paqueteria.nombre_paqueteria)
+            </td>
+        
+        </tr>
+    }
+
+</table>

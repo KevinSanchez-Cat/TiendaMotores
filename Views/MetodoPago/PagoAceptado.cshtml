@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "PagoAceptado";
+}
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Pago exitoso!</h4>
+        <p>Gracias por su compra.</p>
+        <hr>
+        <p class="mb-0"></p>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Continuar" class="btn btn-outline-success" />
+            </div>
+        </div>
+    </div>
+
+}

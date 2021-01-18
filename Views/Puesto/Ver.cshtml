@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TiendaMotores.Models.Puesto>
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Puestos</title>
+</head>
+<body>
+    <table class="table table-striped">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_puesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento.nombre_departamento)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_puesto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento.nombre_departamento)
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

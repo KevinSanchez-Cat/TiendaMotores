@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TiendaMotores.Models.Detalle_compra>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Detalle de compra</h2>
+
+<table class="table table-striped">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.Compra.id_compra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.nombre_producto)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Compra.id_compra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.nombre_producto)
+            </td>
+       
+        </tr>
+    }
+
+</table>

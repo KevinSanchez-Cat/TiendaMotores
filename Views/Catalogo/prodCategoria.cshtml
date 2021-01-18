@@ -1,0 +1,70 @@
+﻿@using TiendaMotores.Models
+@{
+    ViewBag.Title = "prodCategoria";
+}
+
+<h2>@ViewBag.cat</h2>
+
+<br />
+<br />
+<p>@ViewBag.desc</p>
+<br />
+<div class="text-center">
+    <div class="row row-cols-1 row-cols-md-3">
+
+
+        @foreach (Producto item in ViewBag.productos)
+        {
+
+        <div class="col">
+            <div class="card h-100">
+
+                <img src="~/Content/Imagenes/Productos/@Html.DisplayFor(modelItem => item.imagen_producto)"
+                     class="card-img-top" width="100" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">  @Html.DisplayFor(modelItem => item.nombre_producto) </h5>
+                    <p class="card-text">
+                        @Html.DisplayFor(modelItem => item.descripcion_producto)
+                    </p>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Precio:
+                        <b style="color: #1356bb;">$ @Html.DisplayFor(modelItem => item.precio)</b>
+                    </li>
+                </ul>
+                <div class="d-grid gap-2 d-md-block">
+                    <div class="card-body" style="margin: auto;">
+                        <a href="@Url.Action("DetalleProducto","Producto",new { id=Html.DisplayFor(modelItem => item.Id_producto)})" class="card-link btn btn-outline-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                            </svg>
+                            Ver
+                        </a>
+                        <a href="@Url.Action("Agregar", "Carrito", new { id = Html.DisplayFor(modelItem => item.Id_producto), cantidad = 1 })" class="card-link btn btn-outline-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            </svg>
+                            Añadir al carrito
+
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        }
+
+
+
+
+    </div>
+
+</div>
+<br />

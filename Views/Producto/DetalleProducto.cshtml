@@ -1,0 +1,157 @@
+﻿@using TiendaMotores.Models
+@{
+    ViewBag.Title = "DetalleProducto";
+    Producto producto = ViewBag.detalleProducto;
+
+    TIENDAEntities db = new TIENDAEntities();
+
+    var galeria = (from p in db.Galeria
+                   where p.id_galeria == producto.id_galeria
+                   select p).FirstOrDefault();
+
+    var marca = (from p in db.marca
+                 where p.Id_marca == producto.id_marca
+                 select p).FirstOrDefault();
+
+}
+
+<h2>DetalleProducto</h2>
+
+<div class="row">
+    <div class="col-1">
+        <div class="row-cols-1">
+            <img src="~/Content/Imagenes/Productos/@galeria.nombre_gal1" width="80" />
+        </div>
+        <div class="row-cols-1">
+            <img src="~/Content/Imagenes/Productos/@galeria.nombre_gal2" width="80" />
+        </div>
+        <div class="row-cols-1">
+            <img src="~/Content/Imagenes/Productos/@galeria.nombre_gal3" width="80" />
+        </div><div class="row-cols-1">
+            <img src="~/Content/Imagenes/Productos/@galeria.nombre_gal4" width="80" />
+        </div>
+
+
+
+    </div>
+    <div class="col-5">
+        <img src="~/Content/Imagenes/Productos/@producto.imagen_producto" width="380" />
+    </div>
+    <div class="col">
+        <h4>
+            @producto.nombre_producto
+        </h4>
+        <p class="h6">
+            @marca.nombre_marca
+        </p>
+
+        <p class="h6">
+            $@producto.precio
+        </p>
+        <h6>Descripción del producto</h6>
+        <p>
+
+            @producto.descripcion_producto
+        </p>
+
+
+        <h5>Cantidad</h5>
+        @using (Html.BeginForm("Agregar", "Carrito", FormMethod.Post))
+        {
+
+            @Html.Hidden("id", producto.Id_producto)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col">
+                    @Html.Editor("cantidad", new { htmlAttributes = new { @class = "form-control form-control" } })
+                </div>
+            </div>
+            <br />
+
+
+            <br />
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-outline-warning" href="@Url.Action("Index","Home")"> Seguir comprando</a>
+                </div>
+                <div class="col">
+
+                    <input type="submit" value="Agregar al carrito" class="btn btn-primary" />
+                </div>
+
+                <div class="col">
+
+                    <p style="float: right;color:white">
+                        @Html.ActionLink("Pagar ahora", "CrearOrden", "MetodoPago", new { area = "" }, new { @class = "btn btn-outline-success" })
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+</div>
+
+<h5>Especificaciones</h5>
+<table class="table table-striped">
+    <tr>
+        <td>
+            Peso (kg)
+        </td>
+        <td>
+            @producto.peso
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Potencia
+        </td>
+        <td>
+            @producto.potencia
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Tipo
+        </td>
+        <td>
+            @producto.Tipo
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Polos
+        </td>
+        <td>
+            @producto.polos
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            RPM
+        </td>
+        <td>
+            @producto.rpm
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dimensiones
+        </td>
+        <td>
+            @producto.alto x @producto.ancho x @producto.profundidad
+        </td>
+    </tr>
+    <tr>
+
+
+        <td>
+            Voltaje(v)
+        </td>
+        <td>
+            @producto.voltaje
+        </td>
+    </tr>
+</table>

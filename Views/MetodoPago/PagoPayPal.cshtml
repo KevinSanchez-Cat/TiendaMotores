@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "PagoPayPal";
+    int idCliente=Convert.ToInt32(Session["idDir"].ToString());
+    int idDir = Convert.ToInt32(Session["idClient"].ToString());
+}
+
+<h2>Iniciar sessión</h2>
+
+<div class="container">
+    <img src="~/Content/Imagenes/Tarjetas/paypal.png" style="margin:auto"/>
+
+    <form action="">
+
+        <a class="btn btn-primary text-center" href="@Url.Action("pagandoPayPay", "MetodoPago", new {idC=idCliente, idDir=idDir})"></a>
+    </form>
+
+
+</div>

@@ -1,0 +1,277 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<section class="container" style="margin-top:10px">
+    <article>
+        <h3 style="color:#14135e">
+            Inicio
+        </h3>
+        <hr>
+    </article>
+    <div class="container card bg-light text-white p-md-1" style="margin-top: 15px;">
+        <img src="https://www.infoplc.net/media/k2/items/cache/bcda5a9329b4e9caf9281438f77aef14_XL.jpg"
+             class="card-img-top" alt="..." style="background-color: rgba(0,0,0,0.8); background-image: url(https://www.infoplc.net/media/k2/items/cache/bcda5a9329b4e9caf9281438f77aef14_XL.jpg)">
+        <div class="card-img-overlay text-center">
+            <h1 class="card-title featurette-heading" style="border:1em">
+            <br />
+                <br />
+                <br />
+                <br />
+                <b>
+                    Motores electricos
+                </b>
+                
+            </h1>
+            <p class="card-text">Porque sabemos que lo más importante es el corazón de tu automovil, en esta tienda encontrarás una gran variedad de motores.</p>
+
+            <a href="@Url.Action("Index","CatalogoEnTienda", null)" class="btn btn-light">
+            Comprar ahora</a>
+        </div>
+    </div>
+
+
+    <br />
+
+    <div class="text-center">
+        <h3>Nuestras principales categorias</h3>
+        <br />
+        <div class="row row-cols-1 row-cols-md-4 ">
+            <div class="col mb-4">
+                <div class="card h-100">
+
+                    <img src="~/Content/Imagenes/Productos/Electricos-weg-rmw100-1 (1).jpg"
+                         class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Motores electricos</h5>
+                    </div>
+
+                    <div class="card-body" style="margin: auto; align-content:center">
+                        <a href="@Url.Action("prodCategoria","Catalogo", new { id = 3,nombre="Motores electricos", descripcion="Se trataba de un motor que podía transformar la energía eléctrica en energía mecánica sin necesidad de recurrir a las explosiones y combustiones propias de los motores gasolina y diésel."})" class="card-link btn btn-outline-primary">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                            </i>
+                            Ver productos
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+
+                    <img src="~/Content/Imagenes/Productos/Electricos-weg-rmw100-1.jpg"
+                         class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Motores GLP y GNC</h5>
+                    </div>
+
+                    <div class="card-body" style="margin: auto; align-content:center">
+                        <a href="@Url.Action("prodCategoria","Catalogo", new { id = 4,nombre="Motores de GLP y GNC", descripcion="Los vehículos que funcionan con combustibles alternativos como el gas licuado del petróleo o el gas natural comprimido."})" class="card-link btn btn-outline-primary">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                            </i>
+                            Ver productos
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+
+                    <img src="~/Content/Imagenes/Productos/Electricos-weg-rmw200-1.jpg"
+                         class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Motores de gasolina</h5>
+                    </div>
+
+                    <div class="card-body" style="margin: auto; align-content:center">
+
+                        <a href="@Url.Action("prodCategoria","Catalogo", new { id = 7,nombre="Motores de gasolina", descripcion="Uno de los tipos de motores es el motor de gasolina. También se conocen como motores a cuatro tiempos de Otto. Como su nombre indica su funcionamiento es a gasolina gracias a una base termodinámica que convierte la energía química de la ignición, provocada por la mezcla del aire y el combustible, en energía mecánica. Así el coche obtiene la energía necesaria para realizar sus movimientos."})" class="card-link btn btn-outline-primary">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                            </i>
+                            Ver productos
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+
+                    <img src="~/Content/Imagenes/Productos/Electricos-weg-rmw200-1.jpg"
+                         class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Motores de diesel</h5>
+                    </div>
+
+                    <div class="card-body" style="margin: auto; align-content:center">
+                        <a href="@Url.Action("prodCategoria","Catalogo", new { id = 2,nombre="Motores de diésel", descripcion="Los vehículos que funcionan con combustibles alternativos como el gas licuado del petróleo o el gas natural comprimido."})" class="card-link btn btn-outline-primary">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                            </i>
+                            Ver productos
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <p class="lead">
+            En Bull Motors contamos con cuatro principales categorias de motores: electricos, de diesel, de gasolina, GLP y GNC. Cada uno de nuestros motores cuenta con una excelente calidad y mantenibilidad.
+        </p>
+        <br />
+
+        <div>
+            <h3 class="text-center">
+                Nuestros clientes
+            </h3>
+
+
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <img src="~/Content/Imagenes/TiendaMotores/marca5.png" width="160" height="140" />
+                     <h6> CHEVROLET</h6>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4 text-center">
+                    <img src="~/Content/Imagenes/TiendaMotores/marca4.jpg" width="160" height="140" />
+                    <h6> Ford</h6>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4 text-center">
+                    <img src="~/Content/Imagenes/TiendaMotores/marca3.jpg" width="160" height="160" />
+                    <h6> NISSAN</h6>
+                </div><!-- /.col-lg-4 -->
+
+            </div><!-- /.row -->
+            <br />
+            <div class="row">
+                <div class="col text-center">
+                    <img src="~/Content/Imagenes/TiendaMotores/marca2.jpg" width="160" height="140" />
+                    <h6>TOYOTA</h6>
+                </div><!-- /.col-lg-4 -->
+                <div class="col text-center">
+                    <img src="~/Content/Imagenes/TiendaMotores/marca6.png" width="160" height="140" />
+                    <h6> VOLKWAGEN</h6>
+                </div><!-- /.col-lg-4 -->
+
+            </div><!-- /.row -->
+
+
+        </div>
+        <br />
+        <p class="lead">Nuestra empresa cuenta con grandes alianzas y con ello, clientes. En las cuales nuestros motores son totalmente compatibles con las diferentes marcas de automoviles existenctes.</p>
+        <br />
+
+        <h3 class="text-center">
+            Nuestros productos y servicios
+        </h3>
+        <br />
+        <h6 class="lead">Ofrecemos servicio 24/7</h6>
+        <br />
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://www.altonivel.com.mx/wp-content/uploads/2019/12/autos.jpg" class="card-img-top" alt="..." height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">Ofrecemos crédito</h5>
+                        <p class="card-text">Las mejores opciones de crédito</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://www.eluniversal.com.mx/sites/default/files/autos_usados_buenos_26.jpg" class="card-img-top" alt="..." height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">Venta de autos usados</h5>
+                        <p class="card-text">Ofrecemos las mejores marcas a los mejores precios</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://cdn.shopify.com/s/files/1/2242/3989/t/2/assets/feature2.jpg?v=8420744967315717659" class="card-img-top" alt="..." height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">Venta de motores</h5>
+                        <p class="card-text">Ofrecemos variedad y especialización en motores de uso personal hasta industrial</p>
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <div class="col" style="margin-top:1em">
+                <div class="card h-100">
+                    <img height="250" src="https://static3.laverdad.es/www/multimedia/201907/23/media/cortadas/VF0J3RO2-k5K-U8082393183104D-624x385@La%20Verdad.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Experiencia más de 20 años</h5>
+                        <p class="card-text">Más de 20 años nos respaldan</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col" style="margin-top:1em">
+                <div class="card h-100">
+                    <img src="https://e00-elmundo.uecdn.es/elmundomotor/imagenes/2013/08/27/empresa/1377594699_0.jpg" class="card-img-top" alt="..." height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">Mantenimiento los 365 de año</h5>
+                        <p class="card-text">Traenos tu automovil o tu motor, en nuestro talle lo revisamos.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col" style="margin-top:1em">
+                <div class="card h-100">
+                    <img src="https://rectiberica.com/wp-content/uploads/2019/02/rectificadora-de-motores.jpg" class="card-img-top" alt="..." height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">Taller de motores</h5>
+                        <p class="card-text">Para garantizar la calidad, contamos con un taller de motores</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <!-- Nosotros-->
+<div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+            <h2 class="card-title" style="text-decoration:none">Nosotros</h2>
+            <p class="card-text">Con más de 20 años de experiencia, nuestros motores han logrado la eficiencia y calidad que ningún otra empresa ha logrado. Nuestros protocolos estrictamente cuidados garantizan la...</p>
+            <a href="@Url.Action("Index", "SobreNosotros")" class="btn btn-light">Leer más</a>
+        </div>
+    </div>
+ 
+
+    <article>
+    </article>
+</section>
+
+

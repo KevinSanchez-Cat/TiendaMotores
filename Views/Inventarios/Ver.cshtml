@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TiendaMotores.Models.Inventario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.clave_unica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.nombre_producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad_inventario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estatus)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.clave_unica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.nombre_producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad_inventario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estatus)
+            </td>
+
+        </tr>
+    }
+
+</table>

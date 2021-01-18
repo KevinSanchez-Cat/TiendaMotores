@@ -1,0 +1,42 @@
+﻿@model TiendaMotores.Models.Inventario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Inventario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad_inventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad_inventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.nombre_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.nombre_producto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_inventario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

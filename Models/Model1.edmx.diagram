@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8a43a5eea464ce4bb8f0572e0a13004" Name="Diagram1">
+        <EntityTypeShape EntityType="TIENDAModel.Categoria" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Cliente" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Compra" Width="1.5" PointX="6" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Departamento" Width="1.5" PointX="5.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Direccion" Width="1.5" PointX="1.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Empleado" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Galeria" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Inventario" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.marca" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Oden_cliente" Width="1.5" PointX="8.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Paqueteria" Width="1.5" PointX="3.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Producto" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Puesto" Width="1.5" PointX="5.5" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Tarjeta" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.Detalle_compra" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TIENDAModel.ProductoTienda" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="TIENDAModel.FK__Categoria__id_ca__3D2915A8" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Producto__id_cat__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Cliente__id_dire__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Cliente__id_tarj__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Compra__id_clien__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Compra__id_direc__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Detalle_c__Id_co__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Oden_clie__id_co__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Empleado__id_dep__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Puesto__id_depar__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Empleado__id_dir__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Paqueteri__id_di__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Tarjeta__id_dire__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Empleado__id_pue__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Producto__id_gal__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Inventari__Id_pr__339FAB6E" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Producto__id_mar__2FCF1A8A" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Oden_clie__id_pa__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Detalle_c__id_pr__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Producto__id_pro__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__ProductoT__Id_pr__2DE6D218" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

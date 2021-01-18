@@ -1,0 +1,133 @@
+﻿@model IEnumerable<TiendaMotores.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+
+    string correo = Session["correo"].ToString();
+   
+}
+
+<h2>Mi cuenta</h2>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+         
+        </div>
+
+
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Featured</h5>
+    <div class="card-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                <div class="row">
+                    @Html.Label("País")
+                    @Html.Editor("pais", new { htmlAttributes = new { @class = "form-control form-control" } })
+                    @Html.ValidationMessage("pais", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Estado")
+            <div class="col">
+             
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                @Html.Label("Municipio")
+                @Html.Editor("municipio", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("municipio", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                @Html.Label("Ciudad")
+                @Html.Editor("ciudad", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("ciudad", "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                @Html.Label("Calle externa")
+                @Html.Editor("calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("calle_externa", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                @Html.Label("No. Calle externa")
+                @Html.Editor("num_calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("num_calle_externa", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                @Html.Label("Calle interna")
+                @Html.Editor("calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("calle_interna", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+                @Html.Label("No. Calle interna")
+                @Html.Editor("num_calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("num_calle_interna", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+
+                @Html.Label("Código postal")
+                @Html.Editor("codigo_postal", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("codigo_postal", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+
+                @Html.Label("Referecia 1")
+                @Html.Editor("ref1", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("ref1", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col">
+
+                @Html.Label("Referencia 2")
+                @Html.Editor("ref2", new { htmlAttributes = new { @class = "form-control form-control" } })
+                @Html.ValidationMessage("ref2", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="card">
+    <h5 class="card-header">Featured</h5>
+    <div class="card-body">
+        
+
+    </div>
+</div>

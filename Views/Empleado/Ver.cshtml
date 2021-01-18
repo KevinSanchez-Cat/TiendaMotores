@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TiendaMotores.Models.Empleado>
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Empleados</title>
+</head>
+<body>
+    <h2>Empleados</h2>
+   
+    <table class="table table-striped">
+        <tr class="table-primary">
+            <th>
+                @Html.Label("Nombre del empleado")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rfc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rol)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_empleado) @Html.DisplayFor(modelItem => item.apellido_p) @Html.DisplayFor(modelItem => item.apellido_m)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rfc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rol)
+                </td>
+
+              
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

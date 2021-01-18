@@ -1,0 +1,114 @@
+﻿@model TiendaMotores.Models.Direccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Direccion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.municipio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciudad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciudad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_postal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_postal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calle_externa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calle_externa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_calle_externa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_calle_externa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calle_interna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calle_interna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_calle_interna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_calle_interna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ref1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ref1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ref2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ref2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pais)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_direccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

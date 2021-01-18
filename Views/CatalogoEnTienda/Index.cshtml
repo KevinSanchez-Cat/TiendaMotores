@@ -1,0 +1,88 @@
+﻿@using TiendaMotores.Models
+@{
+    ViewBag.Title = "Index";
+    TIENDAEntities db = new TIENDAEntities();
+    List<Categoria> catalogos = null;
+    var query = from p in db.Categoria
+                select p;
+
+    catalogos = query.ToList();
+
+
+    ViewBag.catalogos = catalogos;
+}
+
+<h2>Catálogo</h2>
+
+<article>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner active">
+            <div class="carousel-item active" data-interval="2000">
+                <img src="~/Content/Imagenes/TiendaMotores/imgCarr1.jpg" width="1200"
+                     loading="lazy" class="d-block h-100" alt="...">
+            </div>
+            <div class="carousel-item" data-interval="2000">
+                <img src="~/Content/Imagenes/TiendaMotores/imgCarr3.jpg" width="1200"
+                     loading="lazy" class="d-block h-100" alt="...">
+            </div>
+            <div class="carousel-item" data-interval="2000">
+                <img src="~/Content/Imagenes/TiendaMotores/imgCarr4.jpg" width="1200"
+                     loading="lazy" class="d-block h-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</article>
+
+<div class="row row-cols-1 row-cols-md-4 ">
+
+    @foreach (Categoria item in ViewBag.catalogos)
+    {
+        <div class="col mb-4">
+            <div class="card h-100">
+
+                <img src="~/Content/Imagenes/Productos/Electricos-weg-rmw100-1 (1).jpg"
+                     class="card-img-top" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title text-center"> @Html.DisplayFor(modelItem => item.nombre_categoria)</h5>
+                </div>
+                <div class="row text-truncate" style="margin-left:1em;margin-right:1em">
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </div>
+                <div class="card-body" style="margin: auto; align-content:center">
+
+                    <a class="btn btn-outline-primary" style="float: right;margin-left:0.5em" href="@Url.Action("prodCategoria","Catalogo", new { id = item.id_categoria ,nombre=item.nombre_categoria, descripcion=item.descripcion})">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            </svg>
+                        </i>
+                        Ver productos
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    }
+
+
+</div>

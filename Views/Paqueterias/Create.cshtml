@@ -1,0 +1,256 @@
+﻿@model TiendaMotores.Models.Paqueteria
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Añadir paqueteria</h2>
+
+@*using (Html.BeginForm()) *@
+@using (Html.BeginForm("Create", "Paqueterias", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nombre_paqueteria, htmlAttributes: new { @class = "control-label col" })
+                        <div class="col-md">
+                            @Html.EditorFor(model => model.nombre_paqueteria, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.nombre_paqueteria, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.telefono, htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.sitio_web, htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.sitio_web, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sitio_web, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.rfc, htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.rfc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.rfc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.contacto, htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.contacto, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.telefono_contacto, htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.telefono_contacto, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.telefono_contacto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+       
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            @Html.Label("País")
+                            @Html.Editor("pais", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("pais", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Estado")
+                    <div class="col">
+                        @Html.DropDownList("estado",
+                        new List<SelectListItem> {
+                        new SelectListItem{ Value="Aguascalientes", Text="Aguascalientes"},
+                        new SelectListItem{ Value="Baja california", Text="Baja california"},
+                        new SelectListItem{ Value="Baja california sur", Text="Baja california sur"},
+                        new SelectListItem{ Value="Campeche", Text="Campeche"},
+                        new SelectListItem{ Value="Chiapas", Text="Chiapas"},
+                        new SelectListItem{ Value="Chihuahua", Text="Chihuahua"},
+                        new SelectListItem{ Value="Coahuila", Text="Coahuila"},
+                        new SelectListItem{ Value="Colima", Text="Colima"},
+                        new SelectListItem{ Value="Ciudad de México", Text="Ciudad de México"},
+                        new SelectListItem{ Value="Durango", Text="Durango"},
+                        new SelectListItem{ Value="Estado de México", Text="Estado de México"},
+                        new SelectListItem{ Value="Guanajuato", Text="Guanajuato"},
+                        new SelectListItem{ Value="Guerrero", Text="Guerrero"},
+                        new SelectListItem{ Value="Hidalgo", Text="Hidalgo"},
+                        new SelectListItem{ Value="Jalisco", Text="Jalisco"},
+                        new SelectListItem{ Value="Michioacan", Text="Michioacan"},
+                        new SelectListItem{ Value="Morelos", Text="Morelos"},
+                        new SelectListItem{ Value="Nayarit", Text="Nayarit"},
+                        new SelectListItem{ Value="Nuevo León", Text="Nuevo León"},
+                        new SelectListItem{ Value="Oaxaca", Text="Oaxaca"},
+                        new SelectListItem{ Value="Puebla", Text="Puebla"},
+                        new SelectListItem{ Value="Querétaro", Text="Querétaro"},
+                        new SelectListItem{ Value="Quintana Roo", Text="Quintana Roo"},
+                        new SelectListItem{ Value="San Luis Potosí", Text="San Luis Potosí"},
+                        new SelectListItem{ Value="Sinaloa", Text="Sinaloa"},
+                        new SelectListItem{ Value="Sonora", Text="Sonora"},
+                        new SelectListItem{ Value="Tabasco", Text="Tabasco"},
+                        new SelectListItem{ Value="Tamaluipas", Text="Tamaluipas"},
+                        new SelectListItem{ Value="Tlaxcala", Text="Tlaxcala"},
+                        new SelectListItem{ Value="Veracruz", Text="Veracruz"},
+                        new SelectListItem{ Value="Coahuila", Text="Coahuila"},
+                        new SelectListItem{ Value="Yucatán", Text="Yucatán"},
+                        new SelectListItem{ Value="Zacatecas", Text="Zacatecas"}
+                        }, new { @Class = "miselect" })
+
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        @Html.Label("Municipio")
+                        @Html.Editor("municipio", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("municipio", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        @Html.Label("Ciudad")
+                        @Html.Editor("ciudad", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("ciudad", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        @Html.Label("Calle externa")
+                        @Html.Editor("calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("calle_externa", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        @Html.Label("No. Calle externa")
+                        @Html.Editor("num_calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("num_calle_externa", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        @Html.Label("Calle interna")
+                        @Html.Editor("calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("calle_interna", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+                        @Html.Label("No. Calle interna")
+                        @Html.Editor("num_calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("num_calle_interna", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+
+                        @Html.Label("Código postal")
+                        @Html.Editor("codigo_postal", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("codigo_postal", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+
+                        @Html.Label("Referecia 1")
+                        @Html.Editor("ref1", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("ref1", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col">
+
+                        @Html.Label("Referencia 2")
+                        @Html.Editor("ref2", new { htmlAttributes = new { @class = "form-control form-control" } })
+                        @Html.ValidationMessage("ref2", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        </div>
+
+    <br />
+    <br />  
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Añadir" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+        }
+
+        <div>
+            <a class="btn btn-outline-secondary" href="@Url.Action("Index")">
+                <i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                    </svg>
+                </i>
+                Volver a la lista
+            </a>
+        </div>

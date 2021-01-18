@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bull motores</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="margin-top:-60px;">
+    <header style="background-color: #192537">
+
+        <nav class="navbar navbar-dark">
+
+            <a class="navbar-brand" href="@Url.Action("Index", "Personal", null)">
+                <img src="~/Content/Imagenes/xd.png" alt="" width="120" height="80" class="d-inline-block align-top">
+
+            </a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Busqueda de productos" aria-label="Buscar">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+            
+        </nav>
+
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: #5b6169; padding: 10px;">
+        <a class="navbar-brand" href="@Url.Action("Index", "Personal", null)">
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+                    <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+                </svg>
+            </i>
+
+            Bull motors
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+
+            @Html.Partial("_LoginPartialPersonal")
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container-fluid" style="display: inline-block;background-color:#b1aeaa">
+            <div class="container py-1">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-12 col-md">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="col-12 col-md">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-12 col-md">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="background-color:#192537">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <img src="~/Content/Imagenes/xd.png" width="147" height="81" alt="..." style="margin-right:10px">
+                    <small class="d-block mb-3 " style="color:rgb(161, 161, 161);">Corporation &copy; 2020</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5 style="color:#fcfcfc">Navegación</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Inicio</a></li>
+                        <li><a class="text-muted" href="#">Catalogo</a></li>
+                        <li><a class="text-muted" href="#">Productos</a></li>
+                        <li><a class="text-muted" href="#">Sobre nosotros</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

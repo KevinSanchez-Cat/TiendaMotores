@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bull motores</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="margin-top:-60px;">
+    <header style="background-color: #192537">
+
+        <nav class="navbar navbar-dark">
+
+            <a class="navbar-brand" href="@Url.Action("Index", "Personal", null)">
+                <img src="~/Content/Imagenes/xd.png" alt="" width="120" height="80" class="d-inline-block align-top">
+
+            </a>
+            <!--<form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Busqueda de productos" aria-label="Buscar">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+            -->
+        </nav>
+
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: #5b6169; padding: 10px;">
+        <a class="navbar-brand" href="@Url.Action("Index", "Personal", null)">
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                </svg>
+            </i>
+
+            Bull motors
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Personal")" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                        </i>
+                        Personal
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Create", "Departamento")">Añadir departamento</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Departamento")">Modificar departamento</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Departamento")">Consultar departamentos</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar","Departamento")">Eliminar un departamento</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Create", "Puesto", null)">Añadir puesto</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Puesto", null)">Modificar puesto</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Puesto", null)">Consultar puestos</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Puesto", null)">Eliminar un puesto</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Create", "Empleado", null)">Añadir empleado</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Empleado", null)">Modificar información de un empleado</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Empleado", null)">Consultar empleados</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Empleado", null)">Eliminar un empleado</a>
+
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Paqueterias", null)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                                <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                            </svg>
+                        </i>
+                        Paqueteria
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item" href="@Url.Action("Create", "Paqueterias", null)">Añadir paqueteria</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Paqueterias", null)">Modificar información de paqueteria</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Paqueterias", null)">Consultar paqueterías</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Paqueterias", null)">Eliminar paqueteria</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Create", "Direccions", null)">Añadir ubicación</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Direccions", null)">Modificar ubicación de paqueteria</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Direccions", null)">Consultar ubicaciones</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Direccions", null)">Eliminar ubicación</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Personal", null)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+                                <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+                            </svg>
+                        </i>
+                        Operación de tienda
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Create", "Compras", null)">Hacer una compra</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Compras", null)">Modificar información de compra</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Compras", null)">Consultar compras</a>
+                        <a class="dropdown-item" href="@Url.Action("Cancelar", "Compras", null)">Cancelar una compra</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Create", "Pedidos", null)">Añadir pedido</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Pedidos", null)">Modificar pedido</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Pedidos", null)">Consultar pedidos</a>
+                        <a class="dropdown-item" href="@Url.Action("Cancelar", "Pedidos", null)">Cancelar pedido</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Create", "Envios", null)">Añadir envio</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Envios", null)">Modificar dirección de envio</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Envios", null)">Consultar envios</a>
+                        <a class="dropdown-item" href="@Url.Action("Cancelar", "Envios", null)">Cancelar un envio</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Categorias", null)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder2" viewBox="0 0 16 16">
+                                <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z" />
+                            </svg>
+                        </i>
+                        Categorias
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Index", "Categorias", null)">Añadir categoria</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Categorias", null)">Modificar categoria</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Categorias", null)">Consultar categoria</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Categorias", null)">Eliminar una categoria</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Create", "marcas", null)">Añadir marca</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "marcas", null)">Modificar marca</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "marcas", null)">Consultar marcas</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "marcas", null)">Eliminar una marca</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Producto", null)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                                <path d="M14.12 10.163l1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z" />
+                                <path d="M14.12 6.576l1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z" />
+                            </svg>
+                        </i>
+                        Productos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Create", "Producto", null)">Añadir producto</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Prodcuto", null)">Modificar producto</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Producto", null)">Consultar productos</a>
+                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Producto", null)">Eliminar un productos</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Inventarios", null)">Modificar almacen</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Inventarios", null)">Consultar almacen</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="@Url.Action("Ver", "Cuenta", null)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+                            </svg>
+                        </i>
+                        Cuenta
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Ver", "Cuenta", null)">Ver cuenta</a>
+                        <a class="dropdown-item" href="@Url.Action("Modificar", "Cuenta", null)">Modificar cuenta</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Ver", "Direccions", null)">Ver mis direcciones</a>
+
+
+                    </div>
+                </li>
+
+            </ul>
+
+            @Html.Partial("_LoginPartialPersonal")
+        </div>
+    </nav>
+
+    <div class="container body-content" style="margin-top:1em;margin-bottom:1em">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container-fluid" style="display: inline-block;background-color:#b1aeaa">
+            <div class="container py-1">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-12 col-md">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="col-12 col-md">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-12 col-md">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="background-color:#192537">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <img src="~/Content/Imagenes/xd.png" width="147" height="81" alt="..." style="margin-right:10px">
+                    <small class="d-block mb-3 " style="color:rgb(161, 161, 161);">Corporation &copy; 2020</small>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

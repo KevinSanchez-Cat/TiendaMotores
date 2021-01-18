@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TiendaMotores.Models.Departamento>
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Departamentos</title>
+</head>
+<body>
+    <h2>Departamento</h2>
+   
+    <table class="table table-striped">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_departamento)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_departamento)
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

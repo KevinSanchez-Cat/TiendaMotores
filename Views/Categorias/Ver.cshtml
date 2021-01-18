@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TiendaMotores.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorias</h2>
+
+<table class="table table-striped">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria2.nombre_categoria)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria2.nombre_categoria)
+            </td>
+           
+        </tr>
+    }
+
+</table>

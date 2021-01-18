@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVentas.cshtml";
+    DateTime dia = DateTime.Now;
+    var hora = dia.Hour;
+    string mensaje = "";
+    if (hora < 12)
+    {
+        mensaje = "Buenos días: ";
+
+    }
+    if ((hora >= 12) && (hora <= 19))
+    {
+        mensaje = "Buenas tardes";
+
+    }
+    if (hora > 19)
+    {
+        mensaje = "Buenas noches";
+    }
+    string name = @Session["usuario"].ToString();
+}
+<h2>Departamento de Ventas</h2>
+<h3>@mensaje @name</h3>

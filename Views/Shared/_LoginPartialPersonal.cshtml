@@ -1,0 +1,74 @@
+﻿
+@using Microsoft.AspNet.Identity
+@{ 
+    string name = Session["nombre"].ToString();
+}
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <!--@Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })-->
+                <a id="loginLink" class="btn btn-light" href="@Url.Action("Index","Manage", routeValues:null)">
+
+                    Hola  @name!
+                </a>
+
+            </li>
+            <li style="margin-left:1em">
+                <!--<a href="javascript:document.getElementById('logoutForm').submit()">
+                    Cerrar sesión
+                </a> -->
+                <a id="registerLink" class="btn btn-light" href="javascript:document.getElementById('logoutForm').submit()">
+                    <i>
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            <path fill-rule="evenodd"
+                                  d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+                        </svg>
+                    </i>
+
+                    Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right" style="margin-top:0.5em">
+      
+      
+        <li>
+            <a id="loginLink" class="btn btn-light" href="@Url.Action("Login","Account")" style="margin-left:1em">
+                <i>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        <path fill-rule="evenodd"
+                              d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+                    </svg>
+                </i>
+                Entrar
+            </a>
+        </li>
+        <li>
+            <a id="registerLink" class="btn btn-light" href="@Url.Action("Register","Account")" style="margin-left:1em">
+                <i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    </svg>
+                </i>
+
+                Registrarse
+            </a>
+        </li>
+        
+    </ul>
+
+}

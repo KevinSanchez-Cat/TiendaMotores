@@ -1,0 +1,1441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id_categoria" />
+          </Key>
+          <Property Name="id_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_categoria" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="id_categoria_superior" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_cliente" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellido_p" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellido_m" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="id_direccion" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="nchar" MaxLength="12" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="id_tarjeta" Type="int" />
+          <Property Name="nombre_usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="contrasenia" Type="nvarchar(max)" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="id_compra" />
+          </Key>
+          <Property Name="id_compra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="fecha_compra" Type="datetime" />
+          <Property Name="id_direccion_entrega" Type="int" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="id_departamento" />
+          </Key>
+          <Property Name="id_departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_departamento" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Detalle_compra">
+          <Key>
+            <PropertyRef Name="Id_compra" />
+            <PropertyRef Name="id_producto" />
+            <PropertyRef Name="cantidad" />
+            <PropertyRef Name="subtotal" />
+          </Key>
+          <Property Name="Id_compra" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id_direccion" />
+          </Key>
+          <Property Name="id_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="municipio" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="ciudad" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="codigo_postal" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="telefono" Type="nchar" MaxLength="12" />
+          <Property Name="calle_externa" Type="nvarchar" MaxLength="255" />
+          <Property Name="num_calle_externa" Type="int" />
+          <Property Name="calle_interna" Type="nvarchar" MaxLength="255" />
+          <Property Name="num_calle_interna" Type="int" />
+          <Property Name="ref1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ref2" Type="nvarchar" MaxLength="255" />
+          <Property Name="pais" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id_empleado" />
+          </Key>
+          <Property Name="Id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_empleado" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellido_p" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellido_m" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="fecha_nac" Type="date" Nullable="false" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="telefono" Type="nchar" MaxLength="12" />
+          <Property Name="id_direccion" Type="int" Nullable="false" />
+          <Property Name="id_departamento" Type="int" Nullable="false" />
+          <Property Name="id_puesto" Type="int" Nullable="false" />
+          <Property Name="rfc" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="rol" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre_usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="contrasenia" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Galeria">
+          <Key>
+            <PropertyRef Name="id_galeria" />
+          </Key>
+          <Property Name="id_galeria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_gal1" Type="nvarchar" MaxLength="255" />
+          <Property Name="nombre_gal2" Type="nvarchar" MaxLength="255" />
+          <Property Name="nombre_gal3" Type="nvarchar" MaxLength="255" />
+          <Property Name="nombre_gal4" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="id_inventario" />
+          </Key>
+          <Property Name="Id_producto" Type="int" Nullable="false" />
+          <Property Name="cantidad_inventario" Type="int" Nullable="false" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="id_inventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="Id_marca" />
+          </Key>
+          <Property Name="Id_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_marca" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Oden_cliente">
+          <Key>
+            <PropertyRef Name="Id_orden" />
+          </Key>
+          <Property Name="Id_orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_compra" Type="int" Nullable="false" />
+          <Property Name="num_comfirmacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" />
+          <Property Name="total" Type="float" Nullable="false" />
+          <Property Name="num_serie" Type="int" Nullable="false" />
+          <Property Name="fecha_envio" Type="date" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="id_paqueteria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paqueteria">
+          <Key>
+            <PropertyRef Name="id_paqueteria" />
+          </Key>
+          <Property Name="id_paqueteria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_paqueteria" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="telefono" Type="int" Nullable="false" />
+          <Property Name="sitio_web" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="rfc" Type="int" Nullable="false" />
+          <Property Name="contacto" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="telefono_contacto" Type="int" Nullable="false" />
+          <Property Name="id_direccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id_producto" />
+          </Key>
+          <Property Name="Id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_producto" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="descripcion_producto" Type="text" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="coste" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="imagen_producto" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="ultima_actualizacion" Type="datetime" />
+          <Property Name="id_marca" Type="int" Nullable="false" />
+          <Property Name="id_producto_relacionado" Type="int" />
+          <Property Name="clave_unica" Type="int" Nullable="false" />
+          <Property Name="id_galeria" Type="int" />
+          <Property Name="email_usuario" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="potencia" Type="nchar" MaxLength="10" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ancho" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="alto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="profundidad" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="peso" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="polos" Type="nchar" MaxLength="10" />
+          <Property Name="rpm" Type="nchar" MaxLength="10" />
+          <Property Name="voltaje" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ProductoTienda">
+          <Key>
+            <PropertyRef Name="Id_producto" />
+            <PropertyRef Name="numBusqueda" />
+            <PropertyRef Name="calificacion" />
+            <PropertyRef Name="numVisitas" />
+            <PropertyRef Name="destacado" />
+          </Key>
+          <Property Name="Id_producto" Type="int" Nullable="false" />
+          <Property Name="numBusqueda" Type="int" Nullable="false" />
+          <Property Name="calificacion" Type="int" Nullable="false" />
+          <Property Name="numVisitas" Type="int" Nullable="false" />
+          <Property Name="destacado" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="id_puesto" />
+          </Key>
+          <Property Name="id_puesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_departamento" Type="int" Nullable="false" />
+          <Property Name="nombre_puesto" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="id_tarjeta" />
+          </Key>
+          <Property Name="id_tarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numTarjeta" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="mes_vencimiento" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="anio_vencimiento" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="nombre_titular" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="id_direccion" Type="int" Nullable="false" />
+          <Property Name="tipo_tarjeta" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Categoria__id_ca__3D2915A8">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Categoria1" Type="Self.Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="Categoria1">
+              <PropertyRef Name="id_categoria_superior" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__id_dire__2739D489">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__id_tarj__0C85DE4D">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="id_tarjeta" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_tarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__id_clien__0F624AF8">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__id_direc__0E6E26BF">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="id_direccion_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_c__Id_co__1CBC4616">
+          <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
+          <End Role="Detalle_compra" Type="Self.Detalle_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compra">
+              <PropertyRef Name="id_compra" />
+            </Principal>
+            <Dependent Role="Detalle_compra">
+              <PropertyRef Name="Id_compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_c__id_pr__32AB8735">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Detalle_compra" Type="Self.Detalle_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="Detalle_compra">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__id_dep__114A936A">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="id_departamento" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__id_dir__10566F31">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__id_pue__123EB7A3">
+          <End Role="Puesto" Type="Self.Puesto" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puesto">
+              <PropertyRef Name="id_puesto" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventari__Id_pr__339FAB6E">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="Id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Oden_clie__id_co__14270015">
+          <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
+          <End Role="Oden_cliente" Type="Self.Oden_cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compra">
+              <PropertyRef Name="id_compra" />
+            </Principal>
+            <Dependent Role="Oden_cliente">
+              <PropertyRef Name="id_compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Oden_clie__id_pa__2A164134">
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
+          <End Role="Oden_cliente" Type="Self.Oden_cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paqueteria">
+              <PropertyRef Name="id_paqueteria" />
+            </Principal>
+            <Dependent Role="Oden_cliente">
+              <PropertyRef Name="id_paqueteria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paqueteri__id_di__2B0A656D">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Paqueteria">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_cat__31B762FC">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_gal__4F47C5E3">
+          <End Role="Galeria" Type="Self.Galeria" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Galeria">
+              <PropertyRef Name="id_galeria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_galeria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_mar__2FCF1A8A">
+          <End Role="marca" Type="Self.marca" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="Id_marca" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_pro__2EDAF651">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="Producto1" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="Producto1">
+              <PropertyRef Name="id_producto_relacionado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductoT__Id_pr__2DE6D218">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="ProductoTienda" Type="Self.ProductoTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="ProductoTienda">
+              <PropertyRef Name="Id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Puesto__id_depar__19DFD96B">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Puesto" Type="Self.Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="id_departamento" />
+            </Principal>
+            <Dependent Role="Puesto">
+              <PropertyRef Name="id_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tarjeta__id_dire__3A4CA8FD">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TIENDAModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Galeria" EntityType="Self.Galeria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="marca" EntityType="Self.marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oden_cliente" EntityType="Self.Oden_cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paqueteria" EntityType="Self.Paqueteria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_compra" EntityType="Self.Detalle_compra" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Detalle_compra].[Id_compra] AS [Id_compra], 
+    [Detalle_compra].[id_producto] AS [id_producto], 
+    [Detalle_compra].[cantidad] AS [cantidad], 
+    [Detalle_compra].[subtotal] AS [subtotal]
+    FROM [dbo].[Detalle_compra] AS [Detalle_compra]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductoTienda" EntityType="Self.ProductoTienda" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductoTienda].[Id_producto] AS [Id_producto], 
+    [ProductoTienda].[numBusqueda] AS [numBusqueda], 
+    [ProductoTienda].[calificacion] AS [calificacion], 
+    [ProductoTienda].[numVisitas] AS [numVisitas], 
+    [ProductoTienda].[destacado] AS [destacado]
+    FROM [dbo].[ProductoTienda] AS [ProductoTienda]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Categoria__id_ca__3D2915A8" Association="Self.FK__Categoria__id_ca__3D2915A8">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Categoria1" EntitySet="Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__id_dire__2739D489" Association="Self.FK__Cliente__id_dire__2739D489">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__id_tarj__0C85DE4D" Association="Self.FK__Cliente__id_tarj__0C85DE4D">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__id_clien__0F624AF8" Association="Self.FK__Compra__id_clien__0F624AF8">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__id_direc__0E6E26BF" Association="Self.FK__Compra__id_direc__0E6E26BF">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_c__Id_co__1CBC4616" Association="Self.FK__Detalle_c__Id_co__1CBC4616">
+            <End Role="Compra" EntitySet="Compra" />
+            <End Role="Detalle_compra" EntitySet="Detalle_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_c__id_pr__32AB8735" Association="Self.FK__Detalle_c__id_pr__32AB8735">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Detalle_compra" EntitySet="Detalle_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__id_dep__114A936A" Association="Self.FK__Empleado__id_dep__114A936A">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__id_dir__10566F31" Association="Self.FK__Empleado__id_dir__10566F31">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__id_pue__123EB7A3" Association="Self.FK__Empleado__id_pue__123EB7A3">
+            <End Role="Puesto" EntitySet="Puesto" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventari__Id_pr__339FAB6E" Association="Self.FK__Inventari__Id_pr__339FAB6E">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Oden_clie__id_co__14270015" Association="Self.FK__Oden_clie__id_co__14270015">
+            <End Role="Compra" EntitySet="Compra" />
+            <End Role="Oden_cliente" EntitySet="Oden_cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Oden_clie__id_pa__2A164134" Association="Self.FK__Oden_clie__id_pa__2A164134">
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+            <End Role="Oden_cliente" EntitySet="Oden_cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paqueteri__id_di__2B0A656D" Association="Self.FK__Paqueteri__id_di__2B0A656D">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_cat__31B762FC" Association="Self.FK__Producto__id_cat__31B762FC">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_gal__4F47C5E3" Association="Self.FK__Producto__id_gal__4F47C5E3">
+            <End Role="Galeria" EntitySet="Galeria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_mar__2FCF1A8A" Association="Self.FK__Producto__id_mar__2FCF1A8A">
+            <End Role="marca" EntitySet="marca" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_pro__2EDAF651" Association="Self.FK__Producto__id_pro__2EDAF651">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto1" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductoT__Id_pr__2DE6D218" Association="Self.FK__ProductoT__Id_pr__2DE6D218">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductoTienda" EntitySet="ProductoTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Puesto__id_depar__19DFD96B" Association="Self.FK__Puesto__id_depar__19DFD96B">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Puesto" EntitySet="Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tarjeta__id_dire__3A4CA8FD" Association="Self.FK__Tarjeta__id_dire__3A4CA8FD">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TIENDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id_categoria" />
+          </Key>
+          <Property Name="id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_categoria" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_categoria_superior" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria1" Relationship="Self.FK__Categoria__id_ca__3D2915A8" FromRole="Categoria" ToRole="Categoria1" />
+          <NavigationProperty Name="Categoria2" Relationship="Self.FK__Categoria__id_ca__3D2915A8" FromRole="Categoria1" ToRole="Categoria" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__id_cat__31B762FC" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_cliente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido_p" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido_m" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_direccion" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_tarjeta" Type="Int32" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Cliente__id_dire__2739D489" FromRole="Cliente" ToRole="Direccion" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Cliente__id_tarj__0C85DE4D" FromRole="Cliente" ToRole="Tarjeta" />
+          <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__id_clien__0F624AF8" FromRole="Cliente" ToRole="Compra" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="id_compra" />
+          </Key>
+          <Property Name="id_compra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="fecha_compra" Type="DateTime" Precision="3" />
+          <Property Name="id_direccion_entrega" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Compra__id_clien__0F624AF8" FromRole="Compra" ToRole="Cliente" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Compra__id_direc__0E6E26BF" FromRole="Compra" ToRole="Direccion" />
+          <NavigationProperty Name="Detalle_compra" Relationship="Self.FK__Detalle_c__Id_co__1CBC4616" FromRole="Compra" ToRole="Detalle_compra" />
+          <NavigationProperty Name="Oden_cliente" Relationship="Self.FK__Oden_clie__id_co__14270015" FromRole="Compra" ToRole="Oden_cliente" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="id_departamento" />
+          </Key>
+          <Property Name="id_departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_departamento" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_dep__114A936A" FromRole="Departamento" ToRole="Empleado" />
+          <NavigationProperty Name="Puesto" Relationship="Self.FK__Puesto__id_depar__19DFD96B" FromRole="Departamento" ToRole="Puesto" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id_direccion" />
+          </Key>
+          <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="municipio" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ciudad" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="codigo_postal" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="calle_externa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="num_calle_externa" Type="Int32" />
+          <Property Name="calle_interna" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="num_calle_interna" Type="Int32" />
+          <Property Name="ref1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ref2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="pais" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__id_dire__2739D489" FromRole="Direccion" ToRole="Cliente" />
+          <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__id_direc__0E6E26BF" FromRole="Direccion" ToRole="Compra" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_dir__10566F31" FromRole="Direccion" ToRole="Empleado" />
+          <NavigationProperty Name="Paqueteria" Relationship="Self.FK__Paqueteri__id_di__2B0A656D" FromRole="Direccion" ToRole="Paqueteria" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Tarjeta__id_dire__3A4CA8FD" FromRole="Direccion" ToRole="Tarjeta" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Id_empleado" />
+          </Key>
+          <Property Name="Id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido_p" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido_m" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha_nac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estatus" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="salario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="id_direccion" Type="Int32" Nullable="false" />
+          <Property Name="id_departamento" Type="Int32" Nullable="false" />
+          <Property Name="id_puesto" Type="Int32" Nullable="false" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK__Empleado__id_dep__114A936A" FromRole="Empleado" ToRole="Departamento" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Empleado__id_dir__10566F31" FromRole="Empleado" ToRole="Direccion" />
+          <NavigationProperty Name="Puesto" Relationship="Self.FK__Empleado__id_pue__123EB7A3" FromRole="Empleado" ToRole="Puesto" />
+        </EntityType>
+        <EntityType Name="Galeria">
+          <Key>
+            <PropertyRef Name="id_galeria" />
+          </Key>
+          <Property Name="id_galeria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_gal1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_gal2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_gal3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_gal4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__id_gal__4F47C5E3" FromRole="Galeria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="id_inventario" />
+          </Key>
+          <Property Name="Id_producto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad_inventario" Type="Int32" Nullable="false" />
+          <Property Name="estatus" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_inventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Inventari__Id_pr__339FAB6E" FromRole="Inventario" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="Id_marca" />
+          </Key>
+          <Property Name="Id_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_marca" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__id_mar__2FCF1A8A" FromRole="marca" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Oden_cliente">
+          <Key>
+            <PropertyRef Name="Id_orden" />
+          </Key>
+          <Property Name="Id_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_compra" Type="Int32" Nullable="false" />
+          <Property Name="num_comfirmacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
+          <Property Name="total" Type="Double" Nullable="false" />
+          <Property Name="num_serie" Type="Int32" Nullable="false" />
+          <Property Name="fecha_envio" Type="DateTime" Precision="0" />
+          <Property Name="fecha_entrega" Type="DateTime" Precision="0" />
+          <Property Name="id_paqueteria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compra" Relationship="Self.FK__Oden_clie__id_co__14270015" FromRole="Oden_cliente" ToRole="Compra" />
+          <NavigationProperty Name="Paqueteria" Relationship="Self.FK__Oden_clie__id_pa__2A164134" FromRole="Oden_cliente" ToRole="Paqueteria" />
+        </EntityType>
+        <EntityType Name="Paqueteria">
+          <Key>
+            <PropertyRef Name="id_paqueteria" />
+          </Key>
+          <Property Name="id_paqueteria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_paqueteria" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="Int32" Nullable="false" />
+          <Property Name="sitio_web" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rfc" Type="Int32" Nullable="false" />
+          <Property Name="contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono_contacto" Type="Int32" Nullable="false" />
+          <Property Name="id_direccion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Paqueteri__id_di__2B0A656D" FromRole="Paqueteria" ToRole="Direccion" />
+          <NavigationProperty Name="Oden_cliente" Relationship="Self.FK__Oden_clie__id_pa__2A164134" FromRole="Paqueteria" ToRole="Oden_cliente" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id_producto" />
+          </Key>
+          <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_producto" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="coste" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="imagen_producto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="ultima_actualizacion" Type="DateTime" Precision="3" />
+          <Property Name="id_marca" Type="Int32" Nullable="false" />
+          <Property Name="id_producto_relacionado" Type="Int32" />
+          <Property Name="clave_unica" Type="Int32" Nullable="false" />
+          <Property Name="id_galeria" Type="Int32" />
+          <Property Name="email_usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="potencia" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ancho" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="alto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="profundidad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="peso" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="polos" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="rpm" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="voltaje" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__id_cat__31B762FC" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="Galeria" Relationship="Self.FK__Producto__id_gal__4F47C5E3" FromRole="Producto" ToRole="Galeria" />
+          <NavigationProperty Name="Inventario" Relationship="Self.FK__Inventari__Id_pr__339FAB6E" FromRole="Producto" ToRole="Inventario" />
+          <NavigationProperty Name="marca" Relationship="Self.FK__Producto__id_mar__2FCF1A8A" FromRole="Producto" ToRole="marca" />
+          <NavigationProperty Name="Detalle_compra" Relationship="Self.FK__Detalle_c__id_pr__32AB8735" FromRole="Producto" ToRole="Detalle_compra" />
+          <NavigationProperty Name="Producto1" Relationship="Self.FK__Producto__id_pro__2EDAF651" FromRole="Producto" ToRole="Producto1" />
+          <NavigationProperty Name="Producto2" Relationship="Self.FK__Producto__id_pro__2EDAF651" FromRole="Producto1" ToRole="Producto" />
+          <NavigationProperty Name="ProductoTienda" Relationship="Self.FK__ProductoT__Id_pr__2DE6D218" FromRole="Producto" ToRole="ProductoTienda" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="id_puesto" />
+          </Key>
+          <Property Name="id_puesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_departamento" Type="Int32" Nullable="false" />
+          <Property Name="nombre_puesto" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK__Puesto__id_depar__19DFD96B" FromRole="Puesto" ToRole="Departamento" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_pue__123EB7A3" FromRole="Puesto" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="id_tarjeta" />
+          </Key>
+          <Property Name="id_tarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numTarjeta" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="mes_vencimiento" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="anio_vencimiento" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nombre_titular" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_direccion" Type="Int32" Nullable="false" />
+          <Property Name="tipo_tarjeta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__id_tarj__0C85DE4D" FromRole="Tarjeta" ToRole="Cliente" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Tarjeta__id_dire__3A4CA8FD" FromRole="Tarjeta" ToRole="Direccion" />
+        </EntityType>
+        <EntityType Name="Detalle_compra">
+          <Key>
+            <PropertyRef Name="Id_compra" />
+            <PropertyRef Name="id_producto" />
+            <PropertyRef Name="cantidad" />
+            <PropertyRef Name="subtotal" />
+          </Key>
+          <Property Name="Id_compra" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="subtotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Compra" Relationship="Self.FK__Detalle_c__Id_co__1CBC4616" FromRole="Detalle_compra" ToRole="Compra" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Detalle_c__id_pr__32AB8735" FromRole="Detalle_compra" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="ProductoTienda">
+          <Key>
+            <PropertyRef Name="Id_producto" />
+            <PropertyRef Name="numBusqueda" />
+            <PropertyRef Name="calificacion" />
+            <PropertyRef Name="numVisitas" />
+            <PropertyRef Name="destacado" />
+          </Key>
+          <Property Name="Id_producto" Type="Int32" Nullable="false" />
+          <Property Name="numBusqueda" Type="Int32" Nullable="false" />
+          <Property Name="calificacion" Type="Int32" Nullable="false" />
+          <Property Name="numVisitas" Type="Int32" Nullable="false" />
+          <Property Name="destacado" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__ProductoT__Id_pr__2DE6D218" FromRole="ProductoTienda" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK__Categoria__id_ca__3D2915A8">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Categoria1" Type="Self.Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="Categoria1">
+              <PropertyRef Name="id_categoria_superior" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_cat__31B762FC">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__id_dire__2739D489">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__id_tarj__0C85DE4D">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="id_tarjeta" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_tarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__id_clien__0F624AF8">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__id_direc__0E6E26BF">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="id_direccion_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_c__Id_co__1CBC4616">
+          <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
+          <End Role="Detalle_compra" Type="Self.Detalle_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compra">
+              <PropertyRef Name="id_compra" />
+            </Principal>
+            <Dependent Role="Detalle_compra">
+              <PropertyRef Name="Id_compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Oden_clie__id_co__14270015">
+          <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
+          <End Role="Oden_cliente" Type="Self.Oden_cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compra">
+              <PropertyRef Name="id_compra" />
+            </Principal>
+            <Dependent Role="Oden_cliente">
+              <PropertyRef Name="id_compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__id_dep__114A936A">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="id_departamento" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Puesto__id_depar__19DFD96B">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Puesto" Type="Self.Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="id_departamento" />
+            </Principal>
+            <Dependent Role="Puesto">
+              <PropertyRef Name="id_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__id_dir__10566F31">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paqueteri__id_di__2B0A656D">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Paqueteria">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tarjeta__id_dire__3A4CA8FD">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__id_pue__123EB7A3">
+          <End Role="Puesto" Type="Self.Puesto" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puesto">
+              <PropertyRef Name="id_puesto" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_gal__4F47C5E3">
+          <End Role="Galeria" Type="Self.Galeria" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Galeria">
+              <PropertyRef Name="id_galeria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_galeria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventari__Id_pr__339FAB6E">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="Id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_mar__2FCF1A8A">
+          <End Role="marca" Type="Self.marca" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="Id_marca" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Oden_clie__id_pa__2A164134">
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
+          <End Role="Oden_cliente" Type="Self.Oden_cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paqueteria">
+              <PropertyRef Name="id_paqueteria" />
+            </Principal>
+            <Dependent Role="Oden_cliente">
+              <PropertyRef Name="id_paqueteria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_c__id_pr__32AB8735">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Detalle_compra" Type="Self.Detalle_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="Detalle_compra">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_pro__2EDAF651">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="Producto1" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="Producto1">
+              <PropertyRef Name="id_producto_relacionado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductoT__Id_pr__2DE6D218">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="ProductoTienda" Type="Self.ProductoTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id_producto" />
+            </Principal>
+            <Dependent Role="ProductoTienda">
+              <PropertyRef Name="Id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TIENDAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Compra" EntityType="Self.Compra" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Galeria" EntityType="Self.Galeria" />
+          <EntitySet Name="Inventario" EntityType="Self.Inventario" />
+          <EntitySet Name="marca" EntityType="Self.marca" />
+          <EntitySet Name="Oden_cliente" EntityType="Self.Oden_cliente" />
+          <EntitySet Name="Paqueteria" EntityType="Self.Paqueteria" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+          <EntitySet Name="Detalle_compra" EntityType="Self.Detalle_compra" />
+          <EntitySet Name="ProductoTienda" EntityType="Self.ProductoTienda" />
+          <AssociationSet Name="FK__Categoria__id_ca__3D2915A8" Association="Self.FK__Categoria__id_ca__3D2915A8">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Categoria1" EntitySet="Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_cat__31B762FC" Association="Self.FK__Producto__id_cat__31B762FC">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__id_dire__2739D489" Association="Self.FK__Cliente__id_dire__2739D489">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__id_tarj__0C85DE4D" Association="Self.FK__Cliente__id_tarj__0C85DE4D">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__id_clien__0F624AF8" Association="Self.FK__Compra__id_clien__0F624AF8">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compra__id_direc__0E6E26BF" Association="Self.FK__Compra__id_direc__0E6E26BF">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_c__Id_co__1CBC4616" Association="Self.FK__Detalle_c__Id_co__1CBC4616">
+            <End Role="Compra" EntitySet="Compra" />
+            <End Role="Detalle_compra" EntitySet="Detalle_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Oden_clie__id_co__14270015" Association="Self.FK__Oden_clie__id_co__14270015">
+            <End Role="Compra" EntitySet="Compra" />
+            <End Role="Oden_cliente" EntitySet="Oden_cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__id_dep__114A936A" Association="Self.FK__Empleado__id_dep__114A936A">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Puesto__id_depar__19DFD96B" Association="Self.FK__Puesto__id_depar__19DFD96B">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Puesto" EntitySet="Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__id_dir__10566F31" Association="Self.FK__Empleado__id_dir__10566F31">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paqueteri__id_di__2B0A656D" Association="Self.FK__Paqueteri__id_di__2B0A656D">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tarjeta__id_dire__3A4CA8FD" Association="Self.FK__Tarjeta__id_dire__3A4CA8FD">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__id_pue__123EB7A3" Association="Self.FK__Empleado__id_pue__123EB7A3">
+            <End Role="Puesto" EntitySet="Puesto" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_gal__4F47C5E3" Association="Self.FK__Producto__id_gal__4F47C5E3">
+            <End Role="Galeria" EntitySet="Galeria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventari__Id_pr__339FAB6E" Association="Self.FK__Inventari__Id_pr__339FAB6E">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_mar__2FCF1A8A" Association="Self.FK__Producto__id_mar__2FCF1A8A">
+            <End Role="marca" EntitySet="marca" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Oden_clie__id_pa__2A164134" Association="Self.FK__Oden_clie__id_pa__2A164134">
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+            <End Role="Oden_cliente" EntitySet="Oden_cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_c__id_pr__32AB8735" Association="Self.FK__Detalle_c__id_pr__32AB8735">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Detalle_compra" EntitySet="Detalle_compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_pro__2EDAF651" Association="Self.FK__Producto__id_pro__2EDAF651">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto1" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductoT__Id_pr__2DE6D218" Association="Self.FK__ProductoT__Id_pr__2DE6D218">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductoTienda" EntitySet="ProductoTienda" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TIENDAModelStoreContainer" CdmEntityContainer="TIENDAEntities">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="TIENDAModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_categoria_superior" ColumnName="id_categoria_superior" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="TIENDAModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="apellido_p" ColumnName="apellido_p" />
+                <ScalarProperty Name="apellido_m" ColumnName="apellido_m" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_tarjeta" ColumnName="id_tarjeta" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compra">
+            <EntityTypeMapping TypeName="TIENDAModel.Compra">
+              <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="id_compra" ColumnName="id_compra" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="fecha_compra" ColumnName="fecha_compra" />
+                <ScalarProperty Name="id_direccion_entrega" ColumnName="id_direccion_entrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="TIENDAModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+                <ScalarProperty Name="nombre_departamento" ColumnName="nombre_departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="TIENDAModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="calle_externa" ColumnName="calle_externa" />
+                <ScalarProperty Name="num_calle_externa" ColumnName="num_calle_externa" />
+                <ScalarProperty Name="calle_interna" ColumnName="calle_interna" />
+                <ScalarProperty Name="num_calle_interna" ColumnName="num_calle_interna" />
+                <ScalarProperty Name="ref1" ColumnName="ref1" />
+                <ScalarProperty Name="ref2" ColumnName="ref2" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="TIENDAModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="Id_empleado" ColumnName="Id_empleado" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="apellido_p" ColumnName="apellido_p" />
+                <ScalarProperty Name="apellido_m" ColumnName="apellido_m" />
+                <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galeria">
+            <EntityTypeMapping TypeName="TIENDAModel.Galeria">
+              <MappingFragment StoreEntitySet="Galeria">
+                <ScalarProperty Name="id_galeria" ColumnName="id_galeria" />
+                <ScalarProperty Name="nombre_gal1" ColumnName="nombre_gal1" />
+                <ScalarProperty Name="nombre_gal2" ColumnName="nombre_gal2" />
+                <ScalarProperty Name="nombre_gal3" ColumnName="nombre_gal3" />
+                <ScalarProperty Name="nombre_gal4" ColumnName="nombre_gal4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventario">
+            <EntityTypeMapping TypeName="TIENDAModel.Inventario">
+              <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+                <ScalarProperty Name="cantidad_inventario" ColumnName="cantidad_inventario" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="id_inventario" ColumnName="id_inventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marca">
+            <EntityTypeMapping TypeName="TIENDAModel.marca">
+              <MappingFragment StoreEntitySet="marca">
+                <ScalarProperty Name="Id_marca" ColumnName="Id_marca" />
+                <ScalarProperty Name="nombre_marca" ColumnName="nombre_marca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oden_cliente">
+            <EntityTypeMapping TypeName="TIENDAModel.Oden_cliente">
+              <MappingFragment StoreEntitySet="Oden_cliente">
+                <ScalarProperty Name="Id_orden" ColumnName="Id_orden" />
+                <ScalarProperty Name="id_compra" ColumnName="id_compra" />
+                <ScalarProperty Name="num_comfirmacion" ColumnName="num_comfirmacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="num_serie" ColumnName="num_serie" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="id_paqueteria" ColumnName="id_paqueteria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paqueteria">
+            <EntityTypeMapping TypeName="TIENDAModel.Paqueteria">
+              <MappingFragment StoreEntitySet="Paqueteria">
+                <ScalarProperty Name="id_paqueteria" ColumnName="id_paqueteria" />
+                <ScalarProperty Name="nombre_paqueteria" ColumnName="nombre_paqueteria" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="sitio_web" ColumnName="sitio_web" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="TIENDAModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="coste" ColumnName="coste" />
+                <ScalarProperty Name="imagen_producto" ColumnName="imagen_producto" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="ultima_actualizacion" ColumnName="ultima_actualizacion" />
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="id_producto_relacionado" ColumnName="id_producto_relacionado" />
+                <ScalarProperty Name="clave_unica" ColumnName="clave_unica" />
+                <ScalarProperty Name="id_galeria" ColumnName="id_galeria" />
+                <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
+                <ScalarProperty Name="potencia" ColumnName="potencia" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="alto" ColumnName="alto" />
+                <ScalarProperty Name="profundidad" ColumnName="profundidad" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="polos" ColumnName="polos" />
+                <ScalarProperty Name="rpm" ColumnName="rpm" />
+                <ScalarProperty Name="voltaje" ColumnName="voltaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puesto">
+            <EntityTypeMapping TypeName="TIENDAModel.Puesto">
+              <MappingFragment StoreEntitySet="Puesto">
+                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+                <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+                <ScalarProperty Name="nombre_puesto" ColumnName="nombre_puesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarjeta">
+            <EntityTypeMapping TypeName="TIENDAModel.Tarjeta">
+              <MappingFragment StoreEntitySet="Tarjeta">
+                <ScalarProperty Name="id_tarjeta" ColumnName="id_tarjeta" />
+                <ScalarProperty Name="numTarjeta" ColumnName="numTarjeta" />
+                <ScalarProperty Name="mes_vencimiento" ColumnName="mes_vencimiento" />
+                <ScalarProperty Name="anio_vencimiento" ColumnName="anio_vencimiento" />
+                <ScalarProperty Name="nombre_titular" ColumnName="nombre_titular" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="tipo_tarjeta" ColumnName="tipo_tarjeta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_compra">
+            <EntityTypeMapping TypeName="TIENDAModel.Detalle_compra">
+              <MappingFragment StoreEntitySet="Detalle_compra">
+                <ScalarProperty Name="Id_compra" ColumnName="Id_compra" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductoTienda">
+            <EntityTypeMapping TypeName="TIENDAModel.ProductoTienda">
+              <MappingFragment StoreEntitySet="ProductoTienda">
+                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+                <ScalarProperty Name="numBusqueda" ColumnName="numBusqueda" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="numVisitas" ColumnName="numVisitas" />
+                <ScalarProperty Name="destacado" ColumnName="destacado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

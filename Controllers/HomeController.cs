@@ -19,8 +19,12 @@ namespace TiendaMotores.Controllers
                 rol = Request.Cookies.Get("usuario").Values.Get("rol");
                 if (rol != "Cliente")
                 {
-                    Session["itemTotal"] = 0;
-                    Session["cart"] = null;
+                    if (Session["itemTotal"] == null)
+                    {
+                        Session["itemTotal"] = 0;
+                        Session["cart"] = null;
+                    }
+
                     if ((Request.IsAuthenticated)&&(Session["nombre"]==null))
                     {
                         string correo = User.Identity.Name;

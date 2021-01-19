@@ -12,7 +12,7 @@
         <div class="alert alert-warning" role="alert">
             <p>Aún no hay nada en su carrito</p>
         </div>
-        <a class="btn btn-warning" href="@Url.Action("Index","Home")"> Regresar</a>
+        <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Regresar</a>
     }
     else
     {
@@ -74,7 +74,7 @@
 
         </table>
         <br />
-        <a class="btn btn-warning" href="@Url.Action("Index","Home")"> Seguir comprando</a>
+        <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Seguir comprando</a>
         <p style="float: right;color:white">
             @Html.ActionLink("Pagar ahora", "CrearOrden", "MetodoPago", new { area = "" }, new { @class = "btn btn-success" })
         </p>

@@ -28,6 +28,7 @@ namespace TiendaMotores.Controllers
                     Session["nombre"] = nombre[0];
                     Session["usuario"] = empleado.nombre_empleado;
                     rol = empleado.rol.ToString();
+                    Session["rol"] = rol;
                     if (HttpContext.Request.Cookies["usuario"] == null)
                     {
                         HttpCookie cookie = new HttpCookie("usuario");
@@ -46,6 +47,7 @@ namespace TiendaMotores.Controllers
                     var lista1 = query.ToList();
                     if (lista1.Count > 0)
                     {
+                        Session["rol"] = rol;
                         var cliente = query1.FirstOrDefault<Cliente>();
                         string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
                         Session["nombre"] = nombre[0];

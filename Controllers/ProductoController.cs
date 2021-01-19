@@ -155,7 +155,7 @@ namespace TiendaMotores.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.nombre_producto = new SelectList(db.Categoria, "nombre_producto", "nombre_producto", producto.id_categoria);
+            ViewBag.id_categoria = new SelectList(db.Categoria, "id_categoria", "nombre_categoria", producto.id_categoria);
             ViewBag.id_galeria = new SelectList(db.Galeria, "id_galeria", "nombre_galeria", producto.id_galeria);
             ViewBag.id_marca = new SelectList(db.marca, "Id_marca", "nombre_marca", producto.id_marca);
             ViewBag.id_producto_relacionado = new SelectList(db.Producto, "Id_producto", "nombre_producto", producto.id_producto_relacionado);

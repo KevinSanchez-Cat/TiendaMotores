@@ -1,7 +1,84 @@
-﻿
+﻿@using TiendaMotores.Models
 @{
     ViewBag.Title = "VerPedidos";
+    Layout = "~/Views/Shared/_Layaut.cshtml";
 }
 
-<h2>VerPedidos</h2>
+<h2>Mis pedidos</h2>
 
+
+@{
+    if (Session[""] != null)
+    {
+
+    <table class="table ">
+        @{
+            foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"])
+            {
+                int idOrd = pedido.compra.id_compra;
+                <tr>
+                    <td>
+                        Fecha de creación: @pedido.fecha
+                    </td>
+                    <td>
+                        Fecha de envio: @pedido.envio
+                    </td>
+
+                    <td>
+                        Fecha de entrega: @pedido.estatus
+                    </td>
+                </tr>
+                foreach (ItemPedido item in (List<ItemPedido>)Session["Pedido"])
+                {
+                    <tr>
+                        <td>
+                            Nombre del producto
+                        </td>
+                        <td>
+                            Imagen
+                        </td>
+                        <td>
+                            Precio
+                        </td>
+                        <td>
+                            Cantidad
+                        </td>
+                        <td>
+                            SubTotal
+                        </td>
+
+                    </tr>
+                    if (item.idOrd == idOrd)
+                    {
+
+                        <tr>
+                            <td>@item.product.nombre_producto</td>
+                            <td><img clas="img-responsive" src="~/Content/Imagenes/Productos/@item.product.imagen_producto" width="100" />></td>
+                            <td>$@item.product.precio</td>
+                            <td>@item.Cantidad</td>
+                            <td>@(item.product.precio*item.Cantidad)</td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td align="right" colspan="4">
+                        Total
+                    </td>
+                    <td>
+                        @pedido.total
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No tiene pedidos... -aún- Animese a comprar, verá que no se va a decepcionar</p>
+        </div>
+        <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Regresar</a>
+    }
+}

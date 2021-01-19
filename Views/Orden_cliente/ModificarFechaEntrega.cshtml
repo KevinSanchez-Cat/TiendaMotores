@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TiendaMotores.Models.Oden_cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.num_comfirmacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num_serie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_envio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Compra.id_compra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paqueteria.nombre_paqueteria)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string val;
+        if (item.fecha_envio.HasValue)
+        {
+            val = item.fecha_envio.GetValueOrDefault().ToShortDateString();
+        }
+        else
+        {
+            val = "";
+        }
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.num_comfirmacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha_creacion, new { @class = "form-control", @Value = item.fecha_creacion.ToString(), @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.total)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.num_serie)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha_envio, new { @class = "", @Value = val, @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Compra.id_compra)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Paqueteria.nombre_paqueteria)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit1", new { id = item.Id_orden }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id_orden }) 
+    </td>
+</tr>
+    }
+
+</table>

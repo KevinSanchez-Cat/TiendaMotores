@@ -667,11 +667,15 @@
     <Content Include="Views\DepVentas\Index.cshtml" />
     <Content Include="Views\Defecto\Index.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Orden_cliente\ModificarFechaEnvio.cshtml" />
+    <Content Include="Views\Orden_cliente\ModificarFechaEntrega.cshtml" />
+    <Content Include="Views\Orden_cliente\Edit1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Acceso\" />
     <Folder Include="Views\IndexDefecto\" />
+    <Folder Include="Views\Pedidos\" />
     <Folder Include="Views\RecursosHumanos\" />
   </ItemGroup>
   <ItemGroup>

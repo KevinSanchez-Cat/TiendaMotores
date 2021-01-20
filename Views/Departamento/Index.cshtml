@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<TiendaMotores.Models.Departamento>
 
 @{
+    if (Session["rol"].ToString() == "Administrador")
+    {
+        Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
+    }
 }
 
 <!DOCTYPE html>

@@ -99,18 +99,27 @@ namespace TiendaMotores.Controllers
             {
                 return RedirectToAction("Index", "DepCliente");
             }
-            return RedirectToAction("Index", "Defecto", routeValues:new { rol=rol});
+            return RedirectToAction("Index", "DelCliente");
         }
         // GET: Acceso
         public ActionResult IndexRegisterCliente(string correo)
         {
+
+                Cliente cliente =new Cliente();
+            cliente.nombre_cliente = "";
+            cliente.apellido_p = "";
+            cliente.apellido_m = "";
+            cliente.email = User.Identity.Name;
+            cliente.fecha_nacimiento = "";
+            cliente.nombre_usuario = User.Identity.Name;
+            cliente.telefono =""; 
+
+
             
             return RedirectToAction("Index", "DepCliente");
         }
         public ActionResult IndexRegisterEmpleado(string email)
         {
-
-         
                 using (db)
                 {
                     var query = from st in db.Empleado
@@ -124,7 +133,11 @@ namespace TiendaMotores.Controllers
                         Session["nombre"] = nombre[0];
                         Session["usuario"] = empleado.nombre_empleado;
                         return RedirectToAction("IndexLogin",routeValues: new { correo = email});
-                    }
+                }
+                else
+                {
+
+                }
                 }
             
             return RedirectToAction("Index", "IndexDefecto",routeValues: new { rol = "Productor" });

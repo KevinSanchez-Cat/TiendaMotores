@@ -2,6 +2,45 @@
 
 @{
     ViewBag.Title = "Edit";
+    if (Session["rol"].ToString() == "Administrador")
+    {
+        Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Reclutador"))
+    {
+        Layout = "~/Views/Shared/_LayoutRecursosHumanos.cshtml";
+
+    }
+    else if (Session["rol"].ToString().Equals("Empaquetador"))
+    {
+        Layout = "~/Views/Shared/_LayoutPaqueteria.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Enviador"))
+    {
+        Layout = "~/Views/Shared/_LayoutEnvios.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Comprador"))
+    {
+        Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+
+    }
+    else if (Session["rol"].ToString().Equals("Vendedor"))
+    {
+        Layout = "~/Views/Shared/_LayoutVentas.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Productor"))
+    {
+        Layout = "~/Views/Shared/_LayoutProduccion.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Cliente"))
+    {
+        Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
 }
 
 <h2>Edit</h2>

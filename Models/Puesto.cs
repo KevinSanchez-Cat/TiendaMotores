@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Puesto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,11 @@ namespace TiendaMotores.Models
         }
     
         public int id_puesto { get; set; }
+        [Display(Name = "Departamento")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_departamento { get; set; }
+        [Display(Name = "Nombre del puesto")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_puesto { get; set; }
     
         public virtual Departamento Departamento { get; set; }

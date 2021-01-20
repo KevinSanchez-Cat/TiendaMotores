@@ -11,13 +11,21 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class ProductoTienda
     {
         public int Id_producto { get; set; }
+        [Display(Name = "Numero de busqueda")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int numBusqueda { get; set; }
+        [Display(Name ="Calificacion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int calificacion { get; set; }
+        [Display(Name = "Numero de visitas")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int numVisitas { get; set; }
+        [Display(Name = "¿Destacado?")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string destacado { get; set; }
     
         public virtual Producto Producto { get; set; }

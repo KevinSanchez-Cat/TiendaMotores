@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Tarjeta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +21,23 @@ namespace TiendaMotores.Models
         }
     
         public int id_tarjeta { get; set; }
+       [Display(Name ="Numero de la tarjeta")]
+       [Required(ErrorMessage ="Campo obligatorio")]
         public string numTarjeta { get; set; }
+        [Display(Name = "Mes de vencimiento")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string mes_vencimiento { get; set; }
+        [Display(Name = "Año de venciomiento")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string anio_vencimiento { get; set; }
+        [Display(Name = "Numero del titular")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_titular { get; set; }
+        [Display(Name = "Direccion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_direccion { get; set; }
+        [Display(Name = "Tipo de tarjeta")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int tipo_tarjeta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

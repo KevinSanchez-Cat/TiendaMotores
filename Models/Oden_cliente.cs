@@ -11,17 +11,33 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Oden_cliente
     {
         public int Id_orden { get; set; }
+        [Display(Name = "Id de la compra")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_compra { get; set; }
+        [Display(Name = "Numero de confirmacion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int num_comfirmacion { get; set; }
+        [Display(Name = "Fecha de creacion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<System.DateTime> fecha_creacion { get; set; }
+        [Display(Name = "Total")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public double total { get; set; }
+        [Display(Name = "Numero de serie")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int num_serie { get; set; }
+        [Display(Name = "Fecha de envio")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<System.DateTime> fecha_envio { get; set; }
+        [Display(Name = "Fecha de entrega")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<System.DateTime> fecha_entrega { get; set; }
+        [Display(Name = "PAqueteria")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_paqueteria { get; set; }
     
         public virtual Compra Compra { get; set; }

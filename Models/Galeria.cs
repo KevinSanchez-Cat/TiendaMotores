@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Galeria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +21,17 @@ namespace TiendaMotores.Models
         }
     
         public int id_galeria { get; set; }
+        [Display(Name = "Imagen")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_gal1 { get; set; }
+        [Display(Name = "Imagen")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_gal2 { get; set; }
+        [Display(Name = "Imagen")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_gal3 { get; set; }
+        [Display(Name = "Imagen")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_gal4 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

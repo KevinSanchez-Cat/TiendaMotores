@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,26 +24,68 @@ namespace TiendaMotores.Models
         }
     
         public int Id_producto { get; set; }
+        [Display(Name = "Nombre del producto")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_producto { get; set; }
+        [Display(Name = "Descripcion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string descripcion_producto { get; set; }
+        [Display(Name = "Precio al publico")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public decimal precio { get; set; }
+        [Display(Name = "Costo de operacion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public decimal coste { get; set; }
+        [Display(Name = "Imagen del producto")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string imagen_producto { get; set; }
+        [Display(Name = "Categoria")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_categoria { get; set; }
+        [Display(Name = "Ultima actualizacion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<System.DateTime> ultima_actualizacion { get; set; }
+        [Display(Name = "Marca")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_marca { get; set; }
+        [Display(Name = "Producto relacionado")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> id_producto_relacionado { get; set; }
+        [Display(Name = "Clave unica")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int clave_unica { get; set; }
+        [Display(Name = "Galeria")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> id_galeria { get; set; }
+        [Display(Name = "Usuario")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string email_usuario { get; set; }
+        [Display(Name = "Potencia(HP)")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string potencia { get; set; }
+        [Display(Name = "Tipo")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string Tipo { get; set; }
+        [Display(Name = "Ancho(cm)")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<decimal> ancho { get; set; }
+        [Display(Name = "Alto(cm)")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<decimal> alto { get; set; }
+        [Display(Name = "Largo(cm)")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<decimal> profundidad { get; set; }
+        [Display(Name = "Peso(kg)")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<decimal> peso { get; set; }
+        [Display(Name = "Numero de polos")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string polos { get; set; }
+        [Display(Name = "RPM")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string rpm { get; set; }
+        [Display(Name = "Voltaje(V)")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<decimal> voltaje { get; set; }
     
         public virtual Categoria Categoria { get; set; }

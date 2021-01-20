@@ -11,11 +11,17 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Inventario
     {
+        [Display(Name = "Nombre del producto")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int Id_producto { get; set; }
+        [Display(Name = "Cantidad en exitencia")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int cantidad_inventario { get; set; }
+        [Display(Name = "Estatus")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string estatus { get; set; }
         public int id_inventario { get; set; }
     

@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,15 +21,35 @@ namespace TiendaMotores.Models
         }
     
         public int id_cliente { get; set; }
+        [Display(Name = "Nombre del cliente")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_cliente { get; set; }
+        [Display(Name = "Apellido paterno")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string apellido_p { get; set; }
+        [Display(Name = "Apellido materno")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string apellido_m { get; set; }
+        [Display(Name = "Direccion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_direccion { get; set; }
+        [Display(Name = "Telfono")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string telefono { get; set; }
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string email { get; set; }
+        [Display(Name = "Numero de la tarjeta")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> id_tarjeta { get; set; }
+        [Display(Name = "Nombre de usuario")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_usuario { get; set; }
+        [Display(Name = "Contraseña")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string contrasenia { get; set; }
+        [Display(Name = "Fecha de nacimiento")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public System.DateTime fecha_nacimiento { get; set; }
     
         public virtual Direccion Direccion { get; set; }

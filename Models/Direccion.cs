@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Direccion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,17 +25,41 @@ namespace TiendaMotores.Models
         }
     
         public int id_direccion { get; set; }
+        [Display(Name = "Estado")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string estado { get; set; }
+        [Display(Name = "Municipio")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string municipio { get; set; }
+        [Display(Name = "Ciudad")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string ciudad { get; set; }
+        [Display(Name = "Codigo postal")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string codigo_postal { get; set; }
+        [Display(Name = "Telefono")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string telefono { get; set; }
+        [Display(Name = "Calle externa")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string calle_externa { get; set; }
+        [Display(Name = "#)]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> num_calle_externa { get; set; }
+        [Display(Name = "Calle interna")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string calle_interna { get; set; }
+        [Display(Name = "#")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> num_calle_interna { get; set; }
+        [Display(Name = "Referencia 1")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string ref1 { get; set; }
+        [Display(Name = "Referencia 2")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string ref2 { get; set; }
+        [Display(Name = "Pais")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

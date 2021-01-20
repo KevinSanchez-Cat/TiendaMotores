@@ -110,7 +110,6 @@ namespace TiendaMotores.Controllers
             cliente.apellido_p = "";
             cliente.apellido_m = "";
             cliente.email = User.Identity.Name;
-            cliente.fecha_nacimiento = "";
             cliente.nombre_usuario = User.Identity.Name;
             cliente.telefono =""; 
 

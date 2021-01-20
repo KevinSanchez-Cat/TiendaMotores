@@ -43,7 +43,7 @@ namespace TiendaMotores.Models
         [Display(Name = "Calle externa")]
         [Required(ErrorMessage = "Campo obligatorio")]
         public string calle_externa { get; set; }
-        [Display(Name = "#)]
+        [Display(Name = "#")]
         [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> num_calle_externa { get; set; }
         [Display(Name = "Calle interna")]

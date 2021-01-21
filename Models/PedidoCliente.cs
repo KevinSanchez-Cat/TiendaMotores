@@ -7,7 +7,7 @@ namespace TiendaMotores.Models
 {
     public class PedidoCliente
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
         private List<Detalle_compra> detalle_compra;
 
         public PedidoCliente()

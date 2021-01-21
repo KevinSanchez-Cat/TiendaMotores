@@ -17,8 +17,8 @@ namespace TiendaMotores.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Producto()
         {
-            this.Inventario = new HashSet<Inventario>();
             this.Detalle_compra = new HashSet<Detalle_compra>();
+            this.Inventario = new HashSet<Inventario>();
             this.Producto1 = new HashSet<Producto>();
             this.ProductoTienda = new HashSet<ProductoTienda>();
         }
@@ -47,12 +47,12 @@ namespace TiendaMotores.Models
         public Nullable<decimal> voltaje { get; set; }
     
         public virtual Categoria Categoria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detalle_compra> Detalle_compra { get; set; }
         public virtual Galeria Galeria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventario> Inventario { get; set; }
         public virtual marca marca { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle_compra> Detalle_compra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Producto> Producto1 { get; set; }
         public virtual Producto Producto2 { get; set; }

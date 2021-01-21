@@ -24,7 +24,7 @@ namespace TiendaMotores.Models
         public string nombre_cliente { get; set; }
         public string apellido_p { get; set; }
         public string apellido_m { get; set; }
-        public int id_direccion { get; set; }
+        public Nullable<int> id_direccion { get; set; }
         public string telefono { get; set; }
         public string email { get; set; }
         public Nullable<int> id_tarjeta { get; set; }

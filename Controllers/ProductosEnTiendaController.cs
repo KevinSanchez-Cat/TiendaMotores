@@ -8,7 +8,7 @@ namespace TiendaMotores.Controllers
 {
     public class ProductosEnTiendaController : Controller
     {
-        private TIENDAEntities db =new TIENDAEntities();
+        private ContextoTienda db =new ContextoTienda();
         // GET: ProductosEnTienda
         public ActionResult Index()
         {

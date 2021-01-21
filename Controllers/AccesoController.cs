@@ -10,7 +10,7 @@ namespace TiendaMotores.Controllers
     [Authorize]
     public class AccesoController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
         // GET: Acceso
         public ActionResult IndexLogin(string correo)
         {

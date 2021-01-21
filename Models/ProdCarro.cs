@@ -7,7 +7,7 @@ namespace TiendaMotores.Models
 {
     public class ProdCarro
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
         private List<Producto> products;
 
         public ProdCarro()

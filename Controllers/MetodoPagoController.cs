@@ -11,7 +11,7 @@ namespace TiendaMotores.Controllers
     [Authorize]
     public class MetodoPagoController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
         private string NumConfirPago;
         // GET: Checkout
 

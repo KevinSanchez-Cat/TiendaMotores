@@ -13,7 +13,7 @@ namespace TiendaMotores.Controllers
     [Authorize]
     public class DepartamentoController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
 
         // GET: Departamento
         public ActionResult Index()

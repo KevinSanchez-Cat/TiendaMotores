@@ -14,7 +14,7 @@ namespace TiendaMotores.Controllers
     public class Detalle_compraController : Controller
     {
 
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
 
         // GET: Detalle_compra
         public ActionResult Index()

@@ -13,10 +13,10 @@ namespace TiendaMotores.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TIENDAEntities : DbContext
+    public partial class ContextoTienda : DbContext
     {
-        public TIENDAEntities()
-            : base("name=TIENDAEntities")
+        public ContextoTienda()
+            : base("name=ContextoTienda")
         {
         }
     
@@ -29,6 +29,7 @@ namespace TiendaMotores.Models
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<Departamento> Departamento { get; set; }
+        public virtual DbSet<Detalle_compra> Detalle_compra { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Galeria> Galeria { get; set; }
@@ -37,9 +38,8 @@ namespace TiendaMotores.Models
         public virtual DbSet<Oden_cliente> Oden_cliente { get; set; }
         public virtual DbSet<Paqueteria> Paqueteria { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<ProductoTienda> ProductoTienda { get; set; }
         public virtual DbSet<Puesto> Puesto { get; set; }
         public virtual DbSet<Tarjeta> Tarjeta { get; set; }
-        public virtual DbSet<Detalle_compra> Detalle_compra { get; set; }
-        public virtual DbSet<ProductoTienda> ProductoTienda { get; set; }
     }
 }

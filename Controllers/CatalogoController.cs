@@ -9,7 +9,7 @@ namespace TiendaMotores.Controllers
 {
     public class CatalogoController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
         // GET: Catalogo
         public ActionResult Catalogo()
         {

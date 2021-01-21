@@ -14,7 +14,7 @@ namespace TiendaMotores.Controllers
     [Authorize]
     public class ClientesController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
 
         // GET: Clientes
         public ActionResult Index()
@@ -226,9 +226,9 @@ namespace TiendaMotores.Controllers
 
 
 
-                idDir = cliente.id_direccion;
+                idDir = (int)cliente.id_direccion;
                 idTarj= (int)cliente.id_tarjeta;
-                if (idDir!=null)
+                if (idDir!=0)
                 {
                     idDir = Int32.Parse(idDir.ToString());
                     int numCallExterna = Int32.Parse(num_calle_externa.ToString());

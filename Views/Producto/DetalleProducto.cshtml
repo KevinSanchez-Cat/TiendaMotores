@@ -22,7 +22,7 @@
 
     Producto producto = ViewBag.detalleProducto;
 
-    TIENDAEntities db = new TIENDAEntities();
+    ContextoTienda db = new ContextoTienda();
 
     var galeria = (from p in db.Galeria
                    where p.id_galeria == producto.id_galeria

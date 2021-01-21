@@ -12,7 +12,7 @@ namespace TiendaMotores.Controllers
 {
     public class Orden_clienteController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
 
         // GET: Orden_cliente
         public ActionResult Index()

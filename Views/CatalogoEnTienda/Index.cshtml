@@ -18,7 +18,7 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-    TIENDAEntities db = new TIENDAEntities();
+    ContextoTienda db = new ContextoTienda();
     List<Categoria> catalogos = null;
     var query = from p in db.Categoria
                 select p;

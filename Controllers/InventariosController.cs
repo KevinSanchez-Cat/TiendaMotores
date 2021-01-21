@@ -12,7 +12,7 @@ namespace TiendaMotores.Controllers
 {
     public class InventariosController : Controller
     {
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
 
         // GET: Inventarios
         public ActionResult Index()

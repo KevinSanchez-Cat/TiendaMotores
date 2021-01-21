@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -561,8 +561,7 @@
             <End Role="Tarjeta" EntitySet="Tarjeta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TIENDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -593,7 +592,7 @@
           <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Direccion" Relationship="Self.FK__Cliente__id_dire__73852659" FromRole="Cliente" ToRole="Direccion" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Cliente__id_dire__671F4F74" FromRole="Cliente" ToRole="Direccion" />
           <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Cliente__id_tarj__0C85DE4D" FromRole="Cliente" ToRole="Tarjeta" />
           <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__id_clien__0F624AF8" FromRole="Cliente" ToRole="Compra" />
         </EntityType>
@@ -649,7 +648,7 @@
           <Property Name="ref1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ref2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="pais" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__id_dire__73852659" FromRole="Direccion" ToRole="Cliente" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__id_dire__671F4F74" FromRole="Direccion" ToRole="Cliente" />
           <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__id_direc__0E6E26BF" FromRole="Direccion" ToRole="Compra" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_dir__69FBBC1F" FromRole="Direccion" ToRole="Empleado" />
           <NavigationProperty Name="Paqueteria" Relationship="Self.FK__Paqueteri__id_di__2B0A656D" FromRole="Direccion" ToRole="Paqueteria" />
@@ -834,8 +833,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cliente__id_dire__73852659">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+        <Association Name="FK__Cliente__id_dire__671F4F74">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Direccion">
@@ -1062,7 +1061,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ContextoTienda" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ContextoTienda2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Compra" EntityType="Self.Compra" />
@@ -1087,7 +1086,7 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cliente__id_dire__73852659" Association="Self.FK__Cliente__id_dire__73852659">
+          <AssociationSet Name="FK__Cliente__id_dire__671F4F74" Association="Self.FK__Cliente__id_dire__671F4F74">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
@@ -1169,7 +1168,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TIENDAModelStoreContainer" CdmEntityContainer="ContextoTienda">
+        <EntityContainerMapping StorageEntityContainer="TIENDAModelStoreContainer" CdmEntityContainer="ContextoTienda2">
           <EntitySetMapping Name="Categoria">
             <EntityTypeMapping TypeName="TIENDAModel.Categoria">
               <MappingFragment StoreEntitySet="Categoria">

@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d377c9c7195d4df8a68e70588db300a7" Name="Diagram1">
-        <EntityTypeShape EntityType="TIENDAModel.Categoria" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="3f71901cb2c7431d9033f89a1556e2ab" Name="Diagram1">
+        <EntityTypeShape EntityType="TIENDAModel.Categoria" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TIENDAModel.Cliente" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="TIENDAModel.Compra" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TIENDAModel.Departamento" Width="1.5" PointX="1.5" PointY="26.875" IsExpanded="true" />
@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="TIENDAModel.Tarjeta" Width="1.5" PointX="1.5" PointY="23.125" IsExpanded="true" />
         <AssociationConnector Association="TIENDAModel.FK__Categoria__id_ca__662B2B3B" ManuallyRouted="false" />
         <AssociationConnector Association="TIENDAModel.FK__Producto__id_cat__31B762FC" ManuallyRouted="false" />
-        <AssociationConnector Association="TIENDAModel.FK__Cliente__id_dire__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="TIENDAModel.FK__Cliente__id_dire__671F4F74" ManuallyRouted="false" />
         <AssociationConnector Association="TIENDAModel.FK__Cliente__id_tarj__0C85DE4D" ManuallyRouted="false" />
         <AssociationConnector Association="TIENDAModel.FK__Compra__id_clien__0F624AF8" ManuallyRouted="false" />
         <AssociationConnector Association="TIENDAModel.FK__Compra__id_direc__0E6E26BF" ManuallyRouted="false" />

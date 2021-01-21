@@ -10,7 +10,7 @@ namespace TiendaMotores.Controllers
     public class CuentaController : Controller
     {
 
-        private TIENDAEntities db = new TIENDAEntities();
+        private ContextoTienda db = new ContextoTienda();
         // GET: Cuenta
         public ActionResult CuentaCliente()
         {
@@ -34,7 +34,6 @@ namespace TiendaMotores.Controllers
             {
                 return RedirectToAction("CuentaEmpleado");
             }
-            return View();
         }
         public ActionResult Modificar()
         {
@@ -46,7 +45,6 @@ namespace TiendaMotores.Controllers
             {
                 return RedirectToAction("CuentaEmpleado");
             }
-            return View();
         }
         public ActionResult VerPedidos()
         {

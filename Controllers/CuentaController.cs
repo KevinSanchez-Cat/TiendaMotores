@@ -25,13 +25,14 @@ namespace TiendaMotores.Controllers
         }
         public ActionResult Ver()
         {
+
             if (Session["rol"].Equals("Cliente"))
             {
-                RedirectToAction("CuentaCliente");
+                return RedirectToAction("CuentaCliente");
             }
             else
             {
-                RedirectToAction("CuentaEmpleado");
+                return RedirectToAction("CuentaEmpleado");
             }
             return View();
         }
@@ -39,11 +40,11 @@ namespace TiendaMotores.Controllers
         {
             if (Session["rol"].Equals("Cliente"))
             {
-                RedirectToAction("CuentaCliente");
+                return RedirectToAction("CuentaCliente");
             }
             else
             {
-                RedirectToAction("CuentaEmpleado");
+                return RedirectToAction("CuentaEmpleado");
             }
             return View();
         }

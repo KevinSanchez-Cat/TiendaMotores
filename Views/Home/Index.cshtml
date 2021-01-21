@@ -1,8 +1,21 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-  
+
+    if (Session["rol"] != null)
+    {
+        if (Session["rol"].ToString().Equals("Cliente"))
+        {
+            Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
+    else
+    {
         Layout = "~/Views/Shared/_Layout.cshtml";
-  
+    }
 }
 
 

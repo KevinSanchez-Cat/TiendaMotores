@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -20,15 +20,15 @@
           </Key>
           <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_cliente" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="apellido_p" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="apellido_m" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellido_p" Type="nvarchar" MaxLength="45" />
+          <Property Name="apellido_m" Type="nvarchar" MaxLength="45" />
           <Property Name="id_direccion" Type="int" Nullable="false" />
           <Property Name="telefono" Type="nchar" MaxLength="12" />
           <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="id_tarjeta" Type="int" />
-          <Property Name="nombre_usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre_usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="contrasenia" Type="nvarchar(max)" />
-          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="date" />
         </EntityType>
         <EntityType Name="Compra">
           <Key>
@@ -47,19 +47,15 @@
           <Property Name="id_departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_departamento" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Detalle_compra">
           <Key>
-            <PropertyRef Name="Id_compra" />
-            <PropertyRef Name="id_producto" />
-            <PropertyRef Name="cantidad" />
-            <PropertyRef Name="subtotal" />
+            <PropertyRef Name="Id_detalle_compra" />
           </Key>
           <Property Name="Id_compra" Type="int" Nullable="false" />
           <Property Name="id_producto" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Id_detalle_compra" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -67,7 +63,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida
           </Key>
           <Property Name="id_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="estado" Type="nchar" MaxLength="45" Nullable="false" />
-          <Property Name="municipio" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="municipio" Type="nchar" MaxLength="45" />
           <Property Name="ciudad" Type="nchar" MaxLength="45" Nullable="false" />
           <Property Name="codigo_postal" Type="nchar" MaxLength="7" Nullable="false" />
           <Property Name="telefono" Type="nchar" MaxLength="12" />
@@ -77,26 +73,26 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida
           <Property Name="num_calle_interna" Type="int" />
           <Property Name="ref1" Type="nvarchar" MaxLength="255" />
           <Property Name="ref2" Type="nvarchar" MaxLength="255" />
-          <Property Name="pais" Type="nvarchar" MaxLength="255" />
+          <Property Name="pais" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="Id_empleado" />
           </Key>
           <Property Name="Id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_empleado" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="apellido_p" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="apellido_m" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="fecha_nac" Type="date" Nullable="false" />
-          <Property Name="estatus" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="nombre_empleado" Type="nvarchar" MaxLength="45" />
+          <Property Name="apellido_p" Type="nvarchar" MaxLength="45" />
+          <Property Name="apellido_m" Type="nvarchar" MaxLength="45" />
+          <Property Name="fecha_nac" Type="date" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="45" />
+          <Property Name="salario" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="telefono" Type="nchar" MaxLength="12" />
           <Property Name="id_direccion" Type="int" Nullable="false" />
           <Property Name="id_departamento" Type="int" Nullable="false" />
           <Property Name="id_puesto" Type="int" Nullable="false" />
           <Property Name="rfc" Type="nchar" MaxLength="13" Nullable="false" />
-          <Property Name="rol" Type="nvarchar" MaxLength="50" />
+          <Property Name="rol" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre_usuario" Type="nvarchar" MaxLength="50" />
           <Property Name="contrasenia" Type="nvarchar(max)" />
         </EntityType>
@@ -135,7 +131,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida
           <Property Name="num_comfirmacion" Type="int" Nullable="false" />
           <Property Name="fecha_creacion" Type="date" />
           <Property Name="total" Type="float" Nullable="false" />
-          <Property Name="num_serie" Type="int" Nullable="false" />
+          <Property Name="num_serie" Type="int" />
           <Property Name="fecha_envio" Type="date" />
           <Property Name="fecha_entrega" Type="date" />
           <Property Name="id_paqueteria" Type="int" Nullable="false" />
@@ -147,19 +143,19 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida
           <Property Name="id_paqueteria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_paqueteria" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="telefono" Type="int" Nullable="false" />
-          <Property Name="sitio_web" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="rfc" Type="int" Nullable="false" />
+          <Property Name="sitio_web" Type="nvarchar" MaxLength="255" />
           <Property Name="contacto" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="telefono_contacto" Type="int" Nullable="false" />
           <Property Name="id_direccion" Type="int" Nullable="false" />
+          <Property Name="rfc" Type="nchar" MaxLength="13" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id_producto" />
           </Key>
           <Property Name="Id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_producto" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="descripcion_producto" Type="text" Nullable="false" />
+          <Property Name="nombre_producto" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="descripcion_producto" Type="text" />
           <Property Name="precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="coste" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="imagen_producto" Type="nvarchar" MaxLength="255" />
@@ -169,7 +165,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida
           <Property Name="id_producto_relacionado" Type="int" />
           <Property Name="clave_unica" Type="int" Nullable="false" />
           <Property Name="id_galeria" Type="int" />
-          <Property Name="email_usuario" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="email_usuario" Type="nvarchar" MaxLength="255" />
           <Property Name="potencia" Type="nchar" MaxLength="10" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
           <Property Name="ancho" Type="decimal" Precision="18" Scale="2" />
@@ -180,21 +176,16 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.Detalle_compra' no tiene definida
           <Property Name="rpm" Type="nchar" MaxLength="10" />
           <Property Name="voltaje" Type="numeric" Precision="18" Scale="2" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ProductoTienda">
           <Key>
-            <PropertyRef Name="Id_producto" />
-            <PropertyRef Name="numBusqueda" />
-            <PropertyRef Name="calificacion" />
-            <PropertyRef Name="numVisitas" />
-            <PropertyRef Name="destacado" />
+            <PropertyRef Name="Id_producto_tienda" />
           </Key>
           <Property Name="Id_producto" Type="int" Nullable="false" />
           <Property Name="numBusqueda" Type="int" Nullable="false" />
           <Property Name="calificacion" Type="int" Nullable="false" />
           <Property Name="numVisitas" Type="int" Nullable="false" />
           <Property Name="destacado" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Id_producto_tienda" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Puesto">
           <Key>
@@ -212,11 +203,11 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="numTarjeta" Type="nchar" MaxLength="16" Nullable="false" />
           <Property Name="mes_vencimiento" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="anio_vencimiento" Type="nchar" MaxLength="2" Nullable="false" />
-          <Property Name="nombre_titular" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="nombre_titular" Type="nvarchar(max)" Nullable="false" />
           <Property Name="id_direccion" Type="int" Nullable="false" />
           <Property Name="tipo_tarjeta" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Categoria__id_ca__3D2915A8">
+        <Association Name="FK__Categoria__id_ca__662B2B3B">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
           <End Role="Categoria1" Type="Self.Categoria" Multiplicity="*" />
           <ReferentialConstraint>
@@ -228,7 +219,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cliente__id_dire__2739D489">
+        <Association Name="FK__Cliente__id_dire__671F4F74">
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -312,7 +303,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__id_dir__10566F31">
+        <Association Name="FK__Empleado__id_dir__69FBBC1F">
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -360,7 +351,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Oden_clie__id_pa__2A164134">
+        <Association Name="FK__Oden_clie__id_pa__681373AD">
           <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
           <End Role="Oden_cliente" Type="Self.Oden_cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -473,6 +464,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_compra" EntityType="Self.Detalle_compra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Galeria" EntityType="Self.Galeria" Schema="dbo" store:Type="Tables" />
@@ -481,30 +473,14 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <EntitySet Name="Oden_cliente" EntityType="Self.Oden_cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paqueteria" EntityType="Self.Paqueteria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductoTienda" EntityType="Self.ProductoTienda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Detalle_compra" EntityType="Self.Detalle_compra" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Detalle_compra].[Id_compra] AS [Id_compra], 
-    [Detalle_compra].[id_producto] AS [id_producto], 
-    [Detalle_compra].[cantidad] AS [cantidad], 
-    [Detalle_compra].[subtotal] AS [subtotal]
-    FROM [dbo].[Detalle_compra] AS [Detalle_compra]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ProductoTienda" EntityType="Self.ProductoTienda" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProductoTienda].[Id_producto] AS [Id_producto], 
-    [ProductoTienda].[numBusqueda] AS [numBusqueda], 
-    [ProductoTienda].[calificacion] AS [calificacion], 
-    [ProductoTienda].[numVisitas] AS [numVisitas], 
-    [ProductoTienda].[destacado] AS [destacado]
-    FROM [dbo].[ProductoTienda] AS [ProductoTienda]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__Categoria__id_ca__3D2915A8" Association="Self.FK__Categoria__id_ca__3D2915A8">
+          <AssociationSet Name="FK__Categoria__id_ca__662B2B3B" Association="Self.FK__Categoria__id_ca__662B2B3B">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Categoria1" EntitySet="Categoria" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cliente__id_dire__2739D489" Association="Self.FK__Cliente__id_dire__2739D489">
+          <AssociationSet Name="FK__Cliente__id_dire__671F4F74" Association="Self.FK__Cliente__id_dire__671F4F74">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
@@ -532,7 +508,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__id_dir__10566F31" Association="Self.FK__Empleado__id_dir__10566F31">
+          <AssociationSet Name="FK__Empleado__id_dir__69FBBC1F" Association="Self.FK__Empleado__id_dir__69FBBC1F">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
@@ -548,7 +524,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Oden_cliente" EntitySet="Oden_cliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Oden_clie__id_pa__2A164134" Association="Self.FK__Oden_clie__id_pa__2A164134">
+          <AssociationSet Name="FK__Oden_clie__id_pa__681373AD" Association="Self.FK__Oden_clie__id_pa__681373AD">
             <End Role="Paqueteria" EntitySet="Paqueteria" />
             <End Role="Oden_cliente" EntitySet="Oden_cliente" />
           </AssociationSet>
@@ -585,8 +561,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             <End Role="Tarjeta" EntitySet="Tarjeta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TIENDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -608,15 +583,15 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           </Key>
           <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_cliente" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido_p" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido_m" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido_p" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="apellido_m" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="id_direccion" Type="Int32" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_tarjeta" Type="Int32" />
-          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK__Cliente__id_dire__2739D489" FromRole="Cliente" ToRole="Direccion" />
           <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Cliente__id_tarj__0C85DE4D" FromRole="Cliente" ToRole="Tarjeta" />
           <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__id_clien__0F624AF8" FromRole="Cliente" ToRole="Compra" />
@@ -650,7 +625,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           </Key>
           <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="estado" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="municipio" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="municipio" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
           <Property Name="ciudad" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="codigo_postal" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
@@ -660,7 +635,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="num_calle_interna" Type="Int32" />
           <Property Name="ref1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ref2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="pais" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="pais" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__id_dire__2739D489" FromRole="Direccion" ToRole="Cliente" />
           <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__id_direc__0E6E26BF" FromRole="Direccion" ToRole="Compra" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_dir__10566F31" FromRole="Direccion" ToRole="Empleado" />
@@ -672,19 +647,19 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             <PropertyRef Name="Id_empleado" />
           </Key>
           <Property Name="Id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_empleado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido_p" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido_m" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="fecha_nac" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="estatus" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="salario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="apellido_p" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="apellido_m" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nac" Type="DateTime" Precision="0" />
+          <Property Name="estatus" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="salario" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
           <Property Name="id_direccion" Type="Int32" Nullable="false" />
           <Property Name="id_departamento" Type="Int32" Nullable="false" />
           <Property Name="id_puesto" Type="Int32" Nullable="false" />
           <Property Name="rfc" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Departamento" Relationship="Self.FK__Empleado__id_dep__114A936A" FromRole="Empleado" ToRole="Departamento" />
@@ -729,7 +704,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="num_comfirmacion" Type="Int32" Nullable="false" />
           <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
           <Property Name="total" Type="Double" Nullable="false" />
-          <Property Name="num_serie" Type="Int32" Nullable="false" />
+          <Property Name="num_serie" Type="Int32" />
           <Property Name="fecha_envio" Type="DateTime" Precision="0" />
           <Property Name="fecha_entrega" Type="DateTime" Precision="0" />
           <Property Name="id_paqueteria" Type="Int32" Nullable="false" />
@@ -743,21 +718,21 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="id_paqueteria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_paqueteria" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono" Type="Int32" Nullable="false" />
-          <Property Name="sitio_web" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="rfc" Type="Int32" Nullable="false" />
+          <Property Name="sitio_web" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono_contacto" Type="Int32" Nullable="false" />
           <Property Name="id_direccion" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK__Paqueteri__id_di__2B0A656D" FromRole="Paqueteria" ToRole="Direccion" />
           <NavigationProperty Name="Oden_cliente" Relationship="Self.FK__Oden_clie__id_pa__2A164134" FromRole="Paqueteria" ToRole="Oden_cliente" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id_producto" />
           </Key>
           <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_producto" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="descripcion_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="coste" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="imagen_producto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -767,7 +742,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="id_producto_relacionado" Type="Int32" />
           <Property Name="clave_unica" Type="Int32" Nullable="false" />
           <Property Name="id_galeria" Type="Int32" />
-          <Property Name="email_usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email_usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="potencia" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ancho" Type="Decimal" Precision="18" Scale="2" />
@@ -804,7 +779,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="numTarjeta" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="mes_vencimiento" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="anio_vencimiento" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="nombre_titular" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre_titular" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_direccion" Type="Int32" Nullable="false" />
           <Property Name="tipo_tarjeta" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__id_tarj__0C85DE4D" FromRole="Tarjeta" ToRole="Cliente" />
@@ -816,6 +791,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             <PropertyRef Name="id_producto" />
             <PropertyRef Name="cantidad" />
             <PropertyRef Name="subtotal" />
+            <PropertyRef Name="Id_detalle_compra" />
           </Key>
           <Property Name="Id_compra" Type="Int32" Nullable="false" />
           <Property Name="id_producto" Type="Int32" Nullable="false" />
@@ -823,6 +799,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="subtotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Compra" Relationship="Self.FK__Detalle_c__Id_co__1CBC4616" FromRole="Detalle_compra" ToRole="Compra" />
           <NavigationProperty Name="Producto" Relationship="Self.FK__Detalle_c__id_pr__32AB8735" FromRole="Detalle_compra" ToRole="Producto" />
+          <Property Name="Id_detalle_compra" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductoTienda">
           <Key>
@@ -831,6 +808,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
             <PropertyRef Name="calificacion" />
             <PropertyRef Name="numVisitas" />
             <PropertyRef Name="destacado" />
+            <PropertyRef Name="Id_producto_tienda" />
           </Key>
           <Property Name="Id_producto" Type="Int32" Nullable="false" />
           <Property Name="numBusqueda" Type="Int32" Nullable="false" />
@@ -838,6 +816,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <Property Name="numVisitas" Type="Int32" Nullable="false" />
           <Property Name="destacado" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="Self.FK__ProductoT__Id_pr__2DE6D218" FromRole="ProductoTienda" ToRole="Producto" />
+          <Property Name="Id_producto_tienda" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK__Categoria__id_ca__3D2915A8">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
@@ -1333,11 +1312,11 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <EntitySetMapping Name="Paqueteria">
             <EntityTypeMapping TypeName="TIENDAModel.Paqueteria">
               <MappingFragment StoreEntitySet="Paqueteria">
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
                 <ScalarProperty Name="id_paqueteria" ColumnName="id_paqueteria" />
                 <ScalarProperty Name="nombre_paqueteria" ColumnName="nombre_paqueteria" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="sitio_web" ColumnName="sitio_web" />
-                <ScalarProperty Name="rfc" ColumnName="rfc" />
                 <ScalarProperty Name="contacto" ColumnName="contacto" />
                 <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
@@ -1397,6 +1376,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <EntitySetMapping Name="Detalle_compra">
             <EntityTypeMapping TypeName="TIENDAModel.Detalle_compra">
               <MappingFragment StoreEntitySet="Detalle_compra">
+                <ScalarProperty Name="Id_detalle_compra" ColumnName="Id_detalle_compra" />
                 <ScalarProperty Name="Id_compra" ColumnName="Id_compra" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
@@ -1407,6 +1387,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
           <EntitySetMapping Name="ProductoTienda">
             <EntityTypeMapping TypeName="TIENDAModel.ProductoTienda">
               <MappingFragment StoreEntitySet="ProductoTienda">
+                <ScalarProperty Name="Id_producto_tienda" ColumnName="Id_producto_tienda" />
                 <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
                 <ScalarProperty Name="numBusqueda" ColumnName="numBusqueda" />
                 <ScalarProperty Name="calificacion" ColumnName="calificacion" />
@@ -1430,7 +1411,7 @@ advertencia 6002: La tabla o vista 'TIENDA.dbo.ProductoTienda' no tiene definida
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

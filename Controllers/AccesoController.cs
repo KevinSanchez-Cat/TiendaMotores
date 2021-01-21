@@ -47,12 +47,13 @@ namespace TiendaMotores.Controllers
                     var lista1 = query.ToList();
                     if (lista1.Count > 0)
                     {
-                        Session["rol"] = rol;
+                        
                         var cliente = query1.FirstOrDefault<Cliente>();
                         string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
                         Session["nombre"] = nombre[0];
                         Session["usuario"] = cliente.nombre_cliente;
                         rol = "Cliente";
+
                         if (HttpContext.Request.Cookies["usuario"] == null)
                         {
                             HttpCookie cookie = new HttpCookie("usuario");
@@ -99,7 +100,7 @@ namespace TiendaMotores.Controllers
             {
                 return RedirectToAction("Index", "DepCliente");
             }
-            return RedirectToAction("Index", "DelCliente");
+            return RedirectToAction("Index", "DepCliente");
         }
         // GET: Acceso
         public ActionResult IndexRegisterCliente(string correo)
@@ -111,8 +112,14 @@ namespace TiendaMotores.Controllers
             cliente.apellido_m = "";
             cliente.email = User.Identity.Name;
             cliente.nombre_usuario = User.Identity.Name;
-            cliente.telefono =""; 
-
+            cliente.telefono ="";
+            cliente.contrasenia = "";
+            Session["nombre"] = User.Identity.Name;
+            Session["usuario"] = User.Identity.Name;
+           
+            Session["rol"] ="Cliente";
+            db.Cliente.Add(cliente);
+            db.SaveChanges();
 
             
             return RedirectToAction("Index", "DepCliente");

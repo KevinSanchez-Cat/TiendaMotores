@@ -2,13 +2,23 @@
 
 @{
     ViewBag.Title = "BuscaProd";
-
-
+    if (Session["rol"] != null)
+    {
+        if (Session["rol"].ToString().Equals("Cliente"))
+        {
+            Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
+    else
+    {
         Layout = "~/Views/Shared/_Layout.cshtml";
-  
+    }
 }
 
-<h2>BuscaProd</h2>
 <h3>Productos relacionados a @ViewBag.SearchKey</h3>
 <br />
 <div class="text-center">

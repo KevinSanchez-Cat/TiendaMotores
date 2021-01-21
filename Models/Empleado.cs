@@ -11,54 +11,24 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Empleado
     {
         public int Id_empleado { get; set; }
-        [Display(Name = "Nombre del empleado")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_empleado { get; set; }
-        [Display(Name = "Apellido paterno")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string apellido_p { get; set; }
-        [Display(Name = "Apellido materno")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string apellido_m { get; set; }
-        [Display(Name = "Fecha de nacimiento")]
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public System.DateTime fecha_nac { get; set; }
-        [Display(Name = "Estatus")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        public Nullable<System.DateTime> fecha_nac { get; set; }
         public string estatus { get; set; }
-        [Display(Name = "Salario")]
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public decimal salario { get; set; }
-        [Display(Name = "Email")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        public Nullable<decimal> salario { get; set; }
         public string email { get; set; }
-        [Display(Name = "Telefono")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string telefono { get; set; }
-        [Display(Name = "Direccion")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_direccion { get; set; }
-        [Display(Name = "Departamento")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_departamento { get; set; }
-        [Display(Name = "Puesto")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_puesto { get; set; }
-        [Display(Name = "RFC")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string rfc { get; set; }
-        [Display(Name = "Rol")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string rol { get; set; }
-        [Display(Name = "Numero de usuario")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string nombre_usuario { get; set; }
-        [Display(Name = "Contraseña")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string contrasenia { get; set; }
     
         public virtual Departamento Departamento { get; set; }

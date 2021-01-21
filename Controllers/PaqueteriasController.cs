@@ -76,7 +76,7 @@ namespace TiendaMotores.Controllers
             db.SaveChanges();
 
             int telefonoP = Int32.Parse(telefono.ToString());
-            int rfcP = Int32.Parse(rfc.ToString());
+            string rfcP =rfc.ToString();
             int telefono_contactoP = Int32.Parse(telefono_contacto.ToString());
             Paqueteria paqueteria = new Paqueteria();
             paqueteria.nombre_paqueteria = nombre_paqueteria;

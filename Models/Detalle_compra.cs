@@ -11,19 +11,14 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Detalle_compra
     {
         public int Id_compra { get; set; }
-        [Display(Name = "Producto")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public int id_producto { get; set; }
-        [Display(Name = "Cantidad")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public int cantidad { get; set; }
-        [Display(Name = "Subtotal")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public decimal subtotal { get; set; }
+        public int Id_detalle_compra { get; set; }
     
         public virtual Compra Compra { get; set; }
         public virtual Producto Producto { get; set; }

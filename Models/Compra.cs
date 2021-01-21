@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Compra
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,17 +22,9 @@ namespace TiendaMotores.Models
         }
     
         public int id_compra { get; set; }
-        [Display(Name = "Total")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<decimal> total { get; set; }
-        [Display(Name = "Cliente")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> id_cliente { get; set; }
-        [Display(Name = "Fecha de compra")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<System.DateTime> fecha_compra { get; set; }
-        [Display(Name = "Fecha de entrega")]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public Nullable<int> id_direccion_entrega { get; set; }
     
         public virtual Cliente Cliente { get; set; }

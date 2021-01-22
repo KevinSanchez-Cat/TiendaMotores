@@ -53,9 +53,9 @@
     @*using (Html.BeginForm())*@
     @using (Html.BeginForm("Edit", "Empleado", FormMethod.Post))
     {
-        <h4>Empleado</h4>
+        <br />
+        <h4>Editar empleado</h4>
         <hr />
-
         @Html.AntiForgeryToken()
         <div class="row">
 
@@ -367,7 +367,7 @@
             <div class="form-group col-12">
                 <div class="col-md-offset-2 col-md-12" align="right">
 
-                    <input type="submit" value="Actualizar" class="btn btn-success" />
+                    <input type="submit" value="Actualizar" class="btn btn-outline-primary" />
                 </div>
             </div>
         </div>

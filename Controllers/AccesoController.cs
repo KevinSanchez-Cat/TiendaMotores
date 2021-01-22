@@ -15,6 +15,7 @@ namespace TiendaMotores.Controllers
         public ActionResult IndexLogin(string correo)
         {
             String rol = "";
+            Session["rol"] = "";
             using (db)
             {
                 var query = from st in db.Empleado
@@ -41,10 +42,10 @@ namespace TiendaMotores.Controllers
                 }
                 else
                 {
-                    var query1 = from st in db.Cliente
+                    var query1 = (from st in db.Cliente
                                  where st.email == correo
-                                 select st;
-                    var lista1 = query.ToList();
+                                 select st);
+                    var lista1 = query1.ToList();
                     if (lista1.Count > 0)
                     {
                         
@@ -52,8 +53,8 @@ namespace TiendaMotores.Controllers
                         string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
                         Session["nombre"] = nombre[0];
                         Session["usuario"] = cliente.nombre_cliente;
+                        Session["rol"] = "Cliente";
                         rol = "Cliente";
-
                         if (HttpContext.Request.Cookies["usuario"] == null)
                         {
                             HttpCookie cookie = new HttpCookie("usuario");
@@ -116,7 +117,6 @@ namespace TiendaMotores.Controllers
             cliente.contrasenia = "";
             Session["nombre"] = User.Identity.Name;
             Session["usuario"] = User.Identity.Name;
-           
             Session["rol"] ="Cliente";
             db.Cliente.Add(cliente);
             db.SaveChanges();
@@ -138,6 +138,7 @@ namespace TiendaMotores.Controllers
                         string[] nombre = empleado.nombre_empleado.ToString().Split(' ');
                         Session["nombre"] = nombre[0];
                         Session["usuario"] = empleado.nombre_empleado;
+                    Session["rol"] = empleado.rol;
                         return RedirectToAction("IndexLogin",routeValues: new { correo = email});
                 }
                 else

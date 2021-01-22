@@ -51,13 +51,12 @@
     <title>Modificar información del puesto</title>
 </head>
 <body>
-    <h2>Puestos</h2>
+    <h2>Editar puesto</h2>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>Puesto</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.id_puesto)

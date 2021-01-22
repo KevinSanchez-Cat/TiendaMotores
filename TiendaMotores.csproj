@@ -194,6 +194,7 @@
     <Compile Include="Controllers\DireccionController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\ERRORController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexDefectoController.cs" />
     <Compile Include="Controllers\InventariosController.cs" />
@@ -674,6 +675,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Acceso\" />
+    <Folder Include="Views\ERROR\" />
     <Folder Include="Views\IndexDefecto\" />
     <Folder Include="Views\Pedidos\" />
     <Folder Include="Views\RecursosHumanos\" />

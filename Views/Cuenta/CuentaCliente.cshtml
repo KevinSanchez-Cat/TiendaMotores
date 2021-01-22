@@ -41,28 +41,32 @@
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-
-
     string correo = Session["correo"].ToString();
-
 }
 
 <h2>Mi cuenta</h2>
 
-
-
 <div class="card">
+    <h5 class="card-header text-white" style="background-color: rgb(33, 43, 75)">Información personal</h5>
     <div class="card-body">
-        <div class="row">
-         
-        </div>
 
 
     </div>
 </div>
 
+<br />
+
 <div class="card">
-    <h5 class="card-header">Featured</h5>
+    <h5 class="card-header text-white" style="background-color: rgb(33, 43, 75)">Cuenta de usuario</h5>
+    <div class="card-body">
+
+
+    </div>
+</div>
+
+<br />
+<div class="card">
+    <h5 class="card-header text-white" style="background-color: rgb(33, 43, 75)">Dirección</h5>
     <div class="card-body">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -78,7 +82,7 @@
         <div class="form-group">
             @Html.Label("Estado")
             <div class="col">
-             
+
             </div>
         </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -164,10 +168,13 @@
 
     </div>
 </div>
+
+
+<br />
 <div class="card">
-    <h5 class="card-header">Featured</h5>
+    <h5 class="card-header text-white" style="background-color: rgb(33, 43, 75)">Tarjeta</h5>
     <div class="card-body">
-        
+
 
     </div>
 </div>

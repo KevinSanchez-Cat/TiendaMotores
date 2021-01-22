@@ -43,14 +43,13 @@
 
 }
 
-<h2>Edit</h2>
+<h2>Editar marca</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>marca</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id_marca)

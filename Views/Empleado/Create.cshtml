@@ -57,11 +57,13 @@
     @*using (Html.BeginForm())*@
     @using (Html.BeginForm("Create", "Empleado", FormMethod.Post))
     {
-        <h4>Empleado</h4>
+        <h4>Añadir empleado</h4>
         <hr />
 
         @Html.AntiForgeryToken()
         <div class="row">
+
+
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">

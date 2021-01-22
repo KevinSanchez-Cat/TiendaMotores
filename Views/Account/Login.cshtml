@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -46,18 +46,21 @@
                     <div class="col-md-offset-2 col-md-10">
                         @Html.ActionLink("Registrarse como usuario nuevo", "Register", new { area = "" }, new { @class = "btn btn-secondary" })
                     </div>
-                   
+
                 </p>
                 @* Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-            <p>
-                @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
-            </p>*@
+                    <p>
+                        @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
+                    </p>*@
             }
         </section>
     </div>
     <div class="col-md-4">
         <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            @*Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            *@
+            <img src="https://i.blogs.es/d69745/engine-1534799977/840_560.jpg" width="400" height="400"/>
+
         </section>
     </div>
 </div>

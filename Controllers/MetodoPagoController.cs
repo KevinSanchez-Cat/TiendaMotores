@@ -23,6 +23,12 @@ namespace TiendaMotores.Controllers
         public ActionResult CrearOrden()
         {
 
+            return View();
+
+        }
+        public ActionResult HacerCompra()
+        {
+
             if (!User.Identity.IsAuthenticated)
             {
                 Session["CrearOrden"] = "pend";
@@ -46,22 +52,23 @@ namespace TiendaMotores.Controllers
 
                 if (cliente2.id_tarjeta != null)
                 {
-                    var tarjeta= (from c in db.Tarjeta
-                                  where c.id_tarjeta == cliente2.id_tarjeta
-                                  select c).FirstOrDefault();
+                    var tarjeta = (from c in db.Tarjeta
+                                   where c.id_tarjeta == cliente2.id_tarjeta
+                                   select c).FirstOrDefault();
 
                     //Identificar el numero de tarjeta
-                    if (tarjeta.numTarjeta.ToString().StartsWith("4")){
-                       Session["tTarj"] = "1";
+                    if (tarjeta.numTarjeta.ToString().StartsWith("4"))
+                    {
+                        Session["tTarj"] = "1";
                     }
-                     if (tarjeta.numTarjeta.ToString().StartsWith("5"))
+                    if (tarjeta.numTarjeta.ToString().StartsWith("5"))
                     {
-                         Session["tTarj"] = "2";
-                     }
-                     if (tarjeta.numTarjeta.ToString().StartsWith("3"))
+                        Session["tTarj"] = "2";
+                    }
+                    if (tarjeta.numTarjeta.ToString().StartsWith("3"))
                     {
-                         Session["tTarj"] = "3";
-                     }
+                        Session["tTarj"] = "3";
+                    }
                     Session["nTarj"] = tarjeta.numTarjeta;
 
 
@@ -76,11 +83,13 @@ namespace TiendaMotores.Controllers
                 //Solicitar el registro de todo
 
             }
-
             return View();
-
         }
-        public ActionResult PagarCon(string tipoPago,int idDir)
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PagarCon(string tipoPago)
         {
             string correo = User.Identity.Name;
             DateTime fechaCreacion = DateTime.Today;
@@ -88,37 +97,34 @@ namespace TiendaMotores.Controllers
             var cliente = (from c in db.Cliente
                            where c.email == correo
                            select c).ToList().FirstOrDefault();
-            int ideClient = cliente.id_cliente;
 
+            int idD=Int32.Parse( Session["idDir"].ToString() );
+            int idC= Int32.Parse(Session["idCli"].ToString() );
             if (tipoPago.Equals("Tarjeta"))
             {
-                if (!validaPago(cliente))
-                {
-                    return RedirectToAction("PagoNoAceptado");
-                }
-                else
-                {
-                    return RedirectToAction("PagoAceptado", routeValues: new { idC = ideClient, idD = idDir });
-                }
+                validaPago(cliente);
+                return RedirectToActionPermanent("PagoTarjeta", routeValues: new { idC = idC, idD = idD});
             }
 
             if (tipoPago.Equals("PayPal"))
             {
-                 var dirEnt = (from d in db.Cliente
-                               where d.id_direccion==cliente.id_cliente
-                                select d).ToList();
-
-             //   int idDir = 0;
+               
                    validaPago(cliente);
-                  return RedirectToActionPermanent("PagoPayPal", routeValues: new { idC=ideClient, idD=idDir});
+                  return RedirectToActionPermanent("PagoPayPal", routeValues: new { idC=idC, idD=idD});
             }
             return View();
         }
 
+        public ActionResult PagoTarjeta(int idC, int idD)
+        {
+            Session["idDir"] = idD;
+            Session["idCli"] = idC;
+            return View();
+        }
         public ActionResult PagoPayPal(int idC, int idD)
         {
             Session["idDir"] = idD;
-            Session["idClient"] = idC;
+            Session["idCli"] = idC;
             return View();
         }
 
@@ -127,7 +133,7 @@ namespace TiendaMotores.Controllers
         {
 
             Session["idDir"] = idD;
-            Session["idClient"] = idC;
+            Session["idCli"] = idC;
             return View();
         }
 
@@ -198,6 +204,7 @@ namespace TiendaMotores.Controllers
             Session["nConfirma"] = NumConfirPago;
             return retorna;
         }
+       
 
     }
 }

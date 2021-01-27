@@ -45,7 +45,12 @@
 
     ContextoTienda db = new ContextoTienda();
     var query = db.Cliente.FirstOrDefault(x => x.email == correo);
-    string fecha_nac = System.DateTime.Parse(query.fecha_nacimiento.ToString()).ToShortDateString();
+    string fecha_nac="";
+    if (query.fecha_nacimiento != null)
+    {
+         fecha_nac = System.DateTime.Parse(query.fecha_nacimiento.ToString()).ToShortDateString();
+    }
+
     Direccion query2 = query.Direccion;
     string pais = "";
     string ciudad = "";

@@ -41,8 +41,40 @@
     }
     string fig = "";
     ContextoTienda db = new ContextoTienda();
+    string correo = User.Identity.Name;
+    var cliente = db.Cliente.FirstOrDefault(x => x.email == correo);
+    String direccionCliente = "";
+    int idDir = 0;
+    int idCli = cliente.id_cliente;
+    string fecha_nac = "";
+    if (cliente.fecha_nacimiento != null)
+    {
+        fecha_nac = System.DateTime.Parse(cliente.fecha_nacimiento.ToString()).ToShortDateString();
+    }
+    if (cliente.id_direccion != null)
+    {
+        var direccion = db.Direccion.FirstOrDefault(x => (x.id_direccion == cliente.id_direccion));
+
+        direccionCliente = direccion.estado + ", " + direccion.ciudad + ", " + direccion.municipio + ", " + direccion.calle_externa + " # " + direccion.num_calle_externa +
+            ",  " + direccion.calle_interna + " # " + direccion.num_calle_interna + " por " + direccion.ref1 + " y " + direccion.ref2;
+        idDir = direccion.id_direccion;
+    }
+    else
+    {
+        if (ViewBag.direccion != null)
+        {
+            idDir = Convert.ToInt32(ViewBag.direccion);
+            var direccion = db.Direccion.FirstOrDefault(x => (x.id_direccion == idDir));
+
+            direccionCliente = direccion.estado + ", " + direccion.ciudad + ", " + direccion.municipio + ", " + direccion.calle_externa + " # " + direccion.num_calle_externa +
+                ",  " + direccion.calle_interna + " # " + direccion.num_calle_interna + " por " + direccion.ref1 + " y " + direccion.ref2;
+            idDir = direccion.id_direccion;
 
 
+        }
+    }
+    Session["idDir"] = idDir;
+    Session["idCli"] = idCli;
 
 }
 
@@ -53,37 +85,270 @@
         <h2>Entrega</h2>
     </div>
     <div class="card-body">
-        <p class="card-text">
+        @{
+            if (direccionCliente == "")
+            {
+                using (Html.BeginForm("CrearDir", "Direccion", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card">
+                        <h5 class="card-header text-white" style="background-color: rgb(33, 43, 75)">Información personal</h5>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Nombre(s)", htmlAttributes: new { @class = "control-label col" })
+                                        <div class="col">
+                                            @Html.Editor("nombre_cliente", new { htmlAttributes = new { @class = "form-control", @Value = cliente.nombre_cliente } })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Apellido paterno", htmlAttributes: new { @class = "control-label col" })
+                                        <div class="col">
+                                            @Html.Editor("apellido_p", new { htmlAttributes = new { @class = "form-control", @Value = cliente.apellido_p } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Apellido materno", htmlAttributes: new { @class = "control-label col" })
+                                        <div class="col">
+                                            @Html.Editor("apellido_m", new { htmlAttributes = new { @class = "form-control", @Value = cliente.apellido_m } })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Fecha de nacimiento", htmlAttributes: new { @class = "control-label col" })
+                                        <div class="col">
+                                            @Html.Editor("fecha_nacimiento", new { htmlAttributes = new { @class = "form-control", @Value = fecha_nac } })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Nombre de usuario", htmlAttributes: new { @class = "control-label col" })
+                                        <div class="col">
+                                            @Html.Editor("nombre_usuario", new { htmlAttributes = new { @class = "form-control", @Value = cliente.nombre_usuario } })
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Telefono", htmlAttributes: new { @class = "control-label col" })
+                                        <div class="col">
+                                            @Html.Editor("telefono", new { htmlAttributes = new { @class = "form-control", @Value = cliente.telefono } })
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header text-white" style="background-color: rgb(33, 43, 75)">Dirección</h5>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("País")
+                                            @Html.Editor("pais", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("pais", "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("Estado")
+                                            @Html.Editor("estado", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("estado", "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("Municipio")
+                                            @Html.Editor("municipio", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("municipio", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.Label("Ciudad")
+                                        @Html.Editor("ciudad", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                        @Html.ValidationMessage("ciudad", "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("Calle externa")
+                                            @Html.Editor("calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("calle_externa", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("No. Calle externa")
+                                            @Html.Editor("num_calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("num_calle_externa", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("Calle interna")
+                                            @Html.Editor("calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("calle_interna", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+                                            @Html.Label("No. Calle interna")
+                                            @Html.Editor("num_calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("num_calle_interna", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col">
+
+                                            @Html.Label("Código postal")
+                                            @Html.Editor("codigo_postal", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                            @Html.ValidationMessage("codigo_postal", "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col">
+
+                                        @Html.Label("Referecia 1")
+                                        @Html.Editor("ref1", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                        @Html.ValidationMessage("ref1", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col">
+
+                                        @Html.Label("Referencia 2")
+                                        @Html.Editor("ref2", new { htmlAttributes = new { @class = "form-control form-control" } })
+                                        @Html.ValidationMessage("ref2", "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-            <dl class="row">
-                <dt class="col-sm-3">Dirección de entrega: </dt>
-                <dd class="col-sm-9"><!--Direccion del usuario--></dd>
-                <dt class="col-sm-3"> Para: </dt>
-                <dd class="col-sm-9"><!--Nombre del paquete--></dd>
-            </dl>
+                    <br />
+                    <div class="row">
 
-            <a href="@Url.Action("EditarMiDireccion","Direccions",null)">Editar</a>
-        </p>
-        <a href="@Url.Action("EnviarADireccion","Direccions",null)" class="btn btn-primary">Enviar a otra dirección</a>
+                        <div class="form-group col-12">
+                            <div class="col-md-offset-2 col-md-12" align="right">
+
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <p class="card-text">
+                    <dl class="row">
+                        <dt class="col-sm-3">Dirección de entrega: </dt>
+                        <dd class="col-sm-9">@direccionCliente</dd>
+                        <dt class="col-sm-3"> Para: </dt>
+                        <dd id="clis" class="col-sm-9">@(cliente.nombre_cliente + " " + cliente.apellido_p + " " + cliente.apellido_m)</dd>
+                    </dl>
+                </p>
+                <!--        <a href="@Url.Action("EnviarADireccion", "Direccions", null)" class="btn btn-primary">Enviar a otra dirección</a>-->
+            }
+        }
+
+
+        <!-- <a href="@Url.Action("CrearOrden", "Direccions", null)">Editar</a>-->
+
+
     </div>
 </div>
 
 <br />
-
-<p>
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Link with href
-    </a>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+<!--
+    <p>
+    <button id="btnOP" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Button with data-target
     </button>
 </p>
+<script>
+
+    document.getElementById("clis").innerHTML = "Yop";
+</script>
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+        ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
     </div>
 </div>
+-->
+
 <div class="card">
     <div class="card-header">
         <h2> Envios</h2>
@@ -154,45 +419,44 @@
         </div>
     </div>
     <br />
+   
 
-    <div class="card">
-        <div class="card-header">
-            <h2>  Método de pago</h2>
-        </div>
-        <div class="card-body">
+            <div class="card">
+                <div class="card-header">
+                    <h2>  Método de pago</h2>
+                </div>
+                <div class="card-body">
 
 
-            <p>
-                Selccione el método de pago más conveniente para usted
-            </p>
-            <div class="row">
-                <div class="col-md-3 col-md-offset-2">
                     <p>
-                        <a href="@Url.Action("PagarCon","MetodoPago",new {tipoPago="Tarjeta" })" style="text-decoration:none">
-
-                            <img src="~/Content/Imagenes/Tarjetas/tarjCred.jpg" class="img-responsive img-rounded" width="200" />
-                        </a>
+                        Selccione el método de pago más conveniente para usted
                     </p>
+                  
+                        <div class="list-group">
+                            <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="PayPal"})" class="list-group-item list-group-item-action flex-column align-items-start active">
+                                <p class="text-center">
+                                    <img src="~/Content/Imagenes/Tarjetas/paypal.png" class="img-responsive img-rounded" width="160" />
+
+                                </p>
+                            </a>
+                            <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="Tarjeta"})" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <p class="text-center">
+
+                                    <img src="~/Content/Imagenes/Tarjetas/tarjCred.jpg" class="img-responsive img-rounded" width="200" />
+
+                                </p>
+                            </a>
+                           
+                        </div>
+                 
 
                 </div>
-                <div class="col-md-3">
-                    <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="PayPal"})" style="text-decoration:none">
-                        <img src="~/Content/Imagenes/Tarjetas/paypal.png" class="img-responsive img-rounded" width="150" />
-                    </a>
-                </div>
+
+
+                <script src="http://www.paypal.com/sdk/js?client-id=sb"></script>
+                <script>paypal.Buttons().render('body');</script>
+
             </div>
 
-        </div>
-
-
-        <script src="http://www.paypal.com/sdk/js?client-id=sb"></script>
-        <script>paypal.Buttons().render('body');</script>
-
     </div>
-
-</div>
-<br />
-<p style="float: right;color:white">
-    @Html.ActionLink("Continuar con método de pago", "PagarCon", "MetodoPago", new { area = "" }, new { @class = "btn btn-success" })
-</p>
 <br />

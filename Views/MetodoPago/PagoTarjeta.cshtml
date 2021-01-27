@@ -1,6 +1,6 @@
 ﻿@using TiendaMotores.Models
 @{
-    ViewBag.Title = "PagandoPayPal";
+    ViewBag.Title = "PagarConTarjeta";
     if (Session["rol"].ToString() == "Administrador")
     {
         Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
@@ -39,39 +39,65 @@
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    ViewBag.Title = "Pagando con PayPal";
-    int idClient = Convert.ToInt32(Session["idCli"].ToString());
-    int idDir = Convert.ToInt32(Session["idDir"].ToString());
-    string nombre = Session["usuario"].ToString();
-    List<Item> cart = (List<Item>)Session["cart"];
-    var tottal = cart.Sum(item => item.Producto.precio);
 }
-<div class="container" style="margin:2rem auto">
-    <div>
-        <img src="~/Content/Imagenes/Tarjetas/paypal.png" width="200" />
-    </div>
 
-    <main>
-        <p>
-            <b>
-                Bienvenido @nombre
-            </b>
-        </p>
-        <table class="table-striped">
-            <caption>¿Acepta el pago de los siguientes articulos?</caption>
-            <tr>
-                <td colspan="2" style="height:25px;padding:15px">
-                    <b style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Bull Motors</b>
-                </td>
-            </tr>
-            <tr>
-                <td class="bg-primary" style="height:25px;padding:15px">
-                    Importe en pesos:
-                </td>
-                <td style="height:25px;padding:15px"><b>@tottal</b></td>
-            </tr>
-        </table>
-    </main>
+<h2>Método de pago</h2>
+
+<br />
+<div class="card">
+    <div class="card-title">
+        Datos de la tarjeta
+    </div>
+    <div class="card-body">
+
+
+
+
+    </div>
+</div>
+<div class="card">
+    <div class="card-title">
+        Dirección relacionada a tu tarjeta
+    </div>
+    <div class="card-body">
+
+
+
+
+    </div>
+</div>
+
+<br />
+<br />
+<div class=" mx-auto">
+
+    @{
+        List<Item> cart = (List<Item>)Session["cart"];
+        var total = cart.Sum(item => item.Producto.precio * item.Cantidad);
+
+    }
+    <br />
+
+    <div class="card text-white bg-secondary mb-9 mx-auto" style="max-width: 22em;">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4"> Subtotal: </dt>
+                <dd class="col-sm-8">$@total</dd>
+                <dt class="col-sm-4">Costo de envio: </dt>
+                <dd class="col-sm-8">$0.00 (Envio gratis)</dd>
+
+            </dl>
+
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">Total: </dt>
+                <dd class="col-sm-8">$@total</dd>
+            </dl>
+            <p>Los precios ya incluyen IVA</p>
+
+        </div>
+    </div>
+    <br />
     <div style="margin:auto">
         <a class="btn btn-success" style="text-decoration:none" href="@Url.Action("CrearOrden","MetodoPago")">
             Regresar
@@ -83,8 +109,5 @@
             Cancelar
         </a>
     </div>
-
 </div>
-
-
 

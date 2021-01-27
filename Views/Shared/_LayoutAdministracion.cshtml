@@ -57,20 +57,13 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="@Url.Action("Create", "Departamento")">Añadir departamento</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Departamento")">Modificar departamento</a>
-                        <a class="dropdown-item" href="@Url.Action("Index", "Departamento")">Consultar departamentos</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar","Departamento")">Eliminar un departamento</a>
-                        <div class="dropdown-divider"></div>
+                       <a class="dropdown-item" href="@Url.Action("Index", "Departamento")">Consultar departamentos</a>
+                       <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Create", "Puesto", null)">Añadir puesto</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Puesto", null)">Modificar puesto</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "Puesto", null)">Consultar puestos</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Puesto", null)">Eliminar un puesto</a>
-                        <div class="dropdown-divider"></div>
+                       <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Create", "Empleado", null)">Añadir empleado</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Empleado", null)">Modificar información de un empleado</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "Empleado", null)">Consultar empleados</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Empleado", null)">Eliminar un empleado</a>
-
                     </div>
                 </li>
 
@@ -86,15 +79,11 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                         <a class="dropdown-item" href="@Url.Action("Create", "Paqueterias", null)">Añadir paqueteria</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Paqueterias", null)">Modificar información de paqueteria</a>
-                        <a class="dropdown-item" href="@Url.Action("Index", "Paqueterias", null)">Consultar paqueterías</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Paqueterias", null)">Eliminar paqueteria</a>
+                       <a class="dropdown-item" href="@Url.Action("Index", "Paqueterias", null)">Consultar paqueterías</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Create", "Direccions", null)">Añadir ubicación</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Direccions", null)">Modificar ubicación de paqueteria</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "Direccions", null)">Consultar ubicaciones</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Direccions", null)">Eliminar ubicación</a>
-                    </div>
+                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -108,9 +97,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="@Url.Action("Create", "Compras", null)">Hacer una compra</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Compras", null)">Modificar información de compra</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "Compras", null)">Consultar compras</a>
-                        <a class="dropdown-item" href="@Url.Action("Cancelar", "Compras", null)">Cancelar una compra</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Create", "Orden_cliente", null)">Añadir pedido</a>
                         <a class="dropdown-item" href="@Url.Action("ModificarFechaEnvios", "Orden_cliente", null)">Modificar pedido</a>
@@ -135,14 +122,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="@Url.Action("Index", "Categorias", null)">Añadir categoria</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Categorias", null)">Modificar categoria</a>
-                        <a class="dropdown-item" href="@Url.Action("Index", "Categorias", null)">Consultar categoria</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Categorias", null)">Eliminar una categoria</a>
+                       <a class="dropdown-item" href="@Url.Action("Index", "Categorias", null)">Consultar categoria</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Create", "marcas", null)">Añadir marca</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "marcas", null)">Modificar marca</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "marcas", null)">Consultar marcas</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "marcas", null)">Eliminar una marca</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -157,9 +140,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="@Url.Action("Create", "Producto", null)">Añadir producto</a>
-                        <a class="dropdown-item" href="@Url.Action("Modificar", "Prodcuto", null)">Modificar producto</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "Producto", null)">Consultar productos</a>
-                        <a class="dropdown-item" href="@Url.Action("Eliminar", "Producto", null)">Eliminar un productos</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Modificar", "Inventarios", null)">Modificar almacen</a>
                         <a class="dropdown-item" href="@Url.Action("Index", "Inventarios", null)">Consultar almacen</a>

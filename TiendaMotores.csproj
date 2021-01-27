@@ -675,6 +675,7 @@
     <Content Include="Views\Shared\_LayautError.cshtml" />
     <Content Include="Views\MetodoPago\CrearOrden.cshtml" />
     <Content Include="Views\MetodoPago\PagarCon.cshtml" />
+    <Content Include="Views\MetodoPago\PagoTarjeta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

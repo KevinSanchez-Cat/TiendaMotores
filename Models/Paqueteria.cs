@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Paqueteria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +21,19 @@ namespace TiendaMotores.Models
         }
     
         public int id_paqueteria { get; set; }
+        [Display(Name = "Nombre de la paqueteria")]
         public string nombre_paqueteria { get; set; }
+        [Display(Name = "Telefono")]
         public int telefono { get; set; }
+        [Display(Name = "Sitio web")]
         public string sitio_web { get; set; }
+        [Display(Name = "Contacto")]
         public string contacto { get; set; }
+        [Display(Name = "Telfono del contacto")]
         public int telefono_contacto { get; set; }
+        [Display(Name = "Dirección")]
         public int id_direccion { get; set; }
+        [Display(Name = "RFC")]
         public string rfc { get; set; }
     
         public virtual Direccion Direccion { get; set; }

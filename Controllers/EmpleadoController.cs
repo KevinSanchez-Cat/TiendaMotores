@@ -181,10 +181,68 @@ namespace TiendaMotores.Controllers
         {
             return View();
         }
-        public ActionResult Modificar()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //  public ActionResult Create([Bind(Include = "id_cliente,nombre_cliente,apellido_p,apellido_m,id_direccion,telefono,email,id_tarjeta,id_usuario,nombre_usuario,contrasenia")] Cliente cliente)
+        //Nombres de la vista tienen que ser los nombres de los paramentros
+        public ActionResult Modificar(string nombre_usuario, string nombre_empleado, string apellido_p, string apellido_m, string estado, string municipio, string ciudad, string codigo_postal, string telefono, string calle_externa, int num_calle_externa, string calle_interna, int num_calle_interna, string ref1, string ref2, string pais, string fecha_nac)
         {
-            return View();
+            string email2 = Session["correo"].ToString();
+            var query = db.Empleado.FirstOrDefault(x => x.email == email2);
+
+            int numCallExterna = Int32.Parse(num_calle_externa.ToString());
+            int numCalleInterna = Int32.Parse(num_calle_interna.ToString());
+
+            Direccion direccion;
+           
+                var query2 = db.Direccion.FirstOrDefault(x => x.id_direccion == query.id_direccion);
+                direccion = query2;
+            
+
+
+            direccion.estado = estado;
+            direccion.municipio = municipio;
+            direccion.ciudad = ciudad;
+            direccion.codigo_postal = codigo_postal;
+            direccion.telefono = telefono;
+            direccion.calle_externa = calle_externa;
+            direccion.num_calle_externa = numCallExterna;
+            direccion.calle_interna = calle_interna;
+            direccion.num_calle_interna = numCalleInterna;
+            direccion.ref1 = ref1;
+            direccion.ref2 = ref2;
+            direccion.pais = pais;
+            int id = 1;
+      
+                db.SaveChanges();
+                id = (int)query.id_direccion;
+            
+
+
+
+            Empleado cliente = db.Empleado.FirstOrDefault(x => x.email == email2);
+
+            DateTime fecha_nacC = DateTime.Parse(fecha_nac.ToString());
+            cliente.nombre_empleado = nombre_empleado;
+            cliente.apellido_p = apellido_p;
+            cliente.apellido_m = apellido_m;
+            cliente.id_direccion = id;
+            cliente.telefono = telefono;
+            cliente.nombre_usuario = nombre_usuario;
+            cliente.fecha_nac = fecha_nacC;
+            cliente.email = email2;
+            cliente.id_direccion = id;
+            db.SaveChanges();
+
+
+
+            string[] nombre = cliente.nombre_empleado.ToString().Split(' ');
+            Session["nombre"] = nombre[0];
+            Session["usuario"] = nombre_usuario;
+            return RedirectToAction("Ver", "Cuenta");
+
         }
+
 
         public ActionResult Ver()
         {

@@ -48,8 +48,17 @@
     if (Session[""] != null)
     {
 
-        <table class="table ">
-            @{
+    <table class="table ">
+        @{
+            if ((List<PedidoCliente>)Session["misPedidos"] == null)
+            {
+                <div class="alert alert-warning" role="alert">
+                    <p>Aún no ha ningún pedido</p>
+                </div>
+                <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Regresar</a>
+            }
+            else
+            {
                 foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"])
                 {
                     int idOrd = pedido.compra.id_compra;
@@ -108,15 +117,17 @@
                 }
             }
 
-        </table>
-        <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Regresar al inicio</a>
+        }
+
+    </table>
+        <a class="btn btn-primary" href="@Url.Action("Home","Home")"> Regresar al inicio</a>
     }
     else
     {
         <div class="alert alert-info" role="alert">
             <p>No tiene pedidos... -aún- Animese a comprar, verá que no se va a decepcionar</p>
         </div>
-        <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Regresar</a>
+        <a class="btn btn-primary" href="@Url.Action("Home","Home")"> Regresar</a>
     }
 
 }

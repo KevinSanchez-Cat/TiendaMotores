@@ -1,0 +1,198 @@
+﻿@using TiendaMotores.Models
+@{
+    ViewBag.Title = "CrearOrden";
+    if (Session["rol"].ToString() == "Administrador")
+    {
+        Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Reclutador"))
+    {
+        Layout = "~/Views/Shared/_LayoutRecursosHumanos.cshtml";
+
+    }
+    else if (Session["rol"].ToString().Equals("Empaquetador"))
+    {
+        Layout = "~/Views/Shared/_LayoutPaqueteria.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Enviador"))
+    {
+        Layout = "~/Views/Shared/_LayoutEnvios.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Comprador"))
+    {
+        Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+
+    }
+    else if (Session["rol"].ToString().Equals("Vendedor"))
+    {
+        Layout = "~/Views/Shared/_LayoutVentas.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Productor"))
+    {
+        Layout = "~/Views/Shared/_LayoutProduccion.cshtml";
+    }
+    else if (Session["rol"].ToString().Equals("Cliente"))
+    {
+        Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    string fig = "";
+    ContextoTienda db = new ContextoTienda();
+
+
+
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h2>Entrega</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+
+
+            <dl class="row">
+                <dt class="col-sm-3">Dirección de entrega: </dt>
+                <dd class="col-sm-9"><!--Direccion del usuario--></dd>
+                <dt class="col-sm-3"> Para: </dt>
+                <dd class="col-sm-9"><!--Nombre del paquete--></dd>
+            </dl>
+
+            <a href="@Url.Action("EditarMiDireccion","Direccions",null)">Editar</a>
+        </p>
+        <a href="@Url.Action("EnviarADireccion","Direccions",null)" class="btn btn-primary">Enviar a otra dirección</a>
+    </div>
+</div>
+
+<br />
+
+<p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Link with href
+    </a>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-target
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h2> Envios</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            Si compraste más de 1 articulo es posible que llegen en distintas fecha y envios
+        </p>
+        <p class="card-text">
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr class="bg-secondary text-light">
+                        <th>Estimado para el @System.DateTime.Now.AddDays(3).ToShortDateString()</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (Item item in (List<Item>)Session["cart"])
+                {
+                    <tr>
+                        <td>
+                            <dl class="row">
+                                <dt class="col-sm-3">
+                                    <img class="img-responsive" src="~/Content/Imagenes/Productos/@item.Producto.imagen_producto" width="120" />
+                                </dt>
+                                <dd class="col-sm-9">
+                                    <h6> @item.Producto.nombre_producto</h6>
+                                    <h6> Número de piezas: @item.Cantidad </h6>
+                                </dd>
+                            </dl>
+                        </td>
+                        <td>$@item.Producto.precio</td>
+                    </tr>
+                }
+            </table>
+            <br />
+
+        </p>
+    </div>
+</div>
+<br />
+
+<div class=" mx-auto">
+
+    @{
+        List<Item> cart = (List<Item>)Session["cart"];
+        var total = cart.Sum(item => item.Producto.precio * item.Cantidad);
+    }
+    <br />
+
+    <div class="card text-white bg-secondary mb-9 mx-auto" style="max-width: 22em;">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4"> Subtotal: </dt>
+                <dd class="col-sm-8">$@total</dd>
+                <dt class="col-sm-4">Costo de envio: </dt>
+                <dd class="col-sm-8">$0.00 (Envio gratis)</dd>
+
+            </dl>
+
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">Total: </dt>
+                <dd class="col-sm-8">$@total</dd>
+            </dl>
+            <p>Los precios ya incluyen IVA</p>
+
+        </div>
+    </div>
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h2>  Método de pago</h2>
+        </div>
+        <div class="card-body">
+
+
+            <p>
+                Selccione el método de pago más conveniente para usted
+            </p>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-2">
+                    <p>
+                        <a href="@Url.Action("PagarCon","MetodoPago",new {tipoPago="Tarjeta" })" style="text-decoration:none">
+
+                            <img src="~/Content/Imagenes/Tarjetas/tarjCred.jpg" class="img-responsive img-rounded" width="200" />
+                        </a>
+                    </p>
+
+                </div>
+                <div class="col-md-3">
+                    <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="PayPal"})" style="text-decoration:none">
+                        <img src="~/Content/Imagenes/Tarjetas/paypal.png" class="img-responsive img-rounded" width="150" />
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script src="http://www.paypal.com/sdk/js?client-id=sb"></script>
+        <script>paypal.Buttons().render('body');</script>
+
+    </div>
+
+</div>
+<br />
+<p style="float: right;color:white">
+    @Html.ActionLink("Continuar con método de pago", "PagarCon", "MetodoPago", new { area = "" }, new { @class = "btn btn-success" })
+</p>
+<br />

@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,26 +24,47 @@ namespace TiendaMotores.Models
         }
     
         public int Id_producto { get; set; }
+        [Display(Name = "Nombre del producto")]
         public string nombre_producto { get; set; }
+        [Display(Name = "Descripción del producto")]
         public string descripcion_producto { get; set; }
+        [Display(Name = "Precio al público")]
         public decimal precio { get; set; }
+        [Display(Name = "Coste")]
         public decimal coste { get; set; }
+        [Display(Name = "Imagen del producto")]
         public string imagen_producto { get; set; }
+        [Display(Name = "Categoria")]
         public int id_categoria { get; set; }
+        [Display(Name = "Ultima actualización")]
         public Nullable<System.DateTime> ultima_actualizacion { get; set; }
+        [Display(Name = "Marca")]
         public int id_marca { get; set; }
+        [Display(Name = "Producto relacionado")]
         public Nullable<int> id_producto_relacionado { get; set; }
+        [Display(Name = "Clave única")]
         public int clave_unica { get; set; }
+        [Display(Name = "Galeria")]
         public Nullable<int> id_galeria { get; set; }
+        [Display(Name = "Usuario")]
         public string email_usuario { get; set; }
+        [Display(Name = "Potencia(HP)")]
         public string potencia { get; set; }
+        [Display(Name = "Tipo de motor")]
         public string Tipo { get; set; }
+        [Display(Name = "Ancho")]
         public Nullable<decimal> ancho { get; set; }
+        [Display(Name = "Alto")]
         public Nullable<decimal> alto { get; set; }
+        [Display(Name = "Largo")]
         public Nullable<decimal> profundidad { get; set; }
+        [Display(Name = "Peso")]
         public Nullable<decimal> peso { get; set; }
+        [Display(Name = "Polos")]
         public string polos { get; set; }
+        [Display(Name = "RMP")]
         public string rpm { get; set; }
+        [Display(Name = "Voltaje(V)")]
         public Nullable<decimal> voltaje { get; set; }
     
         public virtual Categoria Categoria { get; set; }

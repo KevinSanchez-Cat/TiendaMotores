@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Direccion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,17 +25,29 @@ namespace TiendaMotores.Models
         }
     
         public int id_direccion { get; set; }
+        [Display(Name = "Estado")]
         public string estado { get; set; }
+        [Display(Name = "Municipio")]
         public string municipio { get; set; }
+        [Display(Name = "Ciudad")]
         public string ciudad { get; set; }
+        [Display(Name = "Código postal")]
         public string codigo_postal { get; set; }
+        [Display(Name = "Telefono")]
         public string telefono { get; set; }
+        [Display(Name = "Calle externa")]
         public string calle_externa { get; set; }
+        [Display(Name = "Número de calle externa")]
         public Nullable<int> num_calle_externa { get; set; }
+        [Display(Name = "Calle interna")]
         public string calle_interna { get; set; }
+        [Display(Name = "Numero de calle interna")]
         public Nullable<int> num_calle_interna { get; set; }
+        [Display(Name = "Referencia 1")]
         public string ref1 { get; set; }
+        [Display(Name = "Referencia 2")]
         public string ref2 { get; set; }
+        [Display(Name = "País")]
         public string pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

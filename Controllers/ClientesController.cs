@@ -53,16 +53,16 @@ namespace TiendaMotores.Controllers
         [ValidateAntiForgeryToken]
         //  public ActionResult Create([Bind(Include = "id_cliente,nombre_cliente,apellido_p,apellido_m,id_direccion,telefono,email,id_tarjeta,id_usuario,nombre_usuario,contrasenia")] Cliente cliente)
         //Nombres de la vista tienen que ser los nombres de los paramentros
-        public ActionResult Create(string nombre_cliente, string apellido_p, string apellido_m, string estado, string municipio, string ciudad, string codigo_postal, string telefono, string calle_externa, int num_calle_externa, string calle_interna, int num_calle_interna, string ref1, string ref2, string pais, string email, string numTarjeta, string mes_vencimiento, string anio_vencimiento, string nombre_titular, int tipo_tarjeta,string estado_tarj, string municipio_tarj, string ciudad_tarj, string codigo_postal_tarj, string calle_externa_tarj, int num_calle_externa_tarj, string calle_interna_tarj, int num_calle_interna_tarj, string ref1_tarj, string ref2_tarj, string pais_tarj, string cvv, string nombre_usuario, string contrasenia, string fecha_nacimiento, int usarMismaDireccion)
+        public ActionResult Create(string nombre_cliente, string apellido_p, string apellido_m, string estado, string municipio, string ciudad, string codigo_postal, string telefono, string calle_externa, int num_calle_externa, string calle_interna, int num_calle_interna, string ref1, string ref2, string pais, string email, string numTarjeta, string mes_vencimiento, string anio_vencimiento, string nombre_titular, int tipo_tarjeta, string estado_tarj, string municipio_tarj, string ciudad_tarj, string codigo_postal_tarj, string calle_externa_tarj, int num_calle_externa_tarj, string calle_interna_tarj, int num_calle_interna_tarj, string ref1_tarj, string ref2_tarj, string pais_tarj, string cvv, string nombre_usuario, string contrasenia, string fecha_nacimiento, int usarMismaDireccion)
         {
-            using(db)
+            using (db)
             {
                 var query = from p in db.Cliente
-                            where (p.nombre_cliente==nombre_cliente) && (p.apellido_p==apellido_p) && (p.apellido_m==apellido_m)
+                            where (p.nombre_cliente == nombre_cliente) && (p.apellido_p == apellido_p) && (p.apellido_m == apellido_m)
                             select p;
                 if (query.Count() > 0)
                 {
-                    return RedirectToAction("Modificar", routeValues: new { nombre_cliente, apellido_p, apellido_m, estado, municipio, ciudad, codigo_postal, telefono, calle_externa, num_calle_externa, calle_interna, num_calle_interna, ref1, ref2, pais, email, numTarjeta, mes_vencimiento, anio_vencimiento, nombre_titular, tipo_tarjeta, estado_tarj, municipio_tarj, ciudad_tarj, codigo_postal_tarj, calle_externa_tarj, num_calle_externa_tarj, calle_interna_tarj, num_calle_interna_tarj, ref1_tarj, ref2_tarj, pais_tarj, cvv, nombre_usuario, contrasenia, fecha_nacimiento, usarMismaDireccion});
+                    return RedirectToAction("Modificar", routeValues: new { nombre_cliente, apellido_p, apellido_m, estado, municipio, ciudad, codigo_postal, telefono, calle_externa, num_calle_externa, calle_interna, num_calle_interna, ref1, ref2, pais, email, numTarjeta, mes_vencimiento, anio_vencimiento, nombre_titular, tipo_tarjeta, estado_tarj, municipio_tarj, ciudad_tarj, codigo_postal_tarj, calle_externa_tarj, num_calle_externa_tarj, calle_interna_tarj, num_calle_interna_tarj, ref1_tarj, ref2_tarj, pais_tarj, cvv, nombre_usuario, contrasenia, fecha_nacimiento, usarMismaDireccion });
 
                 }
             }
@@ -91,7 +91,7 @@ namespace TiendaMotores.Controllers
             int idTarj = 1;
             //Si es 1 entonces se usa la misma direccion
             //Sino se crea otra para la tarjeta
-            if (usarMismaDireccion==1)
+            if (usarMismaDireccion == 1)
             {
             }
             else
@@ -116,7 +116,7 @@ namespace TiendaMotores.Controllers
                 db.Direccion.Add(direccion);
                 db.SaveChanges();
             }
-            
+
             Tarjeta tarj = new Tarjeta();
 
             tarj.numTarjeta = numTarjeta;
@@ -137,14 +137,14 @@ namespace TiendaMotores.Controllers
             db.Direccion.Add(direccion);
             db.Tarjeta.Add(tarj);
             db.SaveChanges();
-            int idTarjCliente= 1;
-            idTarjCliente= db.Tarjeta.Max(o => o.id_tarjeta);
-            
+            int idTarjCliente = 1;
+            idTarjCliente = db.Tarjeta.Max(o => o.id_tarjeta);
+
 
             Cliente cliente = new Cliente();
 
             string tipoT = String.Format(tipo_tarjeta.ToString());
-             if(Tarjeta(numTarjeta, tipoT,mes_vencimiento, anio_vencimiento, cvv)){
+            if (Tarjeta(numTarjeta, tipoT, mes_vencimiento, anio_vencimiento, cvv)) {
 
                 if (validaPago(nombre_titular, pais_tarj, codigo_postal_tarj, ciudad_tarj, numTarjeta, anio_vencimiento, mes_vencimiento, cvv)) {
 
@@ -158,7 +158,7 @@ namespace TiendaMotores.Controllers
                     cliente.nombre_usuario = nombre_usuario;
                     cliente.contrasenia = contrasenia;
                     cliente.fecha_nacimiento = fecha_nacC;
-                      cliente.email=Session["correo"].ToString();
+                    cliente.email = Session["correo"].ToString();
 
                     db.Cliente.Add(cliente);
                     db.SaveChanges();
@@ -173,12 +173,12 @@ namespace TiendaMotores.Controllers
                     {
                         if (Session["CrearOrden"].Equals("pend"))
                         {
-                            return RedirectToAction("CrearOrden","MetodoPago");
+                            return RedirectToAction("CrearOrden", "MetodoPago");
                         }
                     }
                     else
                     {
-                        return RedirectToAction("Index","Home");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
@@ -191,178 +191,169 @@ namespace TiendaMotores.Controllers
                 return RedirectToAction("Invalida");
             }
             return View(cliente);
+
+        }
+
+        // POST: Clientes/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //  public ActionResult Create([Bind(Include = "id_cliente,nombre_cliente,apellido_p,apellido_m,id_direccion,telefono,email,id_tarjeta,id_usuario,nombre_usuario,contrasenia")] Cliente cliente)
+        //Nombres de la vista tienen que ser los nombres de los paramentros
+        public ActionResult Create2(string nombre_cliente, string apellido_p, string apellido_m, string estado, string municipio, string ciudad, string codigo_postal, string telefono, string calle_externa, int num_calle_externa, string calle_interna, int num_calle_interna, string ref1, string ref2, string pais, string email, string nombre_usuario, string contrasenia, string fecha_nacimiento)
+        {
+            using (db)
+            {
+                var query = from p in db.Cliente
+                            where (p.nombre_cliente == nombre_cliente) && (p.apellido_p == apellido_p) && (p.apellido_m == apellido_m)
+                            select p;
+                if (query.Count() > 0)
+                {
+                    return RedirectToAction("Modificar", routeValues: new { nombre_cliente, apellido_p, apellido_m, estado, municipio, ciudad, codigo_postal, telefono, calle_externa, num_calle_externa, calle_interna, num_calle_interna, ref1, ref2, pais, email,   contrasenia, fecha_nacimiento });
+
+                }
+            }
+            int numCallExterna = Int32.Parse(num_calle_externa.ToString());
+            int numCalleInterna = Int32.Parse(num_calle_interna.ToString());
+            Direccion direccion = new Direccion();
+
+            direccion.estado = estado;
+            direccion.municipio = municipio;
+            direccion.ciudad = ciudad;
+            direccion.codigo_postal = codigo_postal;
+            direccion.telefono = telefono;
+            direccion.calle_externa = calle_externa;
+            direccion.num_calle_externa = numCallExterna;
+            direccion.calle_interna = calle_interna;
+            direccion.num_calle_interna = numCalleInterna;
+            direccion.ref1 = ref1;
+            direccion.ref2 = ref2;
+            direccion.pais = pais;
+
+            db.Direccion.Add(direccion);
+            db.SaveChanges();
+            int id = 1;
+            id = db.Direccion.Max(o => o.id_direccion);
+
+            int idTarj = 1;
+            //Si es 1 entonces se usa la misma direccion
+            //Sino se crea otra para la tarjeta
           
+            Cliente cliente = new Cliente();
+
+     
+
+                    DateTime fecha_nacC = DateTime.Parse(fecha_nacimiento.ToString());
+                    cliente.nombre_cliente = nombre_cliente;
+                    cliente.apellido_p = apellido_p;
+                    cliente.apellido_m = apellido_m;
+                    cliente.id_direccion = id;
+                    cliente.telefono = telefono;
+                    cliente.nombre_usuario = nombre_usuario;
+                    cliente.contrasenia = contrasenia;
+                    cliente.fecha_nacimiento = fecha_nacC;
+                    cliente.email = Session["correo"].ToString();
+
+                    db.Cliente.Add(cliente);
+                    db.SaveChanges();
+
+
+
+                    string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
+                    Session["nombre"] = nombre[0];
+                    Session["usuario"] = nombre_usuario;
+
+                    if (Session["CrearOrden"] != null)
+                    {
+                        if (Session["CrearOrden"].Equals("pend"))
+                        {
+                            return RedirectToAction("CrearOrden", "MetodoPago");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+             
+            return View(cliente);
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         //  public ActionResult Create([Bind(Include = "id_cliente,nombre_cliente,apellido_p,apellido_m,id_direccion,telefono,email,id_tarjeta,id_usuario,nombre_usuario,contrasenia")] Cliente cliente)
         //Nombres de la vista tienen que ser los nombres de los paramentros
-        public ActionResult Modificar(string nombre_cliente, string apellido_p, string apellido_m, string estado, string municipio, string ciudad, string codigo_postal, string telefono, string calle_externa, int num_calle_externa, string calle_interna, int num_calle_interna, string ref1, string ref2, string pais, string email, string numTarjeta, string mes_vencimiento, string anio_vencimiento, string nombre_titular, int tipo_tarjeta, string estado_tarj, string municipio_tarj, string ciudad_tarj, string codigo_postal_tarj, string calle_externa_tarj, int num_calle_externa_tarj, string calle_interna_tarj, int num_calle_interna_tarj, string ref1_tarj, string ref2_tarj, string pais_tarj, string cvv, string nombre_usuario, string contrasenia, string fecha_nacimiento, int usarMismaDireccion)
+        public ActionResult Modificar(string nombre_usuario,string nombre_cliente, string apellido_p, string apellido_m, string estado, string municipio, string ciudad, string codigo_postal, string telefono, string calle_externa, int num_calle_externa, string calle_interna, int num_calle_interna, string ref1, string ref2, string pais, string fecha_nacimiento)
         {
-            int idCliente = 0;
-            int idDir = 0;
-            int idTarj = 0;
-            using (db)
+            string email2 = Session["correo"].ToString();
+            var query = db.Cliente.FirstOrDefault(x => x.email == email2);
+
+            int numCallExterna = Int32.Parse(num_calle_externa.ToString());
+            int numCalleInterna = Int32.Parse(num_calle_interna.ToString());
+
+            Direccion direccion;
+            if (query.id_direccion==null)
             {
-                //Mdofica todo lo del cliente primero
-
-                var queryCliente = from p in db.Cliente
-                            where (p.nombre_cliente == nombre_cliente) && (p.apellido_p == apellido_p) && (p.apellido_m == apellido_m)
-                            select p;
-                idCliente = queryCliente.First().id_cliente;
-
-                var cliente = db.Cliente.FirstOrDefault(c => c.id_cliente == idCliente);
-                DateTime fecha_nacC = DateTime.Parse(fecha_nacimiento.ToString());
-                cliente.nombre_cliente = nombre_cliente;
-                cliente.apellido_p = apellido_p;
-                cliente.apellido_m = apellido_m;
-                cliente.telefono = telefono;
-                cliente.nombre_usuario = nombre_usuario;
-                cliente.contrasenia = contrasenia;
-                cliente.fecha_nacimiento = fecha_nacC;
-                cliente.email = Session["correo"].ToString();
-                db.SaveChanges();
-
-
-
-                idDir = (int)cliente.id_direccion;
-                idTarj= (int)cliente.id_tarjeta;
-                if (idDir!=0)
-                {
-                    idDir = Int32.Parse(idDir.ToString());
-                    int numCallExterna = Int32.Parse(num_calle_externa.ToString());
-                    int numCalleInterna = Int32.Parse(num_calle_interna.ToString());
-                    
-                    Direccion direccion = new Direccion();
-                    //direccion =idDir;
-                    direccion.estado = estado;
-                    direccion.municipio = municipio;
-                    direccion.ciudad = ciudad;
-                    direccion.codigo_postal = codigo_postal;
-                    direccion.telefono = telefono;
-                    direccion.calle_externa = calle_externa;
-                    direccion.num_calle_externa = numCallExterna;
-                    direccion.calle_interna = calle_interna;
-                    direccion.num_calle_interna = numCalleInterna;
-                    direccion.ref1 = ref1;
-                    direccion.ref2 = ref2;
-                    direccion.pais = pais;
-
-                }
-                else
-                {
-                    //Crea la direccion
-                    int numCallExterna = Int32.Parse(num_calle_externa.ToString());
-                    int numCalleInterna = Int32.Parse(num_calle_interna.ToString());
-                    Direccion direccion = new Direccion();
-
-                    direccion.estado = estado;
-                    direccion.municipio = municipio;
-                    direccion.ciudad = ciudad;
-                    direccion.codigo_postal = codigo_postal;
-                    direccion.telefono = telefono;
-                    direccion.calle_externa = calle_externa;
-                    direccion.num_calle_externa = numCallExterna;
-                    direccion.calle_interna = calle_interna;
-                    direccion.num_calle_interna = numCalleInterna;
-                    direccion.ref1 = ref1;
-                    direccion.ref2 = ref2;
-                    direccion.pais = pais;
-
-                    db.Direccion.Add(direccion);
-                    db.SaveChanges();
-                }
-
-              //  if (idTarjeta != null)
-                {
-
-                }
-             //   else
-                {
-                    //Crea la tarjeta
-
-                    string tipoT = String.Format(tipo_tarjeta.ToString());
-                    if (Tarjeta(numTarjeta, tipoT, mes_vencimiento, anio_vencimiento, cvv))
-                    {
-
-                        if (validaPago(nombre_titular, pais_tarj, codigo_postal_tarj, ciudad_tarj, numTarjeta, anio_vencimiento, mes_vencimiento, cvv))
-                        {
-
-
-                            Tarjeta tarj = new Tarjeta();
-
-                            tarj.numTarjeta = numTarjeta;
-                            tarj.mes_vencimiento = mes_vencimiento;
-                            tarj.anio_vencimiento = anio_vencimiento;
-                            tarj.nombre_titular = nombre_titular;
-                            tarj.tipo_tarjeta = tipo_tarjeta;
-                            if (usarMismaDireccion == 1)
-                            {
-                           //     tarj.id_direccion = id;
-                            }
-                            else
-                            {
-                                idTarj = db.Direccion.Max(o => o.id_direccion);
-                                tarj.id_direccion = idTarj;
-                            }
-
-
-                            string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
-                            Session["nombre"] = nombre[0];
-                            Session["usuario"] = nombre_usuario;
-
-                            if (Session["CrearOrden"] != null)
-                            {
-                                if (Session["CrearOrden"].Equals("pend"))
-                                {
-                                    return RedirectToAction("CrearOrden", "MetodoPago");
-                                }
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index", "Home");
-                            }
-                        }
-                        else
-                        {
-                            return RedirectToAction("Invalida");
-                        }
-                    }
-                    else
-                    {
-                        return RedirectToAction("Invalida");
-                    }
-
-                    if (usarMismaDireccion==1)
-                    {
-
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-
+                direccion = new Direccion();
             }
-            return View();
+            else
+            {
+                var query2 = db.Direccion.FirstOrDefault(x=>x.id_direccion==query.id_direccion);
+                direccion = query2;
+            }
+           
+
+            direccion.estado = estado;
+            direccion.municipio = municipio;
+            direccion.ciudad = ciudad;
+            direccion.codigo_postal = codigo_postal;
+            direccion.telefono = telefono;
+            direccion.calle_externa = calle_externa;
+            direccion.num_calle_externa = numCallExterna;
+            direccion.calle_interna = calle_interna;
+            direccion.num_calle_interna = numCalleInterna;
+            direccion.ref1 = ref1;
+            direccion.ref2 = ref2;
+            direccion.pais = pais;
+            int id = 1; 
+            if (query.id_direccion==null)
+            {
+                db.Direccion.Add(direccion);    
+                db.SaveChanges();
+           
+            id = db.Direccion.Max(o => o.id_direccion);
+            }else
+            {
+                db.SaveChanges();
+                id =(int) query.id_direccion;
+            }
+              
+    
+
+            Cliente cliente = db.Cliente.FirstOrDefault(x => x.email == email2);
+
+                    DateTime fecha_nacC = DateTime.Parse(fecha_nacimiento.ToString());
+                    cliente.nombre_cliente = nombre_cliente;
+                    cliente.apellido_p = apellido_p;
+                    cliente.apellido_m = apellido_m;
+                    cliente.id_direccion = id;
+                    cliente.telefono = telefono;
+                    cliente.nombre_usuario = nombre_usuario;
+                    cliente.fecha_nacimiento = fecha_nacC;
+                    cliente.email =email2;
+            cliente.id_direccion = id;
+                    db.SaveChanges();
+
+
+
+                    string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
+                    Session["nombre"] = nombre[0];
+                    Session["usuario"] = nombre_usuario;
+            return RedirectToAction("Ver", "Cuenta");
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 

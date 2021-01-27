@@ -28,14 +28,22 @@ namespace TiendaMotores.Controllers
 
             if (Session["rol"].Equals("Cliente"))
             {
+             //  Cliente cliente = db.Cliente.Find(id);
+               
+              //  ViewBag.cliente = cliente;
                 return RedirectToAction("CuentaCliente");
             }
-            else
+            else 
             {
+               // Empleado empleado = db.Empleado.Find(id);
+                
+               // ViewBag.empleado = empleado;
                 return RedirectToAction("CuentaEmpleado");
             }
         }
-        public ActionResult Modificar()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Modificar(string s)
         {
             if (Session["rol"].Equals("Cliente"))
             {
@@ -67,50 +75,55 @@ namespace TiendaMotores.Controllers
                             where o.id_cliente == cl.id_cliente
                             orderby o.fecha_compra ascending
                             select o;
-                var comprass = query.FirstOrDefault();
-                compra = query.ToList();
-
-
-                var queryOrden = (from k in db.Oden_cliente
-                                  where k.id_compra == comprass.id_compra
-                                  select k).FirstOrDefault();
-
-                foreach (Compra c in compra)
+                if (query.Count() > 0)
                 {
-                    pedido = new PedidoCliente();
-                    pedido.compra = c;
-                    pedido.fecha = c.fecha_compra.ToString();
-                    if (queryOrden.fecha_envio.HasValue)
+                    var comprass = query.FirstOrDefault();
+
+                    compra = query.ToList();
+
+
+                    var queryOrden = (from k in db.Oden_cliente
+                                      where k.id_compra == comprass.id_compra
+                                      select k).FirstOrDefault();
+
+                    foreach (Compra c in compra)
                     {
-                        pedido.envio = queryOrden.fecha_envio.GetValueOrDefault().ToShortDateString();
-                    }
-                    else
-                    {
-                        pedido.envio = "Proximamente";
-                    }
-                    if (queryOrden.fecha_entrega.HasValue)
-                    {
-                        pedido.estatus = queryOrden.fecha_entrega.GetValueOrDefault().ToShortDateString();
-                    }
-                    else
-                    {
-                        pedido.estatus = "Sin entregar";
-                    }
-                    pedido.total = queryOrden.total.ToString();
-                    pedidos.Add(pedido);
-                    detalle_compra = (from oP in db.Detalle_compra
-                                      where oP.Id_compra == c.id_compra
-                                      select oP).ToList();
-                    pedido.compraProductos = detalle_compra;
-                    foreach (Detalle_compra op in detalle_compra)
-                    {
-                        iPed = new ItemPedido();
-                        iPed.idOrd = op.Id_compra;
-                        iPed.product = db.Producto.First(p => p.Id_producto == op.id_producto);
-                        iPed.Cantidad = op.cantidad;
-                        itemPed.Add(iPed);
+                        pedido = new PedidoCliente();
+                        pedido.compra = c;
+                        pedido.fecha = c.fecha_compra.ToString();
+                        if (queryOrden.fecha_envio.HasValue)
+                        {
+                            pedido.envio = queryOrden.fecha_envio.GetValueOrDefault().ToShortDateString();
+                        }
+                        else
+                        {
+                            pedido.envio = "Proximamente";
+                        }
+                        if (queryOrden.fecha_entrega.HasValue)
+                        {
+                            pedido.estatus = queryOrden.fecha_entrega.GetValueOrDefault().ToShortDateString();
+                        }
+                        else
+                        {
+                            pedido.estatus = "Sin entregar";
+                        }
+                        pedido.total = queryOrden.total.ToString();
+                        pedidos.Add(pedido);
+                        detalle_compra = (from oP in db.Detalle_compra
+                                          where oP.Id_compra == c.id_compra
+                                          select oP).ToList();
+                        pedido.compraProductos = detalle_compra;
+                        foreach (Detalle_compra op in detalle_compra)
+                        {
+                            iPed = new ItemPedido();
+                            iPed.idOrd = op.Id_compra;
+                            iPed.product = db.Producto.First(p => p.Id_producto == op.id_producto);
+                            iPed.Cantidad = op.cantidad;
+                            itemPed.Add(iPed);
+                        }
                     }
                 }
+               
             }
             else
             {

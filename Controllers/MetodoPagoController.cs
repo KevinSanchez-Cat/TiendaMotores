@@ -80,7 +80,7 @@ namespace TiendaMotores.Controllers
             return View();
 
         }
-        public ActionResult Pagar(string tipoPago)
+        public ActionResult PagarCon(string tipoPago,int idDir)
         {
             string correo = User.Identity.Name;
             DateTime fechaCreacion = DateTime.Today;
@@ -90,7 +90,7 @@ namespace TiendaMotores.Controllers
                            select c).ToList().FirstOrDefault();
             int ideClient = cliente.id_cliente;
 
-            if (tipoPago.Equals("T"))
+            if (tipoPago.Equals("Tarjeta"))
             {
                 if (!validaPago(cliente))
                 {
@@ -98,22 +98,19 @@ namespace TiendaMotores.Controllers
                 }
                 else
                 {
-                    //  var dirEnt = (from d in db.Direccion
-                    //                where d.id_cliente == cliente.id_cliente
-                    //                select d).ToList().FirstOrDefault();
-                    //   int idDir = dirEnt.Id_dirEnt;
-                    //  return RedirectToAction("PagoAceptado", routeValues: new { idC = ideClient, idD = idDir });
+                    return RedirectToAction("PagoAceptado", routeValues: new { idC = ideClient, idD = idDir });
                 }
             }
 
-            if (tipoPago.Equals("P"))
+            if (tipoPago.Equals("PayPal"))
             {
-                //   var dirEnt = (from d in db.Direccion
-                //                 where d.id_cliente==cliente.id_cliente
-                //                 select d).ToList().FistOrDefault();
-                //   int idDir = dirEnt.Id_dirEntr;
-                //   validaPago(cliente);
-                //   return RedirectToActionPermanent("PagoPayPal", routeValues: new { idC=ideClient, idD=idDir});
+                 var dirEnt = (from d in db.Cliente
+                               where d.id_direccion==cliente.id_cliente
+                                select d).ToList();
+
+             //   int idDir = 0;
+                   validaPago(cliente);
+                  return RedirectToActionPermanent("PagoPayPal", routeValues: new { idC=ideClient, idD=idDir});
             }
             return View();
         }
@@ -201,5 +198,6 @@ namespace TiendaMotores.Controllers
             Session["nConfirma"] = NumConfirPago;
             return retorna;
         }
+
     }
 }

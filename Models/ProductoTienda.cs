@@ -11,14 +11,19 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class ProductoTienda
     {
         public int Id_producto { get; set; }
+        [Display(Name = "Número de búsqueda")]
         public int numBusqueda { get; set; }
+        [Display(Name = "Calificación")]
         public int calificacion { get; set; }
+        [Display(Name = "Número de visitas")]
         public int numVisitas { get; set; }
+        [Display(Name = "¿Destacado?")]
         public string destacado { get; set; }
+        [Display(Name = "Productos relacionados")]
         public int Id_producto_tienda { get; set; }
     
         public virtual Producto Producto { get; set; }

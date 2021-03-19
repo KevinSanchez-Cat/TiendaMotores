@@ -11,40 +11,24 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Empleado
     {
-        
         public int Id_empleado { get; set; }
-        [Display(Name = "Nombre(s)")]
         public string nombre_empleado { get; set; }
-        [Display(Name = "Apellido paterno")]
         public string apellido_p { get; set; }
-        [Display(Name = "Apellido materno")]
         public string apellido_m { get; set; }
-        [Display(Name = "Fecha nacimiento")]
         public Nullable<System.DateTime> fecha_nac { get; set; }
-        [Display(Name = "Estatus")]
         public string estatus { get; set; }
-        [Display(Name = "Salario")]
         public Nullable<decimal> salario { get; set; }
-        [Display(Name = "Email de tienda")]
         public string email { get; set; }
-        [Display(Name = "Telefono")]
         public string telefono { get; set; }
-        [Display(Name = "Dirección")]
         public int id_direccion { get; set; }
-        [Display(Name = "Departamento")]
         public int id_departamento { get; set; }
-        [Display(Name = "Puesto")]
         public int id_puesto { get; set; }
-        [Display(Name = "RFC")]
         public string rfc { get; set; }
-        [Display(Name = "Rol")]
         public string rol { get; set; }
-        [Display(Name = "Nombre de usuario")]
         public string nombre_usuario { get; set; }
-        [Display(Name = "Contraseña")]
         public string contrasenia { get; set; }
     
         public virtual Departamento Departamento { get; set; }

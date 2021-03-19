@@ -16,6 +16,7 @@ namespace TiendaMotores.Controllers
         {
             Session["id"] = "";
             Session["nombre"] = "";
+         
             ContextoTienda db = new ContextoTienda();
             if (HttpContext.Request.Cookies["usuario"] != null)
             {

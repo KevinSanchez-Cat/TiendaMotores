@@ -40,48 +40,53 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     ViewBag.Title = "Pagando con PayPal";
-    int idClient = Convert.ToInt32(Session["idCli"].ToString());
-    int idDir = Convert.ToInt32(Session["idDir"].ToString());
+    int idClient =(int) Session["idCli"];
+    int idDir = (int)Session["idDir"];
     string nombre = Session["usuario"].ToString();
     List<Item> cart = (List<Item>)Session["cart"];
     var tottal = cart.Sum(item => item.Producto.precio);
 }
-<div class="container" style="margin:2rem auto">
+<div class="container" style="margin:2rem auto" align="center">
     <div>
-        <img src="~/Content/Imagenes/Tarjetas/paypal.png" width="200" />
+        <img src="~/Content/Imagenes/Tarjetas/paypal.png" width="160" />
     </div>
 
     <main>
-        <p>
+        <p class="text-primary h2" >
             <b>
                 Bienvenido @nombre
             </b>
+            <br />
         </p>
+        <p class="text-info">¿Acepta el pago de los siguientes articulos?</p>
         <table class="table-striped">
-            <caption>¿Acepta el pago de los siguientes articulos?</caption>
+
             <tr>
-                <td colspan="2" style="height:25px;padding:15px">
-                    <b style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Bull Motors</b>
+                <td colspan="5" class="text-center bg-secondary" style="height:25px;width:40px;padding:20px">
+                    <b style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">B u l l M o t o r s</b>
                 </td>
             </tr>
             <tr>
                 <td class="bg-primary" style="height:25px;padding:15px">
                     Importe en pesos:
                 </td>
-                <td style="height:25px;padding:15px"><b>@tottal</b></td>
+                <td style="height:25px;padding:15px"><b>$@tottal</b></td>
             </tr>
         </table>
+        <br />
+        <br />
     </main>
     <div style="margin:auto">
-        <a class="btn btn-success" style="text-decoration:none" href="@Url.Action("CrearOrden","MetodoPago")">
+        <a class="btn btn-secondary" style="text-decoration:none" href="@Url.Action("CrearOrden","MetodoPago")">
             Regresar
-        </a>
-        <a class="btn btn-success" style="text-decoration:none" href="@Url.Action("HacerCompra","MetodoPago")">
-            Confirmar compra
         </a>
         <a class="btn btn-warning" style="text-decoration:none" href="@Url.Action("PagoNoAceptado","MetodoPago")">
             Cancelar
         </a>
+        <a class="btn btn-success" style="text-decoration:none" href="@Url.Action("HacerCompraConPay","MetodoPago")">
+            Confirmar compra
+        </a>
+
     </div>
 
 </div>

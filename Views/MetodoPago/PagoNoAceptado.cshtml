@@ -45,15 +45,18 @@
 
 @using (Html.BeginForm("CrearOrden", "MetodoPago", FormMethod.Get))
 {
-<div class="form-group">
+<div class="alert alert-danger" role="alert">
     <h4 class="alert-heading">¡Lo sentimos!</h4>
     <p>Su pago no fue aceptado elija otra forma de pago.</p>
-    <hr>
+
+    <hr />
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Continuar" class="btn btn-outline-danger" />
+            <input type="submit" value="Continuar" class="btn btn-danger" />
         </div>
     </div>
 </div>
+
+
 }
 

@@ -39,7 +39,11 @@
 
     ContextoTienda db = new ContextoTienda();
     var query = db.Empleado.FirstOrDefault(x => x.email == correo);
-    string fecha_nac = System.DateTime.Parse(query.fecha_nac.ToString()).ToShortDateString();
+    string fecha_nac = "";
+    if (query.fecha_nac != null)
+    {
+        fecha_nac = System.DateTime.Parse(query.fecha_nac.ToString()).ToShortDateString();
+    }
     Direccion query2 = query.Direccion;
     string pais = "";
     string ciudad = "";
@@ -54,6 +58,8 @@
     string ref2 = "";
     string telefono = "";
     string codigo_postal = "";
+    Departamento dep = db.Departamento.FirstOrDefault(x => x.id_departamento == query.id_departamento);
+    Puesto puesto = db.Puesto.FirstOrDefault(x => x.id_puesto == query.id_puesto);
     if (query2 != null)
     {
         pais = query2.pais;
@@ -70,6 +76,7 @@
         codigo_postal = query2.codigo_postal;
 
     }
+
 }
 
 <h2>Mi cuenta</h2>
@@ -81,9 +88,9 @@
             <p class="card-text">
                 <dl class="row">
                     <dt class="col-sm-6">Departamento: </dt>
-                    <dd class="col-sm-6">@query.Departamento.nombre_departamento</dd>
+                    <dd class="col-sm-6">@dep.nombre_departamento</dd>
                     <dt class="col-sm-6">Puesto: </dt>
-                    <dd class="col-sm-6">@query.Puesto.nombre_puesto</dd>
+                    <dd class="col-sm-6">@puesto.nombre_puesto</dd>
 
                 </dl>
 

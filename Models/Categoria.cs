@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Categoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,11 +22,8 @@ namespace TiendaMotores.Models
         }
     
         public int id_categoria { get; set; }
-        [Display(Name = "Categoria")]
         public string nombre_categoria { get; set; }
-        [Display(Name = "Descripción")]
         public string descripcion { get; set; }
-        [Display(Name = "Categoria superior")]
         public int id_categoria_superior { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

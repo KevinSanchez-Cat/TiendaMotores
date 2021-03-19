@@ -11,7 +11,7 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,24 +21,15 @@ namespace TiendaMotores.Models
         }
     
         public int id_cliente { get; set; }
-        [Display(Name = "Nombre(s)")]
         public string nombre_cliente { get; set; }
-        [Display(Name = "Apellido paterno")]
         public string apellido_p { get; set; }
-        [Display(Name = "Apellido materno")]
         public string apellido_m { get; set; }
-        [Display(Name = "Dirección")]
         public Nullable<int> id_direccion { get; set; }
-        [Display(Name = "Telefono")]
         public string telefono { get; set; }
-        [Display(Name = "Email")]
         public string email { get; set; }
-        [Display(Name = "Tarjeta")]
         public Nullable<int> id_tarjeta { get; set; }
-        [Display(Name = "Nombre de usuario")]
         public string nombre_usuario { get; set; }
         public string contrasenia { get; set; }
-        [Display(Name = "Fecha de nacimiento")]
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
     
         public virtual Direccion Direccion { get; set; }

@@ -77,9 +77,8 @@
     Session["idCli"] = idCli;
 
 }
-
-
-
+<h2>Compra </h2>
+<br />
 <div class="card">
     <div class="card-header">
         <h2>Entrega</h2>
@@ -432,29 +431,25 @@
                         Selccione el método de pago más conveniente para usted
                     </p>
                   
-                        <div class="list-group">
-                            <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="PayPal"})" class="list-group-item list-group-item-action flex-column align-items-start active">
-                                <p class="text-center">
-                                    <img src="~/Content/Imagenes/Tarjetas/paypal.png" class="img-responsive img-rounded" width="160" />
+                    <div class="list-group">
+                        <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="PayPal"})" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <p class="text-center">
+                                <img src="~/Content/Imagenes/Tarjetas/paypal.png" class="img-responsive img-rounded" width="160" />
 
-                                </p>
-                            </a>
-                            <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="Tarjeta"})" class="list-group-item list-group-item-action flex-column align-items-start">
-                                <p class="text-center">
+                            </p>
+                        </a>
+                        <a href="@Url.Action("PagarCon","MetodoPago",new { tipoPago="Tarjeta"})" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <p class="text-center">
+                                <img src="~/Content/Imagenes/Tarjetas/tarjCred.jpg" class="img-responsive img-rounded" width="200" />
 
-                                    <img src="~/Content/Imagenes/Tarjetas/tarjCred.jpg" class="img-responsive img-rounded" width="200" />
+                            </p>
+                        </a>
 
-                                </p>
-                            </a>
-                           
-                        </div>
+                    </div>
                  
 
                 </div>
 
-
-                <script src="http://www.paypal.com/sdk/js?client-id=sb"></script>
-                <script>paypal.Buttons().render('body');</script>
 
             </div>
 

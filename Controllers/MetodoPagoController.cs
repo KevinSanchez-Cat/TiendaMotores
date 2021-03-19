@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using TiendaMotores.Models;
@@ -26,9 +27,11 @@ namespace TiendaMotores.Controllers
             return View();
 
         }
-        public ActionResult HacerCompra()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HacerCompraConTarjeta(string nombre_titular,string numero_tarjeta, string mes_vencimiento, string anio_vencimiento, string cvv, string municipio, string codigo_postal, string calle_externa, string num_calle_externa,  string num_calle_interna, string pais)
         {
-
+            string tipoTarjeta = "";
             if (!User.Identity.IsAuthenticated)
             {
                 Session["CrearOrden"] = "pend";
@@ -36,59 +39,91 @@ namespace TiendaMotores.Controllers
             }
             string correo = User.Identity.Name;
 
-            DateTime fechCreacion = DateTime.Today;
-            DateTime fechaProbEntrega = DateTime.Today.AddDays(3);
+           
+           
             var cliente = (from c in db.Cliente
                            where c.email == correo
                            select c);
 
-            if (cliente.Count() > 0)
-            {
                 Cliente cliente2 = cliente.FirstOrDefault();
-                Session["dirCliente"] = cliente2.id_direccion;
-                Session["fechaOrden"] = fechCreacion;
-                Session["fechaEntrga"] = fechaProbEntrega;
-                //Solicitar si hay tarjeta
 
-                if (cliente2.id_tarjeta != null)
-                {
-                    var tarjeta = (from c in db.Tarjeta
-                                   where c.id_tarjeta == cliente2.id_tarjeta
-                                   select c).FirstOrDefault();
+               
+                
 
-                    //Identificar el numero de tarjeta
-                    if (tarjeta.numTarjeta.ToString().StartsWith("4"))
+                    if (numero_tarjeta.StartsWith("4"))
                     {
-                        Session["tTarj"] = "1";
+                        tipoTarjeta = "1";
                     }
-                    if (tarjeta.numTarjeta.ToString().StartsWith("5"))
+                    if (numero_tarjeta.StartsWith("5"))
                     {
-                        Session["tTarj"] = "2";
+                        tipoTarjeta = "2";
                     }
-                    if (tarjeta.numTarjeta.ToString().StartsWith("3"))
+                    if (numero_tarjeta.ToString().StartsWith("3"))
                     {
-                        Session["tTarj"] = "3";
+                        tipoTarjeta = "3";
                     }
-                    Session["nTarj"] = tarjeta.numTarjeta;
+
+                    if (tarjeta(numero_tarjeta, tipoTarjeta, mes_vencimiento, anio_vencimiento, cvv))
+                    {
+
+                    if (!validaPago())
+                    {
+                            return RedirectToAction("PagoNoAceptado");
+                    }
+                    else
+                    {
+                    int numCalleE = Int32.Parse(num_calle_externa);
+                    int numCalleI = Int32.Parse(num_calle_interna);
+                    Direccion dir = new Direccion();
+                    dir.pais = pais;
+                    dir.estado = "";
+                    dir.ciudad = "";
+                    dir.municipio = municipio;
+                    dir.calle_externa = calle_externa;
+                    dir.calle_interna = "";
+                    dir.codigo_postal = codigo_postal;
+                    dir.num_calle_externa = numCalleE;
+                    dir.num_calle_interna = numCalleI;
+                    dir.telefono = "";
+                    dir.ref1 = "";
+                    dir.ref2 = "";
+                    db.Direccion.Add(dir);
+                    db.SaveChanges();
+                    int idDireccionTar = db.Direccion.Max(i=>i.id_direccion);
+
+                    
+                    Tarjeta tarjerta = new Tarjeta();
+                    tarjerta.nombre_titular = nombre_titular;
+                    tarjerta.id_direccion = idDireccionTar;
+                    tarjerta.mes_vencimiento = mes_vencimiento;
+                    tarjerta.anio_vencimiento = anio_vencimiento;
+                    tarjerta.numTarjeta = numero_tarjeta;
+                    tarjerta.tipo_tarjeta =Int32.Parse(tipoTarjeta);
+                    db.Tarjeta.Add(tarjerta);
+                    db.SaveChanges();
 
 
-                }
-                else
-                {
-                    //Solicitar la tarjeta
-                }
-            }
-            else
-            {
-                //Solicitar el registro de todo
 
-            }
-            return View();
+                        validaPago();
+                        return RedirectToAction("PagoAceptado");
+                    }
+                    }
+                    else
+                    {
+                        return RedirectToAction("PagoNoAceptado");
+                    }
+                
+            
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        public ActionResult HacerCompraConPay()
+        {
+
+            validaPago();
+            return RedirectToAction("PagoAceptado");
+        }
+
         public ActionResult PagarCon(string tipoPago)
         {
             string correo = User.Identity.Name;
@@ -98,42 +133,34 @@ namespace TiendaMotores.Controllers
                            where c.email == correo
                            select c).ToList().FirstOrDefault();
 
-            int idD=Int32.Parse( Session["idDir"].ToString() );
-            int idC= Int32.Parse(Session["idCli"].ToString() );
+            int idD=(int)Session["idDir"];
+            int idC = cliente.id_cliente;
             if (tipoPago.Equals("Tarjeta"))
             {
-                validaPago(cliente);
-                return RedirectToActionPermanent("PagoTarjeta", routeValues: new { idC = idC, idD = idD});
-            }
-
-            if (tipoPago.Equals("PayPal"))
+                validaPago();
+                return RedirectToAction("PagoTarjeta", routeValues: new { idC = idC, idD = idD});
+            }else if (tipoPago.Equals("PayPal"))
             {
                
-                   validaPago(cliente);
-                  return RedirectToActionPermanent("PagoPayPal", routeValues: new { idC=idC, idD=idD});
+                   validaPago();
+                  return RedirectToAction("PagoPayPal", routeValues: new { idC=idC, idD=idD});
             }
             return View();
         }
 
         public ActionResult PagoTarjeta(int idC, int idD)
         {
-            Session["idDir"] = idD;
-            Session["idCli"] = idC;
+
             return View();
         }
         public ActionResult PagoPayPal(int idC, int idD)
         {
-            Session["idDir"] = idD;
-            Session["idCli"] = idC;
+
             return View();
         }
-
-
-        public ActionResult PagandoPayPal(int idC, int idD)
+        public ActionResult PagandoPayPal()
         {
-
-            Session["idDir"] = idD;
-            Session["idCli"] = idC;
+       
             return View();
         }
 
@@ -141,42 +168,56 @@ namespace TiendaMotores.Controllers
         {
             return View();
         }
-        public ActionResult PagoAceptado(int idC, int idD)
+        public ActionResult PagoAceptado()
         {
-            Oden_cliente orde = new Oden_cliente();
+            var carro = Session["cart"] as List<Item>;
+            var total = carro.Sum(item => item.Producto.precio * item.Cantidad);
+            int idCli = (int)Session["idCli"];
+            int idDir = (int)Session["idDir"];
+            int nConfirmacion = Convert.ToInt32(Session["nConfirma"]);
+            Compra compra = new Compra();
+            compra.total = total;
+            compra.id_cliente = idCli;
+            compra.fecha_compra = System.DateTime.Now;
+            compra.id_direccion_entrega = idDir;
+            db.Compra.Add(compra);
+            db.SaveChanges();
             int id = 0;
-            if (!(db.Oden_cliente.Max(o => (int?)o.Id_orden) == null))
+            if (!(db.Compra.Max(o => (int?)o.id_compra) == null))
             {
-                id = db.Oden_cliente.Max(o => o.Id_orden);
+                id = db.Compra.Max(o => o.id_compra);
             }
             else
             {
-                id = 0;
-
+                id = 1;
             }
-            id++;
 
-            orde.Id_orden = id;
+
+            Oden_cliente orde = new Oden_cliente();
+           
+            
+            orde.id_compra = id;
+            orde.num_comfirmacion = nConfirmacion;
             orde.fecha_creacion = DateTime.Today;
-            orde.num_comfirmacion = Convert.ToInt32(Session["nConfirma"].ToString());
-            var carro = Session["cart"] as List<Item>;
-            var total = carro.Sum(item => item.Producto.precio * item.Cantidad);
             orde.total = (double)Convert.ToDecimal(total.ToString());
-            //id_cliente
-            //id_dirEntrega
-
+            orde.id_paqueteria = 1;
+            orde.fecha_creacion = null;
+            orde.fecha_entrega = null;
             db.Oden_cliente.Add(orde);
             db.SaveChanges();
-            Detalle_compra compra;
+
+
+            Detalle_compra compraP;
 
             List<Detalle_compra> listaProd = new List<Detalle_compra>();
             foreach (Item linea in carro)
             {
-                compra = new Detalle_compra();
-                compra.Id_compra = orde.Id_orden;
-                compra.id_producto = linea.Producto.Id_producto;
-                compra.cantidad = linea.Cantidad;
-                db.Detalle_compra.Add(compra);
+                compraP = new Detalle_compra();
+                compraP.Id_compra = orde.id_compra;
+                compraP.id_producto = linea.Producto.Id_producto;
+                compraP.cantidad = linea.Cantidad;
+                compraP.subtotal = (linea.Producto.precio * linea.Cantidad);
+                db.Detalle_compra.Add(compraP);
             }
             db.SaveChanges();
 
@@ -186,7 +227,7 @@ namespace TiendaMotores.Controllers
             return View();
 
         }
-        private bool validaPago(Cliente cliente)
+        private bool validaPago()
         {
             bool retorna = true;
             //Se debe comunicar con el sistema de pago enviando los datos de la tarjeta
@@ -205,6 +246,94 @@ namespace TiendaMotores.Controllers
             return retorna;
         }
        
+    private bool tarjeta(string tarj, string tipo, string mes, string anio, string cvv)
+    {
+        //llamar al metodo Luhn
+        bool retorna = validaTarjeta(tarj);
+        if (retorna)
+        {
+            if ((tarj.StartsWith("4") && (tipo.Equals("Visa"))))
+            {
+                retorna = true;
+            }
+            else
+            {
+                if ((tarj.StartsWith("5") && (tipo.Equals("Masterd"))))
+                {
+                    retorna = true;
+                }
+                else
+                {
+                    if ((tarj.StartsWith("3") && (tipo.Equals("American"))))
+                    {
+                        retorna = true;
+                    }
+                    else
+                    {
+                        retorna = false;
+                    }
+                }
+            }
+        }
+        DateTime hoy = new DateTime();
+        if (Convert.ToInt32(anio) >= hoy.Year)
+        {
+            if (Convert.ToInt32(mes) > hoy.Month)
+            {
+                retorna = true;
+            }
+            else
+            {
+                retorna = false;
+            }
+        }
+        else
+        {
+            retorna = false;
+        }
+
+        return retorna;
+    }
+    private bool validaTarjeta(string tarj)
+    {
+        bool retorna = true;
+        StringBuilder digitsOnly = new StringBuilder();
+        foreach (Char c in tarj)
+        {
+            if (Char.IsDigit(c)) digitsOnly.Append(c);
+        };
+        if (digitsOnly.Length > 18 || digitsOnly.Length < 15)
+            return false;
+
+        int sum = 0;
+        int digit = 0;
+        int addend = 0;
+        bool timesTwo = false;
+
+        for (int i = digitsOnly.Length - 1; i >= 0; i--)
+        {
+            digit = Int32.Parse(digitsOnly.ToString(i, 1));
+            if (timesTwo)
+            {
+                addend = digit * 2;
+                if (addend > 9)
+                {
+                    addend -= 9;
+                }
+            }
+            else
+            {
+                addend = digit;
+            }
+            sum += addend;
+            timesTwo = !timesTwo;
+        }
+        retorna = ((sum % 10) == 0);
+
+        return retorna;
+    }
 
     }
+
+
 }

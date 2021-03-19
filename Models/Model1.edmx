@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TIENDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -55,7 +55,7 @@
           <Property Name="id_producto" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Id_detalle_compra" Type="int" Nullable="false" />
+          <Property Name="Id_detalle_compra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -267,7 +267,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Detalle_c__Id_co__1CBC4616">
+        <Association Name="FK__Detalle_c__Id_co__0880433F">
           <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
           <End Role="Detalle_compra" Type="Self.Detalle_compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,7 +279,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Detalle_c__id_pr__32AB8735">
+        <Association Name="FK__Detalle_c__id_pr__09746778">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="Detalle_compra" Type="Self.Detalle_compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -496,11 +496,11 @@
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Detalle_c__Id_co__1CBC4616" Association="Self.FK__Detalle_c__Id_co__1CBC4616">
+          <AssociationSet Name="FK__Detalle_c__Id_co__0880433F" Association="Self.FK__Detalle_c__Id_co__0880433F">
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Detalle_compra" EntitySet="Detalle_compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Detalle_c__id_pr__32AB8735" Association="Self.FK__Detalle_c__id_pr__32AB8735">
+          <AssociationSet Name="FK__Detalle_c__id_pr__09746778" Association="Self.FK__Detalle_c__id_pr__09746778">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Detalle_compra" EntitySet="Detalle_compra" />
           </AssociationSet>
@@ -561,8 +561,7 @@
             <End Role="Tarjeta" EntitySet="Tarjeta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TIENDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

@@ -40,94 +40,76 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 }
-
+<br />
 <h2>Mis pedidos</h2>
 
 
-@{
-    if (Session[""] != null)
-    {
+<table class="table table-striped border-info">
 
-    <table class="table ">
-        @{
-            if ((List<PedidoCliente>)Session["misPedidos"] == null)
+    @{
+        if ((List<PedidoCliente>)Session["misPedidos"] == null)
+        {
+            <div class="alert alert-info" role="alert">
+                <p>No tiene pedidos... -aún- Animese a comprar, verá que no se va a decepcionar</p>
+            </div>
+        }
+        else
+        {
+            foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"])
             {
-                <div class="alert alert-warning" role="alert">
-                    <p>Aún no ha ningún pedido</p>
-                </div>
-                <a class="btn btn-warning" href="@Url.Action("Home","Home")"> Regresar</a>
-            }
-            else
-            {
-                foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"])
+                int idOrd = pedido.compra.id_compra;
+
+                <tr class="table-primary">
+                    <td>
+                        Fecha de creación: @pedido.fecha
+                    </td>
+                    <td>
+                        Fecha de envio: @pedido.envio
+                    </td>
+
+                    <td>
+                        Fecha de entrega: @pedido.estatus
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Nombre del producto</td>
+                    <td>Imagen</td>
+                    <td>Precio por unidad</td>
+                    <td>Cantidad</td>
+                    <td>Subtotal</td>
+                </tr>
+                foreach (ItemPedido item in (List<ItemPedido>)Session["Pedido"])
                 {
-                    int idOrd = pedido.compra.id_compra;
-                    <tr>
-                        <td>
-                            Fecha de creación: @pedido.fecha
-                        </td>
-                        <td>
-                            Fecha de envio: @pedido.envio
-                        </td>
 
-                        <td>
-                            Fecha de entrega: @pedido.estatus
-                        </td>
-                    </tr>
-                    foreach (ItemPedido item in (List<ItemPedido>)Session["Pedido"])
+                    if (item.idOrd == idOrd)
                     {
+
                         <tr>
-                            <td>
-                                Nombre del producto
-                            </td>
-                            <td>
-                                Imagen
-                            </td>
-                            <td>
-                                Precio
-                            </td>
-                            <td>
-                                Cantidad
-                            </td>
-                            <td>
-                                SubTotal
-                            </td>
-
+                            <td>@item.product.nombre_producto</td>
+                            <td><img clas="img-responsive" src="~/Content/Imagenes/Productos/@item.product.imagen_producto" width="100" /></td>
+                            <td>$@item.product.precio</td>
+                            <td>@item.Cantidad</td>
+                            <td>@(item.product.precio*item.Cantidad)</td>
                         </tr>
-                        if (item.idOrd == idOrd)
-                        {
-
-                            <tr>
-                                <td>@item.product.nombre_producto</td>
-                                <td><img clas="img-responsive" src="~/Content/Imagenes/Productos/@item.product.imagen_producto" width="100" />></td>
-                                <td>$@item.product.precio</td>
-                                <td>@item.Cantidad</td>
-                                <td>@(item.product.precio*item.Cantidad)</td>
-                            </tr>
-                        }
                     }
-                    <tr>
-                        <td align="right" colspan="4">
-                            Total
-                        </td>
-                        <td>
-                            @pedido.total
-                        </td>
-                    </tr>
                 }
+                <tr style="margin-bottom:2em">
+                    <td align="right" colspan="4">
+                        Total
+                    </td>
+                    <td>
+                        @pedido.total
+                    </td>
+                </tr>
             }
-
         }
 
-    </table>
-        <a class="btn btn-primary" href="@Url.Action("Home","Home")"> Regresar al inicio</a>
-    }
-    else
-    {
-        <div class="alert alert-info" role="alert">
-            <p>No tiene pedidos... -aún- Animese a comprar, verá que no se va a decepcionar</p>
-        </div>
-        <a class="btn btn-primary" href="@Url.Action("Home","Home")"> Regresar</a>
     }
 
-}
+</table>
+    <a class="btn btn-primary" href="@Url.Action("Home","Home")"> Regresar al inicio</a>
+
+
+

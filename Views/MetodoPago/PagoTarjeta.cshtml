@@ -43,46 +43,171 @@
 
 <h2>Método de pago</h2>
 
-<br />
-<div class="card">
-    <div class="card-title">
-        Datos de la tarjeta
+@using (Html.BeginForm("HacerCompraConTarjeta", "MetodoPago", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="card">
+
+        <h5 class="card-header bg-secondary" style="">Datos de la tarjeta</h5>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Nombre que aparece en la tarjeta", htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.Editor("nombre_titular", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Número de la tarjeta (XXXX XXXX XXXX XXXX)", htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.Editor("numero_tarjeta", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Mes de vencimiento", htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.Editor("mes_vencimiento", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Año de vencimiento", htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.Editor("anio_vencimiento", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("CVV", htmlAttributes: new { @class = "control-label col" })
+                        <div class="col">
+                            @Html.Editor("cvv", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    <div class="card-body">
+    <br />
+    <div class="card">
+        <h5 class="card-header bg-secondary" style="">Dirección relacionada a la tarjeta</h5>
+        <div class="card-body">
 
+            <div class="row">
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col">
+                            @Html.Label("País")
+                            @Html.Editor("pais", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("pais", "", new { @class = "text-danger" })
 
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col">
+                            @Html.Label("Colonia")
+                            @Html.Editor("municipio", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("municipio", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col">
+                            @Html.Label("Calle externa")
+                            @Html.Editor("calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("calle_externa", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col">
+                            @Html.Label("No. Calle externa")
+                            @Html.Editor("num_calle_externa", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("num_calle_externa", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col">
+                            @Html.Label("No. Calle interna")
+                            @Html.Editor("num_calle_interna", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("num_calle_interna", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col">
+
+                            @Html.Label("Código postal")
+                            @Html.Editor("codigo_postal", new { htmlAttributes = new { @class = "form-control form-control" } })
+                            @Html.ValidationMessage("codigo_postal", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
-<div class="card">
-    <div class="card-title">
-        Dirección relacionada a tu tarjeta
-    </div>
-    <div class="card-body">
 
 
 
 
-    </div>
-</div>
-
-<br />
-<br />
-<div class=" mx-auto">
-
-    @{
+    
         List<Item> cart = (List<Item>)Session["cart"];
         var total = cart.Sum(item => item.Producto.precio * item.Cantidad);
 
-    }
+    
     <br />
 
     <div class="card text-white bg-secondary mb-9 mx-auto" style="max-width: 22em;">
         <div class="card-body">
             <dl class="row">
                 <dt class="col-sm-4"> Subtotal: </dt>
-                <dd class="col-sm-8">$@total</dd>
+                <dd class="col-sm-8">$ @total</dd>
                 <dt class="col-sm-4">Costo de envio: </dt>
                 <dd class="col-sm-8">$0.00 (Envio gratis)</dd>
 
@@ -91,23 +216,42 @@
             <hr />
             <dl class="row">
                 <dt class="col-sm-4">Total: </dt>
-                <dd class="col-sm-8">$@total</dd>
+                <dd class="col-sm-8">$ @total</dd>
             </dl>
             <p>Los precios ya incluyen IVA</p>
 
         </div>
     </div>
     <br />
-    <div style="margin:auto">
-        <a class="btn btn-success" style="text-decoration:none" href="@Url.Action("CrearOrden","MetodoPago")">
-            Regresar
-        </a>
-        <a class="btn btn-success" style="text-decoration:none" href="@Url.Action("HacerCompra","MetodoPago")">
-            Confirmar compra
-        </a>
-        <a class="btn btn-warning" style="text-decoration:none" href="@Url.Action("PagoNoAceptado","MetodoPago")">
-            Cancelar
-        </a>
-    </div>
-</div>
 
+
+
+
+    <br />
+    <div class="row" align="right">
+   
+           <div   align="left">
+               <a class="btn btn-secondary" href="@Url.Action("CrearOrden","MetodoPago")">
+
+                   Regresar
+               </a>
+           </div>
+            
+            <div align="center">
+                <a class="btn btn-warning" style="margin-left:0.5em" href="@Url.Action("PagoNoAceptado","MetodoPago")">
+
+                    Cancelar
+                </a>
+            </div>
+            
+            <div  align="right" style="margin-left:0.5em">
+
+                <input type="submit" value="Terminar la compra" class="btn btn-success" />
+            </div>
+    
+
+
+    </div>
+}
+
+<br />

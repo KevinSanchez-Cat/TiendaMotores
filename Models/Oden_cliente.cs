@@ -11,25 +11,17 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Oden_cliente
     {
         public int Id_orden { get; set; }
-        [Display(Name = "Id de compra")]
         public int id_compra { get; set; }
-        [Display(Name = "Número de confirmación")]
         public int num_comfirmacion { get; set; }
-        [Display(Name = "Fecha de creación")]
         public Nullable<System.DateTime> fecha_creacion { get; set; }
-        [Display(Name = "Total")]
         public double total { get; set; }
-        [Display(Name = "Númerod de serie")]
         public Nullable<int> num_serie { get; set; }
-        [Display(Name = "Fecha de envio")]
         public Nullable<System.DateTime> fecha_envio { get; set; }
-        [Display(Name = "Fecha de entrega")]
         public Nullable<System.DateTime> fecha_entrega { get; set; }
-        [Display(Name = "Paqueteria")]
         public int id_paqueteria { get; set; }
     
         public virtual Compra Compra { get; set; }

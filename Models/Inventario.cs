@@ -11,16 +11,12 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Inventario
     {
-        [Display(Name = "Producto")]
         public int Id_producto { get; set; }
-        [Display(Name = "Cantidad en inventario")]
         public int cantidad_inventario { get; set; }
-        [Display(Name = "Estatus")]
         public string estatus { get; set; }
-        [Display(Name = "ID Iventario")]
         public int id_inventario { get; set; }
     
         public virtual Producto Producto { get; set; }

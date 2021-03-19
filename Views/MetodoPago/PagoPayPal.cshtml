@@ -43,8 +43,8 @@
 
 
 
-    int idCliente =Convert.ToInt32(Session["idDir"].ToString());
-    int idDir = Convert.ToInt32(Session["idCli"].ToString());
+    int idCli =(int)Session["idDir"];
+    int idDir =(int)Session["idCli"];
 }
 
 <div class=" container mx-auto">
@@ -71,7 +71,7 @@
                 <label><input type="checkbox" name="remember"/>Recuerdame</label>
             </div>
 
-            <a class="btn btn-primary text-center" href="@Url.Action("PagandoPayPal", "MetodoPago", new {idC=idCliente, idDir=idDir})">Entrar</a>
+            <a class="btn btn-primary text-center" href="@Url.Action("PagandoPayPal", "MetodoPago")">Entrar</a>
         </form>
 
     </div>

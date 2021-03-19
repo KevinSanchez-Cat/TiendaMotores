@@ -11,18 +11,13 @@ namespace TiendaMotores.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Detalle_compra
     {
-        [Display(Name = "ID compra")]
         public int Id_compra { get; set; }
-        [Display(Name = "Producto")]
         public int id_producto { get; set; }
-        [Display(Name = "Cantidad")]
         public int cantidad { get; set; }
-        [Display(Name = "Subtotal")]
         public decimal subtotal { get; set; }
-        [Display(Name = "ID detalle compra")]
         public int Id_detalle_compra { get; set; }
     
         public virtual Compra Compra { get; set; }

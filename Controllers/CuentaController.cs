@@ -69,8 +69,7 @@ namespace TiendaMotores.Controllers
             Cliente cl = (from c in db.Cliente
                           where c.email==correo
                           select c).ToList().FirstOrDefault();
-            if (cl != null)
-            {
+          
                 var query = from o in db.Compra
                             where o.id_cliente == cl.id_cliente
                             orderby o.fecha_compra ascending
@@ -124,11 +123,6 @@ namespace TiendaMotores.Controllers
                     }
                 }
                
-            }
-            else
-            {
-
-            }
           
             Session["misPedidos"] = pedidos;
             Session["Pedido"] = itemPed;
